@@ -15,6 +15,7 @@
 package eu.gerhards.liferay.services.angular.service;
 
 import aQute.bnd.annotation.ProviderType;
+import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
@@ -52,6 +53,11 @@ public class AngularVirtualInstanceServiceWrapper
 	public void setWrappedService(
 		AngularVirtualInstanceService angularVirtualInstanceService) {
 		_angularVirtualInstanceService = angularVirtualInstanceService;
+	}
+
+	@Override
+	public Group getVirtualInstances() {
+		return _angularVirtualInstanceService.getVirtualInstances();
 	}
 
 	private AngularVirtualInstanceService _angularVirtualInstanceService;

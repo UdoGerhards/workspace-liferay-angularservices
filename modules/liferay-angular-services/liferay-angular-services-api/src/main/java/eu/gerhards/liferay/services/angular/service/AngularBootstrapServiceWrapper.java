@@ -53,5 +53,10 @@ public class AngularBootstrapServiceWrapper implements AngularBootstrapService,
 		_angularBootstrapService = angularBootstrapService;
 	}
 
+	@Override
+	public String getServiceConfiguration() {
+		return _angularBootstrapService.getServiceConfiguration();
+	}
+
 	private AngularBootstrapService _angularBootstrapService;
 }
