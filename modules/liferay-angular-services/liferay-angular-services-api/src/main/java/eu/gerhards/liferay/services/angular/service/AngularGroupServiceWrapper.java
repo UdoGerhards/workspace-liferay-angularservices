@@ -57,20 +57,20 @@ public class AngularGroupServiceWrapper implements AngularGroupService,
 	}
 
 	@Override
-	public java.util.List<com.liferay.portal.kernel.model.Group> getActiveGroups(
-			long companyId) {
+    public java.util.List<com.liferay.portal.kernel.model.Group> getActiveGroups(
+			long companyId) throws PortalException {
 		return _angularGroupService.getActiveGroups(companyId);
 	}
 
 	@Override
 	public java.util.List<com.liferay.portal.kernel.model.Group> getInactiveGroups(
-			long companyId) {
+			long companyId) throws PortalException {
 		return _angularGroupService.getInactiveGroups(companyId);
 	}
 
 	@Override
-	public java.util.List<com.liferay.portal.kernel.model.Group> getInstanceGroups(
-			long companyId) {
+    public java.util.List<com.liferay.portal.kernel.model.Group> getInstanceGroups(
+			long companyId) throws PortalException {
 		return _angularGroupService.getInstanceGroups(companyId);
 	}
 

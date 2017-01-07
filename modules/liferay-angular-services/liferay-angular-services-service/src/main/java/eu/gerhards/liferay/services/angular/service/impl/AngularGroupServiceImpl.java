@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.service.permission.GroupPermissionUtil;
 import com.liferay.portal.kernel.service.permission.PortalPermissionUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import eu.gerhards.liferay.services.angular.service.base.AngularGroupServiceBaseImpl;
+import eu.gerhards.liferay.services.angular.service.util.AngularActionKeys;
 
 import java.util.List;
 import java.util.Locale;
@@ -59,7 +60,15 @@ public class AngularGroupServiceImpl extends AngularGroupServiceBaseImpl {
     public static final Log _log = LogFactoryUtil.getLog(AngularGroupServiceImpl.class.getName());
 
     @Override
-    public List<Group> getInstanceGroups(long companyId) {
+    public List<Group> getInstanceGroups(long companyId) throws PortalException {
+
+        _log.info("Getting all groups for company id: "+String.valueOf(companyId));
+
+        _log.debug("    ... security check ...");
+
+        PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.LIST_USER_GROUPS);
+
+        _log.debug("   ... getting information ...");
 
         int groupCount = GroupLocalServiceUtil.getCompanyGroupsCount(companyId);
         List<Group> instanceGroups = null;
@@ -72,40 +81,77 @@ public class AngularGroupServiceImpl extends AngularGroupServiceBaseImpl {
     }
 
     @Override
-    public List<Group> getActiveGroups(long companyId) {
+    public List<Group> getActiveGroups(long companyId) throws PortalException {
+
+        _log.info("Getting all groups for company id: "+String.valueOf(companyId));
+
+        _log.debug("    ... security check ...");
+
+        PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.LIST_USER_GROUPS);
+
+        _log.debug("   ... getting information ...");
+
         List<Group> activeGroup = GroupLocalServiceUtil.getActiveGroups(companyId, true);
         return activeGroup;
     }
 
     @Override
-    public List<Group> getInactiveGroups(long companyId) {
+    public List<Group> getInactiveGroups(long companyId) throws PortalException {
+
+        _log.info("Getting all groups for company id: "+String.valueOf(companyId));
+
+        _log.debug("    ... security check ...");
+
+        PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.LIST_USER_GROUPS);
+
+        _log.debug("   ... getting information ...");
+
         List<Group> inactiveGroups = GroupLocalServiceUtil.getActiveGroups(companyId, false);
         return inactiveGroups;
     }
 
     @Override
+    // TODO: Refactor to generic use by adding class name and switch to local service util
     public Group createGroup(long parentGroupId, long liveGroupId, Map<Locale, String> nameMap, Map<Locale, String> descriptionMap, int type, boolean manualMembership, int membershipRestriction, String friendlyURL, boolean site, boolean inheritContent, boolean active) throws PortalException {
+
         _log.info("Creating new group ...");
 
         _log.debug("    security check ...");
 
         PortalPermissionUtil.check(getPermissionChecker(), ActionKeys.ADD_COMMUNITY);
 
+        _log.debug("    ... processing ...");
+
         return groupService.addGroup(parentGroupId, liveGroupId,nameMap,descriptionMap,type, manualMembership, membershipRestriction,friendlyURL,site, active, null);
     }
 
     @Override
+    // TODO: Refactor to generic use by adding class name and switch to local service util
     public Group updateGroup(long groupId, long parentGroupId, long liveGroupId, Map<Locale, String> nameMap, Map<Locale, String> descriptionMap, int type, boolean manualMembership, int membershipRestriction, String friendlyURL, boolean site, boolean inheritContent, boolean active) throws PortalException {
-        _log.info("Updating group ...");
 
-        GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.UPDATE);
+        _log.info("Creating new group ...");
+
+        _log.debug("    security check ...");
+
+        PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.UPDATE_COMMUNITY);
+
+        _log.debug("    ... processing ...");
 
         return groupService.updateGroup(groupId, parentGroupId,nameMap,descriptionMap,type, manualMembership,membershipRestriction,friendlyURL, inheritContent, active, null);
     }
 
     @Override
     public void deleteGroup(long groupId) throws PortalException {
-        groupService.deleteGroup(groupId);
+
+        _log.info("Creating new group ...");
+
+        _log.debug("    security check ...");
+
+        PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.DELETE_COMMUNITY);
+
+        _log.debug("    ... processing ...");
+
+        GroupLocalServiceUtil.deleteGroup(groupId);
     }
 
     public long[] checkGroups(long userId, long[] groupIds)

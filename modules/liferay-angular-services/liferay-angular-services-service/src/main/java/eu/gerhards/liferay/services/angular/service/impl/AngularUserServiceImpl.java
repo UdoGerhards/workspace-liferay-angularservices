@@ -46,6 +46,7 @@ import com.liferay.portal.kernel.util.*;
 import com.liferay.portal.kernel.workflow.WorkflowThreadLocal;
 import com.liferay.users.admin.kernel.util.UsersAdminUtil;
 import eu.gerhards.liferay.services.angular.service.base.AngularUserServiceBaseImpl;
+import eu.gerhards.liferay.services.angular.service.util.AngularActionKeys;
 import eu.gerhards.liferay.services.angular.service.util.ServicePermissionUtil;
 import eu.gerhards.liferay.services.angular.service.util.ServiceUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -84,11 +85,11 @@ public class AngularUserServiceImpl extends AngularUserServiceBaseImpl {
 
         _log.info("getting user with id: "+String.valueOf(userId));
 
-        _log.debug("    security check ...");
+        _log.debug("    ... security check ...");
 
         PortalPermissionUtil.check(getPermissionChecker(), ActionKeys.VIEW);
 
-        _log.debug("    getting information");
+        _log.debug("    ... getting information");
 
         User user = UserLocalServiceUtil.getUser(userId);
         Contact userContact = ContactLocalServiceUtil.getContact(user.getContactId());
@@ -107,11 +108,11 @@ public class AngularUserServiceImpl extends AngularUserServiceBaseImpl {
 
         _log.info("getting addresses for user with id: "+String.valueOf(userId));
 
-        _log.debug("    security check ...");
+        _log.debug("    ... security check ...");
 
-        //PortalPermissionUtil.check(getPermissionChecker(), ActionKeys.VIEW);
+        PortalPermissionUtil.check(getPermissionChecker(), ActionKeys.VIEW);
 
-        _log.debug("    getting information");
+        _log.debug("    ... getting information");
 
         User user = UserLocalServiceUtil.getUser(userId);
 
@@ -128,11 +129,11 @@ public class AngularUserServiceImpl extends AngularUserServiceBaseImpl {
 
         _log.info("getting email addresses for user with id: "+String.valueOf(userId));
 
-        _log.debug("    security check ...");
+        _log.debug("    ... security check ...");
 
-        PortalPermissionUtil.check(getPermissionChecker(), ActionKeys.VIEW_USER);
+        PortalPermissionUtil.check(getPermissionChecker(), ActionKeys.VIEW);
 
-        _log.debug("    getting information");
+        _log.debug("    ... getting information");
 
 
         User user = UserLocalServiceUtil.getUser(userId);
@@ -151,11 +152,11 @@ public class AngularUserServiceImpl extends AngularUserServiceBaseImpl {
 
         _log.info("getting phones for user with id: "+String.valueOf(userId));
 
-        _log.debug("    security check ...");
+        _log.debug("    ... security check ...");
 
-        PortalPermissionUtil.check(getPermissionChecker(), ActionKeys.VIEW_USER);
+        PortalPermissionUtil.check(getPermissionChecker(), ActionKeys.VIEW);
 
-        _log.debug("    getting information");
+        _log.debug("    ... getting information");
 
         User user = UserLocalServiceUtil.getUser(userId);
         List<Phone> phones = new ArrayList<>();
@@ -169,13 +170,13 @@ public class AngularUserServiceImpl extends AngularUserServiceBaseImpl {
     @Override
     public List<Website> getUserWebsites(long userId) throws PortalException {
 
-        _log.info("getting websites for user with id: "+String.valueOf(userId));
+        _log.info("Getting websites for user with id: "+String.valueOf(userId));
 
-        _log.debug("    security check ...");
+        _log.debug("    ... security check ...");
 
-        PortalPermissionUtil.check(getPermissionChecker(), ActionKeys.VIEW_USER);
+        PortalPermissionUtil.check(getPermissionChecker(), ActionKeys.VIEW);
 
-        _log.debug("    getting information");
+        _log.debug("    ... getting information");
 
         User user = UserLocalServiceUtil.getUser(userId);
         List<Website> websites = new ArrayList<>();
@@ -188,7 +189,183 @@ public class AngularUserServiceImpl extends AngularUserServiceBaseImpl {
     }
 
     @Override
+    public Contact getUserContact(long userId) throws PortalException {
+
+        _log.info("Getting contact record for user with id: "+String.valueOf(userId));
+
+        _log.debug("    ... security check ...");
+
+        PortalPermissionUtil.check(getPermissionChecker(), ActionKeys.VIEW);
+
+        _log.debug("    ... getting information");
+
+        User user = UserLocalServiceUtil.getUser(userId);
+        Contact contact = null;
+
+        if (user != null) {
+            contact = user.fetchContact();
+        }
+
+        return contact;
+    }
+
+    @Override
+    public List<Organization> getUserOrganizations(long userId) throws PortalException {
+
+        _log.info("Getting organizations for user with id: "+String.valueOf(userId));
+
+        _log.debug("    ... security check ...");
+
+        PortalPermissionUtil.check(getPermissionChecker(), ActionKeys.VIEW);
+
+        _log.debug("    ... getting information");
+
+        User user = UserLocalServiceUtil.getUser(userId);
+        List<Organization> organizations = new ArrayList<>();
+
+        if (user != null) {
+            organizations = user.getOrganizations();
+        }
+
+        return organizations;
+    }
+
+    @Override
+    public List<Group> getUserGroups(long userId) throws PortalException {
+
+        _log.info("Getting groups for user with id: "+String.valueOf(userId));
+
+        _log.debug("    ... security check ...");
+
+        PortalPermissionUtil.check(getPermissionChecker(), ActionKeys.VIEW);
+
+        _log.debug("    ... getting information");
+
+        User user = UserLocalServiceUtil.getUser(userId);
+        List<Group> groups = new ArrayList<>();
+
+        if (user != null) {
+            groups = user.getGroups();
+        }
+
+        return groups;
+    }
+
+    @Override
+    public List<Role> getUserRoles(long userId) throws PortalException {
+
+        _log.info("Getting roles for user with id: "+String.valueOf(userId));
+
+        _log.debug("    ... security check ...");
+
+        PortalPermissionUtil.check(getPermissionChecker(), ActionKeys.VIEW);
+
+        _log.debug("    ... getting information");
+
+        User user = UserLocalServiceUtil.getUser(userId);
+        List<Role> userRoles = new ArrayList<>();
+
+        if (user != null) {
+            userRoles = user.getRoles();
+        }
+
+        return userRoles;
+    }
+
+    @Override
+    public List<User> getCompanyUsers(long companyId) throws PortalException {
+
+        _log.info("Getting company user for company with id: "+String.valueOf(companyId));
+
+        _log.debug("    ... security check ...");
+
+        PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.LIST_USERS);
+
+        _log.debug("    ... getting information");
+
+        int count = UserLocalServiceUtil.getCompanyUsersCount(companyId);
+        List<User> users = new ArrayList<>();
+
+        if (count > 0) {
+            users = UserLocalServiceUtil.getCompanyUsers(companyId, 0, count-1);
+        }
+
+        return users;
+    }
+
+    @Override
+    public void updateUserOrganizations(long userId, long[] organizationIds) throws PortalException {
+
+        _log.info("Updating user phones ... ");
+
+        _log.debug("    ... security check ...");
+
+        PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.UPDATE_ORGANIZATION);
+
+        _log.debug("    ... processing ... ");
+
+        long creatorId=0;
+
+        try {
+            creatorId = this.getUserId();
+        }
+        catch (PrincipalException pe) {
+            if (_log.isWarnEnabled()) {
+                _log.warn("Unable to get current user ID", pe);
+            }
+        }
+
+        User user = UserLocalServiceUtil.getUserById(userId);
+
+        this.checkUpdateUserPermission(creatorId, userId, user.getCompanyId(), null, null, null, null, null);
+
+        // Organization membership policy
+
+        long[] oldOrganizationIds = user.getOrganizationIds();
+
+        List<Long> addOrganizationIds = new ArrayList<>();
+        List<Long> removeOrganizationIds = Collections.emptyList();
+
+        if (organizationIds != null) {
+            removeOrganizationIds = ListUtil.toList(oldOrganizationIds);
+
+            organizationIds = angularOrganizationService.checkOrganizations(userId, organizationIds);
+
+            for (long organizationId : organizationIds) {
+                if (ArrayUtil.contains(oldOrganizationIds, organizationId)) {
+                    removeOrganizationIds.remove(organizationId);
+                }
+                else {
+                    addOrganizationIds.add(organizationId);
+                }
+            }
+
+            organizationLocalService.addUserOrganizations(user.getUserId(), organizationIds);
+
+            UserLocalServiceUtil.updateOrganizations(user.getUserId(), organizationIds, null);
+
+            if (!addOrganizationIds.isEmpty() ||
+                    !removeOrganizationIds.isEmpty()) {
+
+                OrganizationMembershipPolicyUtil.checkMembership(
+                        new long[] {userId},
+                        ArrayUtil.toLongArray(addOrganizationIds),
+                        ArrayUtil.toLongArray(removeOrganizationIds));
+            }
+        }
+
+    }
+
+    @Override
     public void updateUserPhones(long userId, long[] phones) throws PortalException {
+
+        _log.info("Updating user phones ... ");
+
+        _log.debug("    ... security check ...");
+
+        PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.UPDATE_USER);
+
+        _log.debug("    ... processing ... ");
 
         long creatorId=0;
 
@@ -211,6 +388,14 @@ public class AngularUserServiceImpl extends AngularUserServiceBaseImpl {
     @Override
     public void updateUserWebsites(long userId, List<Website> website) throws PortalException {
 
+        _log.info("Updating user websites ... ");
+
+        _log.debug("    ... security check ...");
+
+        PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.UPDATE_USER);
+
+        _log.debug("    ... processing ... ");
+
         long creatorId=0;
 
         try {
@@ -231,6 +416,14 @@ public class AngularUserServiceImpl extends AngularUserServiceBaseImpl {
 
     @Override
     public void updateUserEmailAddresses(long userId, List<EmailAddress> emailAddresses) throws PortalException {
+
+        _log.info("Updating user email addresses ... ");
+
+        _log.debug("    ... security check ...");
+
+        PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.UPDATE_USER);
+
+        _log.debug("    ... processing ... ");
 
         long creatorId=0;
 
@@ -253,14 +446,13 @@ public class AngularUserServiceImpl extends AngularUserServiceBaseImpl {
     @Override
     public Address updateUserAddress(long userId, long addressId, String street1, String street2, String street3, String city, String zip, long regionId, long countryId, long typeId, boolean shipping, boolean primary) throws PortalException {
 
-        _log.info("Saving user addresses ...");
-        _log.debug("    "+String.valueOf(street1));
+        _log.info("Updating user addresses ... ");
 
-        _log.debug("   security check ... ");
+        _log.debug("    ... security check ...");
 
-        PortalPermissionUtil.check(getPermissionChecker(), ActionKeys.ADD_USER);
+        PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.UPDATE_USER);
 
-        //PortalPermissionUtil.check(getPermissionChecker(), ActionKeys.VIEW_USER);
+        _log.debug("    ... processing ... ");
 
         long creatorId=0;
 
@@ -300,6 +492,15 @@ public class AngularUserServiceImpl extends AngularUserServiceBaseImpl {
 
     @Override
     public void updateUserUserGroups(long userId, long[] userGroupIds) throws PortalException {
+
+        _log.info("Updating user groups ... ");
+
+        _log.debug("    ... security check ...");
+
+        PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.UPDATE_USER);
+
+        _log.debug("    ... processing ... ");
+
         long creatorId=0;
 
         try {
@@ -348,6 +549,14 @@ public class AngularUserServiceImpl extends AngularUserServiceBaseImpl {
 
     @Override
     public void updateUserRoles(long userId, long[] roleIds) throws PortalException {
+
+        _log.info("Updating user roles ... ");
+
+        _log.debug("    ... security check ...");
+
+        PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.UPDATE_USER);
+
+        _log.debug("    ... processing ... ");
 
         long creatorId=0;
 
@@ -409,6 +618,12 @@ public class AngularUserServiceImpl extends AngularUserServiceBaseImpl {
         long creatorId=0;
 
         _log.info("Adding new user ...");
+
+        _log.debug("    ... security check ...");
+
+        PortalPermissionUtil.check(getPermissionChecker(), ActionKeys.ADD_USER);
+
+        _log.debug("    .... processing ...");
 
         try {
 
@@ -553,7 +768,13 @@ public class AngularUserServiceImpl extends AngularUserServiceBaseImpl {
                            List<AnnouncementsDelivery> announcementsDelivers,
                            ServiceContext serviceContext) throws PortalException {
 
-        PortalPermissionUtil.check(getPermissionChecker(), ActionKeys.ADD_USER);
+        _log.info("Updating user ... ");
+
+        _log.debug("    ... security check ...");
+
+        PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.UPDATE_USER);
+
+        _log.debug("    ... processing ... ");
 
         long creatorId=0;
 
@@ -889,7 +1110,11 @@ public class AngularUserServiceImpl extends AngularUserServiceBaseImpl {
 
         _log.info("Deleteing user by email address ...");
 
+        _log.debug("    ... security check ... ");
+
         PortalPermissionUtil.check(getPermissionChecker(), ActionKeys.DELETE_USER);
+
+        _log.debug("    ... deleting ...");
 
         User user = getGuestOrUser();
         User existingUser = UserLocalServiceUtil.fetchUserByEmailAddress(user.getCompanyId(), emailAddress);
@@ -899,129 +1124,19 @@ public class AngularUserServiceImpl extends AngularUserServiceBaseImpl {
 
     @Override
     public User deleteUserById(long userId) throws PortalException {
+
         _log.info("Deleteing user by id ...");
+
+        _log.debug("    ... security check ... ");
+
+        PortalPermissionUtil.check(getPermissionChecker(), ActionKeys.DELETE_USER);
+
+        _log.debug("    ... deleting ...");
+
         User user = getGuestOrUser();
         User existingUser = UserLocalServiceUtil.getUserById(user.getCompanyId(), userId);
 
         return this.deleteUser(user, existingUser);
-    }
-
-    @Override
-    public void updateUserOrganizations(long userId, long[] organizationIds) throws PortalException {
-
-        long creatorId=0;
-
-        try {
-            creatorId = this.getUserId();
-        }
-        catch (PrincipalException pe) {
-            if (_log.isWarnEnabled()) {
-                _log.warn("Unable to get current user ID", pe);
-            }
-        }
-
-        User user = UserLocalServiceUtil.getUserById(userId);
-
-        this.checkUpdateUserPermission(creatorId, userId, user.getCompanyId(), null, null, null, null, null);
-
-        // Organization membership policy
-
-        long[] oldOrganizationIds = user.getOrganizationIds();
-
-        List<Long> addOrganizationIds = new ArrayList<>();
-        List<Long> removeOrganizationIds = Collections.emptyList();
-
-        if (organizationIds != null) {
-            removeOrganizationIds = ListUtil.toList(oldOrganizationIds);
-
-            organizationIds = angularOrganizationService.checkOrganizations(userId, organizationIds);
-
-            for (long organizationId : organizationIds) {
-                if (ArrayUtil.contains(oldOrganizationIds, organizationId)) {
-                    removeOrganizationIds.remove(organizationId);
-                }
-                else {
-                    addOrganizationIds.add(organizationId);
-                }
-            }
-
-            organizationLocalService.addUserOrganizations(user.getUserId(), organizationIds);
-
-            UserLocalServiceUtil.updateOrganizations(user.getUserId(), organizationIds, null);
-
-            if (!addOrganizationIds.isEmpty() ||
-                    !removeOrganizationIds.isEmpty()) {
-
-                OrganizationMembershipPolicyUtil.checkMembership(
-                        new long[] {userId},
-                        ArrayUtil.toLongArray(addOrganizationIds),
-                        ArrayUtil.toLongArray(removeOrganizationIds));
-            }
-        }
-
-    }
-
-    @Override
-    public Contact getUserContact(long userId) throws PortalException {
-        User user = UserLocalServiceUtil.getUser(userId);
-        Contact contact = null;
-
-        if (user != null) {
-            contact = user.fetchContact();
-        }
-
-        return contact;
-    }
-
-    @Override
-    public List<Organization> getUserOrganizations(long userId) throws PortalException {
-
-        User user = UserLocalServiceUtil.getUser(userId);
-        List<Organization> organizations = new ArrayList<>();
-
-        if (user != null) {
-            organizations = user.getOrganizations();
-        }
-
-        return organizations;
-    }
-
-    @Override
-    public List<Group> getUserGroups(long userId) throws PortalException {
-
-        User user = UserLocalServiceUtil.getUser(userId);
-        List<Group> groups = new ArrayList<>();
-
-        if (user != null) {
-            groups = user.getGroups();
-        }
-
-        return groups;
-    }
-
-    @Override
-    public List<Role> getUserRoles(long userId) throws PortalException {
-
-        User user = UserLocalServiceUtil.getUser(userId);
-        List<Role> userRoles = new ArrayList<>();
-
-        if (user != null) {
-            userRoles = user.getRoles();
-        }
-
-        return userRoles;
-    }
-
-    @Override
-    public List<User> getCompanyUsers(long companyId) {
-        int count = UserLocalServiceUtil.getCompanyUsersCount(companyId);
-        List<User> users = new ArrayList<>();
-
-        if (count > 0) {
-            users = UserLocalServiceUtil.getCompanyUsers(companyId, 0, count-1);
-        }
-
-        return users;
     }
 
     protected void updateUserAddresses(long contactId, List<Address> addresses) throws PortalException {

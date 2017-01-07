@@ -63,20 +63,113 @@ public interface AngularGroupService extends BaseService {
 	*/
 	public java.lang.String getOSGiServiceIdentifier();
 
-	public List<Group> getActiveGroups(long companyId);
-
+	/**
+	 * Method getActiveGroups
+	 *
+	 * Gets all active groups within a given company identified by companyId.
+	 *
+	 * @apiNote Needs right "LIST_GROUPS" to be activate in the control panel. @see AngularActionKeys#LIST_GROUPS
+	 *
+	 * @param companyId
+	 * @return
+	 * @throws PortalException
+	 */
+	@JSONWebService(method="GET")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Group> getInactiveGroups(long companyId);
+	public List<Group> getActiveGroups(long companyId) throws PortalException;
 
+	/**
+	 * Method getInactiveGroups
+	 *
+	 * Gets all inactive groups within a given company identified by companyId.
+	 *
+	 * @apiNote Needs right "LIST_GROUPS" to be activate in the control panel. @see AngularActionKeys#LIST_GROUPS
+	 *
+	 * @param companyId
+	 * @return
+	 * @throws PortalException
+	 */
+	@JSONWebService(method="GET")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Group> getInstanceGroups(long companyId);
+	public List<Group> getInactiveGroups(long companyId) throws PortalException;
 
+	/**
+	 * Method getInstanceGroups
+	 *
+	 * Gets all the groups of a company identified by companyId.
+	 *
+	 * @apiNote Needs right "LIST_GROUPS" to be activate in the control panel. @see AngularActionKeys#LIST_GROUPS
+	 *
+	 * @param companyId
+	 * @return
+	 * @throws PortalException
+	 */
+	@JSONWebService(method="GET")
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public List<Group> getInstanceGroups(long companyId) throws PortalException;
+
+	/**
+	 * Method createGroups
+	 *
+	 * Creates a new site in the portal.
+	 *
+	 * @apiNote Needs right "ADD_COMMUNITY" to be activate in the control panel. @see ActionKeys#ADD_COMMUNITY
+	 *
+	 * @param parentGroupId
+	 * @param liveGroupId
+	 * @param nameMap
+	 * @param descriptionMap
+	 * @param type
+	 * @param manualMembership
+	 * @param membershipRestriction
+	 * @param friendlyURL
+	 * @param site
+	 * @param inheritContent
+	 * @param active
+	 * @return
+	 * @throws PortalException
+	 */
+	@JSONWebService(method="POST")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Group createGroup(long parentGroupId, long liveGroupId, Map<Locale, String> nameMap, Map<Locale, String> descriptionMap, int type, boolean manualMembership, int membershipRestriction, String friendlyURL, boolean site, boolean inheritContent, boolean active) throws PortalException;
 
+	/**
+	 * Method updateGroup
+	 *
+	 * Updates a given group
+	 *
+	 * @apiNote Needs right "UPDATE_COMMUNITY" to be activate in the control panel. @see AAngularActionKeys#UPDATE_COMMUNITY
+	 *
+	 * @param groupId
+	 * @param parentGroupId
+	 * @param liveGroupId
+	 * @param nameMap
+	 * @param descriptionMap
+	 * @param type
+	 * @param manualMembership
+	 * @param membershipRestriction
+	 * @param friendlyURL
+	 * @param site
+	 * @param inheritContent
+	 * @param active
+	 * @return
+	 * @throws PortalException
+	 */
+	@JSONWebService(method="PUT")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Group updateGroup(long groupId, long parentGroupId, long liveGroupId, Map<Locale, String> nameMap, Map<Locale, String> descriptionMap, int type, boolean manualMembership, int membershipRestriction, String friendlyURL, boolean site, boolean inheritContent, boolean active)  throws PortalException;
 
+	/**
+	 * Method deleteGroup
+	 *
+	 * Deletes a group identified by the given groupID
+	 *
+	 * @apiNote Needs right "DELETE_COMMUNITY" to be activate in the control panel. @see AngularActionKeys.DELETE_COMMUNITY
+	 *
+	 * @param groupId
+	 * @throws PortalException
+	 */
+	@JSONWebService(method="DELETE")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public void deleteGroup(long groupId) throws PortalException;
 

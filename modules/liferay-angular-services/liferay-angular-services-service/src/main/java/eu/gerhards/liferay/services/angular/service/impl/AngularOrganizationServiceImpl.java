@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.service.permission.PortalPermissionUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.users.admin.kernel.util.UsersAdminUtil;
 import eu.gerhards.liferay.services.angular.service.base.AngularOrganizationServiceBaseImpl;
+import eu.gerhards.liferay.services.angular.service.util.AngularActionKeys;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,28 +63,52 @@ public class AngularOrganizationServiceImpl
 	@Override
 	public Organization getOrganization(long organizationId) throws PortalException {
 
-		_log.info("getting organization information for organizatin with id: "+String.valueOf(organizationId));
+		_log.info("Getting organization information for organizatin with id: "+String.valueOf(organizationId));
 
-		_log.debug("    => security check ...");
+		_log.debug("    ... security check ...");
 
-		OrganizationPermissionUtil.check(getPermissionChecker(), organizationId, ActionKeys.VIEW);
+		PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.LIST_ORGANIZATIONS);
 
-		_log.debug("    => getting information");
+		_log.debug("    ... getting information");
 
 		Organization organization = OrganizationServiceUtil.getOrganization(organizationId);
 		return organization;
 	}
 
 	@Override
+	public List<User> getOrganizationUsers(long organizationId) throws PortalException {
+
+		_log.info("Getting users for organization id: "+String.valueOf(organizationId));
+
+		_log.debug("    ... security check ...");
+
+		PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.LIST_ORGANIZATIONS);
+		PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.LIST_USERS);
+
+		_log.debug("    ... getting information");
+
+		Organization organization = OrganizationServiceUtil.getOrganization(organizationId);
+		List<User> organizationUsers = null;
+
+		if (organization != null){
+
+			organizationUsers = UserLocalServiceUtil.getOrganizationUsers(organizationId);
+
+		}
+
+		return organizationUsers;
+	}
+
+	@Override
 	public List<Address> getOrganizationAdresses(long organizationId) throws PortalException {
 
-		_log.info("getting organization address for organization id: "+String.valueOf(organizationId));
+		_log.info("Getting organization address for organization id: "+String.valueOf(organizationId));
 
-		_log.debug("    => security check ...");
+		_log.debug("    ... security check ...");
 
-		OrganizationPermissionUtil.check(getPermissionChecker(), organizationId, ActionKeys.VIEW);
+		PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.LIST_ORGANIZATIONS);
 
-		_log.debug("    => getting information");
+		_log.debug("    ... getting information");
 
 		Organization organization = OrganizationServiceUtil.getOrganization(organizationId);
 		List<Address> addresses = null;
@@ -96,15 +121,39 @@ public class AngularOrganizationServiceImpl
 	}
 
 	@Override
+	public List<Phone> getOrganizationPhones(long organizationId) throws PortalException {
+
+		_log.info("getting websites for organization id: "+String.valueOf(organizationId));
+
+		_log.debug("    ... security check ...");
+
+		PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.DELETE_COMMUNITY);
+
+		_log.debug("    ... getting information");
+
+		Organization organization = OrganizationServiceUtil.getOrganization(organizationId);
+		List<Phone> phones = null;
+
+		if (organization != null){
+
+			long companyId = organization.getCompanyId();
+			phones = PhoneLocalServiceUtil.getPhones(companyId, Organization.class.getName(), organization.getOrganizationId());
+
+		}
+
+		return null;
+	}
+
+	@Override
 	public List<EmailAddress> getOrganizationEmailAddresses(long organizationId) throws PortalException {
 
-		_log.info("getting email addresses for organization id: "+String.valueOf(organizationId));
+		_log.info("Getting email addresses for organization id: "+String.valueOf(organizationId));
 
-		_log.debug("    => security check ...");
+		_log.debug("    ... security check ...");
 
-		OrganizationPermissionUtil.check(getPermissionChecker(), organizationId, ActionKeys.VIEW);
+		PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.LIST_ORGANIZATIONS);
 
-		_log.debug("    => getting information");
+		_log.debug("    ... getting information");
 
 		Organization organization = OrganizationServiceUtil.getOrganization(organizationId);
 		long companyId = organization.getCompanyId();
@@ -121,13 +170,13 @@ public class AngularOrganizationServiceImpl
 	@Override
 	public List<Website> getOrganizationWebsites(long organizationId) throws PortalException {
 
-		_log.info("getting websites for organization id: "+String.valueOf(organizationId));
+		_log.info("Getting websites for organization id: "+String.valueOf(organizationId));
 
-		_log.debug("    => security check ...");
+		_log.debug("    ... security check ...");
 
-		OrganizationPermissionUtil.check(getPermissionChecker(), organizationId, ActionKeys.VIEW);
+		PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.LIST_ORGANIZATIONS);
 
-		_log.debug("    => getting information");
+		_log.debug("    ... getting information");
 
 		Organization organization = OrganizationServiceUtil.getOrganization(organizationId);
 
@@ -148,11 +197,11 @@ public class AngularOrganizationServiceImpl
 
 		_log.info("Creating organization ... ");
 
-		_log.debug("    => security check ...");
+		_log.debug("    ... security check ...");
 
 		PortalPermissionUtil.check(getPermissionChecker(), ActionKeys.ADD_ORGANIZATION);
 
-		_log.debug("    => saving information ... ");
+		_log.debug("    ... saving information ... ");
 
 		User creator = this.getGuestOrUser();
 
@@ -197,11 +246,11 @@ public class AngularOrganizationServiceImpl
 
 		_log.info("Updating organization ... ");
 
-		_log.debug("    => security check ...");
+		_log.debug("    ... security check ...");
 
-		PortalPermissionUtil.check(getPermissionChecker(), ActionKeys.ADD_ORGANIZATION);
+		PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.UPDATE_COMMUNITY);
 
-		_log.debug("    => saving information ... ");
+		_log.debug("    ... saving information ... ");
 
 		User creator = this.getGuestOrUser();
 
@@ -243,6 +292,19 @@ public class AngularOrganizationServiceImpl
 		}
 	}
 
+	@Override
+	public Organization deleteOrganization(long organizationId) throws PortalException {
+
+		_log.info("Deleteing company with id: "+String.valueOf(organizationId));
+
+		_log.debug("    ... sercurity check ...");
+
+		PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.DELETE_COMMUNITY);
+
+		_log.debug("   ... deleting company ... ");
+
+		return OrganizationLocalServiceUtil.deleteOrganization(organizationId);
+	}
 
 
 	protected Organization updateOrganizationParts(Organization organization, long[] addresses, long[] emailAddresses, long[] phones, long[] websites, long[] orgLabors) throws PortalException {
@@ -373,68 +435,6 @@ public class AngularOrganizationServiceImpl
 
 		return organization;
 
-	}
-
-	@Override
-	public Organization deleteOrganization(long organizationId) throws PortalException {
-
-		_log.info("Deleteing company with id: "+String.valueOf(organizationId));
-
-		_log.debug("    sercurity check ...");
-
-		OrganizationPermissionUtil.check(getPermissionChecker(), organizationId, ActionKeys.DELETE);
-
-		_log.debug("   deleting company ... ");
-
-		return OrganizationLocalServiceUtil.deleteOrganization(organizationId);
-	}
-
-	@Override
-	public List<Phone> getOrganizationPhones(long organizationId) throws PortalException {
-
-		_log.info("getting websites for organization id: "+String.valueOf(organizationId));
-
-		_log.debug("    => security check ...");
-
-		OrganizationPermissionUtil.check(getPermissionChecker(), organizationId, ActionKeys.VIEW);
-
-		_log.debug("    => getting information");
-
-		Organization organization = OrganizationServiceUtil.getOrganization(organizationId);
-		List<Phone> phones = null;
-
-		if (organization != null){
-
-			long companyId = organization.getCompanyId();
-			phones = PhoneLocalServiceUtil.getPhones(companyId, Organization.class.getName(), organization.getOrganizationId());
-
-		}
-
-		return null;
-	}
-
-	@Override
-	public List<User> getOrganizationUsers(long organizationId) throws PortalException {
-
-		_log.info("getting users for organization id: "+String.valueOf(organizationId));
-
-		_log.debug("    => security check ...");
-
-		OrganizationPermissionUtil.check(getPermissionChecker(), organizationId, ActionKeys.VIEW);
-		OrganizationPermissionUtil.check(getPermissionChecker(), organizationId, ActionKeys.VIEW_MEMBERS);
-
-		_log.debug("    => getting information");
-
-		Organization organization = OrganizationServiceUtil.getOrganization(organizationId);
-		List<User> organizationUsers = null;
-
-		if (organization != null){
-
-			organizationUsers = UserLocalServiceUtil.getOrganizationUsers(organizationId);
-
-		}
-
-		return organizationUsers;
 	}
 
 	public long[] checkOrganizations(long userId, long[] organizationIds)

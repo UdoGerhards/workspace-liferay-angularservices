@@ -70,7 +70,7 @@ public class AngularUserServiceWrapper implements AngularUserService,
 	}
 
 	@Override
-	public java.util.List<User> getCompanyUsers(long companyId) {
+    public java.util.List<User> getCompanyUsers(long companyId) throws PortalException {
 		return _angularUserService.getCompanyUsers(companyId);
 	}
 

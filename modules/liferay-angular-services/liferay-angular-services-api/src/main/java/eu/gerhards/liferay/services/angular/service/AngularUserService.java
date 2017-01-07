@@ -55,62 +55,81 @@ public interface AngularUserService extends BaseService {
 	 * Never modify or reference this interface directly. Always use {@link AngularUserServiceUtil} to access the User remote service. Add custom service methods to {@link eu.gerhards.liferay.services.angular.service.impl.AngularUserServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 
+	@JSONWebService(method="GET")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Contact getUserContact(long userId) throws PortalException;
 
+	@JSONWebService(method="GET")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public User getUser(long userId) throws PortalException;
 
+	@JSONWebService(method="GET")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<User> getCompanyUsers(long companyId);
+    public List<User> getCompanyUsers(long companyId) throws PortalException;
 
+	@JSONWebService(method="GET")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Address> getUserAddress(long userId) throws PortalException;
 
+	@JSONWebService(method="GET")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<EmailAddress> getUserEmailAddresses(long userId)
 			throws PortalException;
 
+	@JSONWebService(method="GET")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Group> getUserGroups(long userId) throws PortalException;
 
+	@JSONWebService(method="GET")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Organization> getUserOrganizations(long userId)
 			throws PortalException;
 
+	@JSONWebService(method="GET")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Phone> getUserPhones(long userId) throws PortalException;
 
+	@JSONWebService(method="GET")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Role> getUserRoles(long userId) throws PortalException;
 
+	@JSONWebService(method="GET")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Website> getUserWebsites(long userId) throws PortalException;
 
+	@JSONWebService(method="POST")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public User addNewUser(String screenName, String emailAddress, long companyId, String locale, long[] groupIds, long[] organizationIds, long[] roleIds, long[] userGroupIds) throws PortalException;
 
+	@JSONWebService(method="PUT")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public void updateUserUserGroups(long userId, long[] userGroupIds) throws PortalException;
 
+	@JSONWebService(method="PUT")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public void updateUserPhones(long userId, long[] phones) throws PortalException;
 
+	@JSONWebService(method="PUT")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public void updateUserWebsites(long userId, List<Website> website) throws PortalException;
 
+	@JSONWebService(method="PUT")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public void updateUserOrganizations(long userId, long[] organizationIds) throws PortalException;
 
+	@JSONWebService(method="PUT")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public void updateUserEmailAddresses(long userId, List<EmailAddress> emailAddresses) throws PortalException;
 
+	@JSONWebService(method="PUT")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Address updateUserAddress(long userId, long addressId, String street1, String street2, String street3, String city, String zip, long regionId, long countryId, long typeId, boolean shipping, boolean primary) throws PortalException;
 
+	@JSONWebService(method="PUT")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public void updateUserRoles(long userId, long[] roleIds) throws PortalException;
 
+	@JSONWebService(method="PUT")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public User updateUser(long userId, String oldPassword, String newPassword1,
 						   String newPassword2, boolean passwordReset,
@@ -130,9 +149,11 @@ public interface AngularUserService extends BaseService {
 						   List<AnnouncementsDelivery> announcementsDelivers,
 						   ServiceContext serviceContext) throws PortalException;
 
+	@JSONWebService(method="DELETE")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public User deleteUserByEmail(String emailAddress) throws PortalException;
 
+	@JSONWebService(method="DELETE")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public User deleteUserById(long userId) throws PortalException;
 

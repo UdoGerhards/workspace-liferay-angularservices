@@ -15,7 +15,7 @@
 package eu.gerhards.liferay.services.angular.service;
 
 import aQute.bnd.annotation.ProviderType;
-
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
@@ -54,7 +54,7 @@ public class AngularInstanceServiceWrapper implements AngularInstanceService,
 	}
 
 	@Override
-	public java.util.List<com.liferay.portal.kernel.model.Company> getAvailableInstances() {
+    public java.util.List<com.liferay.portal.kernel.model.Company> getAvailableInstances() throws PortalException {
 		return _angularInstanceService.getAvailableInstances();
 	}
 

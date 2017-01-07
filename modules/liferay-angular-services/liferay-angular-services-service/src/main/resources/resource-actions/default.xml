@@ -9,14 +9,56 @@
             <supports>
                 <action-key>ADD_USER_TO_PAGE</action-key>
                 <action-key>DELETE_USER</action-key>
+                <action-key>UPDATE_USER</action-key>
+                <action-key>UPDATE_ORGANIZATION</action-key>
+                <action-key>DELETE_ORGANIZATION</action-key>
+                <action-key>UPDATE_ROLE</action-key>
+                <action-key>DELETE_ROLE</action-key>
+                <action-key>UPDATE_USER_GROUP</action-key>
+                <action-key>DELETE_USER_GROUP</action-key>
+                <action-key>UPDATE_COMMUNITY</action-key>
+                <action-key>DELETE_COMMUNITY</action-key>
+                <action-key>ADD_TEAM</action-key>
+                <action-key>UPDATE_TEAM</action-key>
+                <action-key>DELETE_TEAM</action-key>
+                <action-key>LIST_USERS</action-key>
+                <action-key>LIST_ROLES</action-key>
+                <action-key>LIST_USER_GROUPS</action-key>
+                <action-key>LIST_USER_USER_GROUPS</action-key>
+                <action-key>LIST_ORGANIZATIONS</action-key>
+                <action-key>LIST_PAGES</action-key>
+                <action-key>LIST_TEAMS</action-key>
+                <action-key>LIST_COMPANIES</action-key>
+                <action-key>LIST_INSTANCES</action-key>
             </supports>
             <site-member-defaults>
             </site-member-defaults>
             <guest-defaults>
             </guest-defaults>
             <guest-unsupported>
-                <action-key>ADD_TO_USER_TO_PAGE</action-key>
+                <action-key>ADD_USER_TO_PAGE</action-key>
                 <action-key>DELETE_USER</action-key>
+                <action-key>UPDATE_USER</action-key>
+                <action-key>UPDATE_ORGANIZATION</action-key>
+                <action-key>DELETE_ORGANIZATION</action-key>
+                <action-key>UPDATE_ROLE</action-key>
+                <action-key>DELETE_ROLE</action-key>
+                <action-key>UPDATE_USER_GROUP</action-key>
+                <action-key>DELETE_USER_GROUP</action-key>
+                <action-key>UPDATE_COMMUNITY</action-key>
+                <action-key>DELETE_COMMUNITY</action-key>
+                <action-key>ADD_TEAM</action-key>
+                <action-key>UPDATE_TEAM</action-key>
+                <action-key>DELETE_TEAM</action-key>
+                <action-key>LIST_USERS</action-key>
+                <action-key>LIST_ROLES</action-key>
+                <action-key>LIST_USER_GROUPS</action-key>
+                <action-key>LIST_USER_USER_GROUPS</action-key>
+                <action-key>LIST_ORGANIZATIONS</action-key>
+                <action-key>LIST_PAGES</action-key>
+                <action-key>LIST_TEAMS</action-key>
+                <action-key>LIST_COMPANIES</action-key>
+                <action-key>LIST_INSTANCES</action-key>
             </guest-unsupported>
         </permissions>
     </portlet-resource>
