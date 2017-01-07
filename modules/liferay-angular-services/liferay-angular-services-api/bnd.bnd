@@ -1,0 +1,12 @@
+Bundle-Name: liferay-angular-services-api
+Bundle-SymbolicName: eu.gerhards.liferay.services.angular.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	eu.gerhards.liferay.services.angular.exception,\
+	eu.gerhards.liferay.services.angular.model,\
+	eu.gerhards.liferay.services.angular.service,\
+	eu.gerhards.liferay.services.angular.service.persistence
+-includeresource: META-INF/service.xml=../liferay-angular-services-service/service.xml
+Liferay-Releng-Module-Group-Description:
+Liferay-Releng-Module-Group-Title: Gerhards - Liferay Angular services
+Include-Resource: @commons-lang3-3.4.jar

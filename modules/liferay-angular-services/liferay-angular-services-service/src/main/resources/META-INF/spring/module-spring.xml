@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularGroupLocalServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularGroupLocalService" />
+	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularGroupServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularGroupService" />
+	<bean class="eu.gerhards.liferay.services.angular.service.persistence.impl.AngularGroupPersistenceImpl" id="eu.gerhards.liferay.services.angular.service.persistence.AngularGroupPersistence" parent="basePersistence" />
+	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularInstanceLocalServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularInstanceLocalService" />
+	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularInstanceServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularInstanceService" />
+	<bean class="eu.gerhards.liferay.services.angular.service.persistence.impl.AngularInstancePersistenceImpl" id="eu.gerhards.liferay.services.angular.service.persistence.AngularInstancePersistence" parent="basePersistence" />
+	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularLayoutLocalServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularLayoutLocalService" />
+	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularLayoutServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularLayoutService" />
+	<bean class="eu.gerhards.liferay.services.angular.service.persistence.impl.AngularLayoutPersistenceImpl" id="eu.gerhards.liferay.services.angular.service.persistence.AngularLayoutPersistence" parent="basePersistence" />
+	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularOrganizationLocalServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularOrganizationLocalService" />
+	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularOrganizationServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularOrganizationService" />
+	<bean class="eu.gerhards.liferay.services.angular.service.persistence.impl.AngularOrganizationPersistenceImpl" id="eu.gerhards.liferay.services.angular.service.persistence.AngularOrganizationPersistence" parent="basePersistence" />
+	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularPermissionLocalServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularPermissionLocalService" />
+	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularPermissionServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularPermissionService" />
+	<bean class="eu.gerhards.liferay.services.angular.service.persistence.impl.AngularPermissionPersistenceImpl" id="eu.gerhards.liferay.services.angular.service.persistence.AngularPermissionPersistence" parent="basePersistence" />
+	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularPortalLocalServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularPortalLocalService" />
+	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularPortalServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularPortalService" />
+	<bean class="eu.gerhards.liferay.services.angular.service.persistence.impl.AngularPortalPersistenceImpl" id="eu.gerhards.liferay.services.angular.service.persistence.AngularPortalPersistence" parent="basePersistence" />
+	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularResourceBlockLocalServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularResourceBlockLocalService" />
+	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularResourceBlockServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularResourceBlockService" />
+	<bean class="eu.gerhards.liferay.services.angular.service.persistence.impl.AngularResourceBlockPersistenceImpl" id="eu.gerhards.liferay.services.angular.service.persistence.AngularResourceBlockPersistence" parent="basePersistence" />
+	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularResourcePermissionLocalServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularResourcePermissionLocalService" />
+	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularResourcePermissionServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularResourcePermissionService" />
+	<bean class="eu.gerhards.liferay.services.angular.service.persistence.impl.AngularResourcePermissionPersistenceImpl" id="eu.gerhards.liferay.services.angular.service.persistence.AngularResourcePermissionPersistence" parent="basePersistence" />
+	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularRoleLocalServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularRoleLocalService" />
+	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularRoleServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularRoleService" />
+	<bean class="eu.gerhards.liferay.services.angular.service.persistence.impl.AngularRolePersistenceImpl" id="eu.gerhards.liferay.services.angular.service.persistence.AngularRolePersistence" parent="basePersistence" />
+	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularTeamLocalServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularTeamLocalService" />
+	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularTeamServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularTeamService" />
+	<bean class="eu.gerhards.liferay.services.angular.service.persistence.impl.AngularTeamPersistenceImpl" id="eu.gerhards.liferay.services.angular.service.persistence.AngularTeamPersistence" parent="basePersistence" />
+	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularUserLocalServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularUserLocalService" />
+	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularUserServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularUserService" />
+	<bean class="eu.gerhards.liferay.services.angular.service.persistence.impl.AngularUserPersistenceImpl" id="eu.gerhards.liferay.services.angular.service.persistence.AngularUserPersistence" parent="basePersistence" />
+	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularUserGroupLocalServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularUserGroupLocalService" />
+	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularUserGroupServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularUserGroupService" />
+	<bean class="eu.gerhards.liferay.services.angular.service.persistence.impl.AngularUserGroupPersistenceImpl" id="eu.gerhards.liferay.services.angular.service.persistence.AngularUserGroupPersistence" parent="basePersistence" />
+	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularVirtualHostLocalServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularVirtualHostLocalService" />
+	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularVirtualHostServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularVirtualHostService" />
+	<bean class="eu.gerhards.liferay.services.angular.service.persistence.impl.AngularVirtualHostPersistenceImpl" id="eu.gerhards.liferay.services.angular.service.persistence.AngularVirtualHostPersistence" parent="basePersistence" />
+</beans>

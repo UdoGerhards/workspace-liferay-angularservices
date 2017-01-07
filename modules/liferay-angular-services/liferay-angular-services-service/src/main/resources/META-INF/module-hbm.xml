@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping auto-import="false" default-lazy="false">
+	<import class="eu.gerhards.liferay.services.angular.model.AngularGroup" />
+	<import class="eu.gerhards.liferay.services.angular.model.AngularInstance" />
+	<import class="eu.gerhards.liferay.services.angular.model.AngularLayout" />
+	<import class="eu.gerhards.liferay.services.angular.model.AngularOrganization" />
+	<import class="eu.gerhards.liferay.services.angular.model.AngularPermission" />
+	<import class="eu.gerhards.liferay.services.angular.model.AngularPortal" />
+	<import class="eu.gerhards.liferay.services.angular.model.AngularResourceBlock" />
+	<import class="eu.gerhards.liferay.services.angular.model.AngularResourcePermission" />
+	<import class="eu.gerhards.liferay.services.angular.model.AngularRole" />
+	<import class="eu.gerhards.liferay.services.angular.model.AngularTeam" />
+	<import class="eu.gerhards.liferay.services.angular.model.AngularUser" />
+	<import class="eu.gerhards.liferay.services.angular.model.AngularUserGroup" />
+	<import class="eu.gerhards.liferay.services.angular.model.AngularVirtualHost" />
+	<class name="eu.gerhards.liferay.services.angular.model.impl.AngularGroupImpl" table="AngularServices_AngularGroup">
+		<id name="groupId" type="long">
+			<generator class="assigned" />
+		</id>
+	</class>
+	<class name="eu.gerhards.liferay.services.angular.model.impl.AngularInstanceImpl" table="AngularServices_AngularInstance">
+		<id name="instanceId" type="long">
+			<generator class="assigned" />
+		</id>
+	</class>
+	<class name="eu.gerhards.liferay.services.angular.model.impl.AngularLayoutImpl" table="AngularServices_AngularLayout">
+		<id name="layoutId" type="long">
+			<generator class="assigned" />
+		</id>
+	</class>
+	<class name="eu.gerhards.liferay.services.angular.model.impl.AngularOrganizationImpl" table="AngularServices_AngularOrganization">
+		<id name="organizationId" type="long">
+			<generator class="assigned" />
+		</id>
+	</class>
+	<class name="eu.gerhards.liferay.services.angular.model.impl.AngularPermissionImpl" table="AngularServices_AngularPermission">
+		<id name="permissionId" type="long">
+			<generator class="assigned" />
+		</id>
+	</class>
+	<class name="eu.gerhards.liferay.services.angular.model.impl.AngularPortalImpl" table="AngularServices_AngularPortal">
+		<id name="portalId" type="long">
+			<generator class="assigned" />
+		</id>
+	</class>
+	<class name="eu.gerhards.liferay.services.angular.model.impl.AngularResourceBlockImpl" table="AngularServices_AngularResourceBlock">
+		<id name="resourceBlockId" type="long">
+			<generator class="assigned" />
+		</id>
+	</class>
+	<class name="eu.gerhards.liferay.services.angular.model.impl.AngularResourcePermissionImpl" table="AngularServices_AngularResourcePermission">
+		<id name="resourcePermissionId" type="long">
+			<generator class="assigned" />
+		</id>
+	</class>
+	<class name="eu.gerhards.liferay.services.angular.model.impl.AngularRoleImpl" table="AngularServices_AngularRole">
+		<id name="roleId" type="long">
+			<generator class="assigned" />
+		</id>
+	</class>
+	<class name="eu.gerhards.liferay.services.angular.model.impl.AngularTeamImpl" table="AngularServices_AngularTeam">
+		<id name="angularTeamId" type="long">
+			<generator class="assigned" />
+		</id>
+	</class>
+	<class name="eu.gerhards.liferay.services.angular.model.impl.AngularUserImpl" table="AngularServices_AngularUser">
+		<id name="userId" type="long">
+			<generator class="assigned" />
+		</id>
+	</class>
+	<class name="eu.gerhards.liferay.services.angular.model.impl.AngularUserGroupImpl" table="AngularServices_AngularUserGroup">
+		<id name="groupId" type="long">
+			<generator class="assigned" />
+		</id>
+	</class>
+	<class name="eu.gerhards.liferay.services.angular.model.impl.AngularVirtualHostImpl" table="AngularServices_AngularVirtualHost">
+		<id name="virtualHostId" type="long">
+			<generator class="assigned" />
+		</id>
+	</class>
+</hibernate-mapping>

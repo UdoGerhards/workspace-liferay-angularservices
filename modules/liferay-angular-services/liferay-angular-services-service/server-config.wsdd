@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+	<globalConfiguration>
+		<parameter name="adminPassword" value="admin" />
+		<parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl" />
+		<parameter name="sendXsiTypes" value="true" />
+		<parameter name="sendMultiRefs" value="true" />
+		<parameter name="sendXMLDeclaration" value="true" />
+		<parameter name="axis.sendMinimizedElements" value="true" />
+		<requestFlow>
+			<handler type="java:org.apache.axis.handlers.JWSHandler">
+				<parameter name="scope" value="session" />
+			</handler>
+			<handler type="java:org.apache.axis.handlers.JWSHandler">
+				<parameter name="scope" value="request" />
+				<parameter name="extension" value=".jwr" />
+			</handler>
+		</requestFlow>
+	</globalConfiguration>
+	<handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder" />
+	<handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper" />
+	<handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler" />
+	<transport name="http">
+		<requestFlow>
+			<handler type="URLMapper" />
+			<handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler" />
+		</requestFlow>
+	</transport>
+	<transport name="local">
+		<responseFlow>
+			<handler type="LocalResponder" />
+		</responseFlow>
+	</transport>
+	<service name="Plugin_AngularServices_AngularGroupService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="eu.gerhards.liferay.services.angular.service.http.AngularGroupServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="AngularGroupServiceSoap" />
+		<parameter name="wsdlServiceElement" value="AngularGroupServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_AngularServices_AngularGroupService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.angular.services.liferay.gerhards.eu" />
+	</service>
+	<service name="Plugin_AngularServices_AngularInstanceService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="eu.gerhards.liferay.services.angular.service.http.AngularInstanceServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="AngularInstanceServiceSoap" />
+		<parameter name="wsdlServiceElement" value="AngularInstanceServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_AngularServices_AngularInstanceService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.angular.services.liferay.gerhards.eu" />
+	</service>
+	<service name="Plugin_AngularServices_AngularLayoutService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="eu.gerhards.liferay.services.angular.service.http.AngularLayoutServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="AngularLayoutServiceSoap" />
+		<parameter name="wsdlServiceElement" value="AngularLayoutServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_AngularServices_AngularLayoutService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.angular.services.liferay.gerhards.eu" />
+	</service>
+	<service name="Plugin_AngularServices_AngularOrganizationService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="eu.gerhards.liferay.services.angular.service.http.AngularOrganizationServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="AngularOrganizationServiceSoap" />
+		<parameter name="wsdlServiceElement" value="AngularOrganizationServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_AngularServices_AngularOrganizationService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.angular.services.liferay.gerhards.eu" />
+	</service>
+	<service name="Plugin_AngularServices_AngularPermissionService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="eu.gerhards.liferay.services.angular.service.http.AngularPermissionServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="AngularPermissionServiceSoap" />
+		<parameter name="wsdlServiceElement" value="AngularPermissionServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_AngularServices_AngularPermissionService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.angular.services.liferay.gerhards.eu" />
+	</service>
+	<service name="Plugin_AngularServices_AngularPortalService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="eu.gerhards.liferay.services.angular.service.http.AngularPortalServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="AngularPortalServiceSoap" />
+		<parameter name="wsdlServiceElement" value="AngularPortalServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_AngularServices_AngularPortalService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.angular.services.liferay.gerhards.eu" />
+	</service>
+	<service name="Plugin_AngularServices_AngularResourceBlockService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="eu.gerhards.liferay.services.angular.service.http.AngularResourceBlockServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="AngularResourceBlockServiceSoap" />
+		<parameter name="wsdlServiceElement" value="AngularResourceBlockServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_AngularServices_AngularResourceBlockService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.angular.services.liferay.gerhards.eu" />
+	</service>
+	<service name="Plugin_AngularServices_AngularResourcePermissionService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="eu.gerhards.liferay.services.angular.service.http.AngularResourcePermissionServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="AngularResourcePermissionServiceSoap" />
+		<parameter name="wsdlServiceElement" value="AngularResourcePermissionServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_AngularServices_AngularResourcePermissionService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.angular.services.liferay.gerhards.eu" />
+	</service>
+	<service name="Plugin_AngularServices_AngularRoleService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="eu.gerhards.liferay.services.angular.service.http.AngularRoleServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="AngularRoleServiceSoap" />
+		<parameter name="wsdlServiceElement" value="AngularRoleServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_AngularServices_AngularRoleService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.angular.services.liferay.gerhards.eu" />
+	</service>
+	<service name="Plugin_AngularServices_AngularTeamService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="eu.gerhards.liferay.services.angular.service.http.AngularTeamServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="AngularTeamServiceSoap" />
+		<parameter name="wsdlServiceElement" value="AngularTeamServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_AngularServices_AngularTeamService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.angular.services.liferay.gerhards.eu" />
+	</service>
+	<service name="Plugin_AngularServices_AngularUserGroupService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="eu.gerhards.liferay.services.angular.service.http.AngularUserGroupServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="AngularUserGroupServiceSoap" />
+		<parameter name="wsdlServiceElement" value="AngularUserGroupServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_AngularServices_AngularUserGroupService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.angular.services.liferay.gerhards.eu" />
+	</service>
+	<service name="Plugin_AngularServices_AngularUserService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="eu.gerhards.liferay.services.angular.service.http.AngularUserServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="AngularUserServiceSoap" />
+		<parameter name="wsdlServiceElement" value="AngularUserServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_AngularServices_AngularUserService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.angular.services.liferay.gerhards.eu" />
+	</service>
+	<service name="Plugin_AngularServices_AngularVirtualHostService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="eu.gerhards.liferay.services.angular.service.http.AngularVirtualHostServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="AngularVirtualHostServiceSoap" />
+		<parameter name="wsdlServiceElement" value="AngularVirtualHostServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_AngularServices_AngularVirtualHostService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.angular.services.liferay.gerhards.eu" />
+	</service>
+</deployment>

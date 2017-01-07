@@ -1,0 +1,1 @@
+create index IX_5277E3A8 on AngularServices_AngularResourceBlock (resourceBlockId);

@@ -1,0 +1,8 @@
+Bundle-Name: liferay-angular-services-service
+Bundle-SymbolicName: eu.gerhards.liferay.services.angular.service
+Bundle-Version: 1.0.0
+Liferay-Require-SchemaVersion: 1.0.0
+Liferay-Service: true
+Liferay-Releng-Module-Group-Description: Contains services to use liferay with angular
+Liferay-Releng-Module-Group-Title: Gerhards - Liferay Angular services
+Include-Resource: @javax.mail-api-1.5.6.jar,@javax.mail-1.5.6.jar,@commons-lang3-3.4.jar

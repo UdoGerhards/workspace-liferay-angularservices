@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_0_0.dtd">
+
+<service-builder package-path="eu.gerhards.liferay.services.angular">
+	<namespace>AngularServices</namespace>
+	<entity local-service="true" name="AngularUser" remote-service="true" uuid="false" human-name="User ">
+		<column name="userId" type="long" primary="true" />
+		<order by="asc">
+			<order-column name="userId" />
+		</order>
+	</entity>
+	<entity local-service="true" name="AngularOrganization" remote-service="true" uuid="false" human-name="Organization ">
+		<column name="organizationId" type="long" primary="true" />
+		<order by="asc">
+			<order-column name="organizationId" />
+		</order>
+	</entity>
+	<entity local-service="true" name="AngularGroup" remote-service="true" uuid="false" human-name="Group ">
+		<column name="groupId" type="long" primary="true" />
+		<order by="asc">
+			<order-column name="groupId" />
+		</order>
+	</entity>
+	<entity local-service="true" name="AngularUserGroup" remote-service="true" uuid="false" human-name="User group ">
+		<column name="groupId" type="long" primary="true" />
+		<order by="asc">
+			<order-column name="groupId" />
+		</order>
+	</entity>
+	<entity local-service="true" name="AngularRole" remote-service="true" uuid="false" human-name="Role ">
+		<column name="roleId" type="long" primary="true" />
+		<order by="asc">
+			<order-column name="roleId" />
+		</order>
+	</entity>
+	<entity local-service="true" name="AngularInstance" remote-service="true" uuid="false" human-name="Instance ">
+		<column name="instanceId" type="long" primary="true" />
+		<order by="asc">
+			<order-column name="instanceId" />
+		</order>
+	</entity>
+	<entity local-service="true" name="AngularPermission" remote-service="true" uuid="false" human-name="Permission ">
+		<column name="permissionId" type="long" primary="true" />
+		<order by="asc">
+			<order-column name="permissionId" />
+		</order>
+	</entity>
+	<entity local-service="true" name="AngularResourcePermission" remote-service="true" uuid="false" human-name="Resource permission ">
+		<column name="resourcePermissionId" type="long" primary="true" />
+		<order by="asc">
+			<order-column name="resourcePermissionId" />
+		</order>
+	</entity>
+	<entity local-service="true" name="AngularResourceBlock" remote-service="true" uuid="false" human-name="Resource block ">
+		<column name="resourceBlockId" type="long" primary="true" />
+		<order by="asc">
+			<order-column name="resourceBlockId" />
+		</order>
+	</entity>
+	<entity local-service="true" name="AngularLayout" remote-service="true" uuid="false" human-name="Layout ">
+		<column name="layoutId" type="long" primary="true" />
+		<order by="asc">
+			<order-column name="layoutId" />
+		</order>
+	</entity>
+	<entity local-service="true" name="AngularVirtualHost" remote-service="true" uuid="false" human-name="Virtual host ">
+		<column name="virtualHostId" type="long" primary="true" />
+		<order by="asc">
+			<order-column name="virtualHostId" />
+		</order>
+	</entity>
+	<entity local-service="true" name="AngularPortal" remote-service="true" uuid="false" human-name="Portal ">
+		<column name="portalId" type="long" primary="true" />
+		<order by="asc">
+			<order-column name="portalId" />
+		</order>
+	</entity>
+	<entity local-service="true" name="AngularTeam" remote-service="true" uuid="false" human-name="Team ">
+		<column name="angularTeamId" type="long" primary="true" />
+		<order by="asc">
+			<order-column name="angularTeamId" />
+		</order>
+	</entity>
+</service-builder>
