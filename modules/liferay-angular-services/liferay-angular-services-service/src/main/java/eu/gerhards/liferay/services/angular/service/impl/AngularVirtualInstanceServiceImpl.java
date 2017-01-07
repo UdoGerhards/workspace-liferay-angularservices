@@ -15,6 +15,7 @@
 package eu.gerhards.liferay.services.angular.service.impl;
 
 import aQute.bnd.annotation.ProviderType;
+import com.liferay.portal.kernel.model.Group;
 import eu.gerhards.liferay.services.angular.service.base.AngularVirtualInstanceServiceBaseImpl;
 
 /**
@@ -39,4 +40,9 @@ public class AngularVirtualInstanceServiceImpl
 	 *
 	 * Never reference this class directly. Always use {@link eu.gerhards.liferay.services.angular.service.AngularVirtualInstanceServiceUtil} to access the Virtual instance remote service.
 	 */
+
+	@Override
+	public Group getVirtualInstances() {
+		return null;
+	}
 }

@@ -33,6 +33,10 @@ import eu.gerhards.liferay.services.angular.service.base.AngularBootstrapService
  */
 @ProviderType
 public class AngularBootstrapServiceImpl extends AngularBootstrapServiceBaseImpl {
+    @Override
+    public String getServiceConfiguration() {
+        return null;
+    }
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
