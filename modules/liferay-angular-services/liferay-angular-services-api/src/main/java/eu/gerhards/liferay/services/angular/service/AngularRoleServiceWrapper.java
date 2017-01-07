@@ -15,14 +15,9 @@
 package eu.gerhards.liferay.services.angular.service;
 
 import aQute.bnd.annotation.ProviderType;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.UserGroupRole;
 import com.liferay.portal.kernel.service.ServiceWrapper;
-
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 /**
  * Provides a wrapper for {@link AngularRoleService}.
@@ -38,6 +33,34 @@ public class AngularRoleServiceWrapper implements AngularRoleService,
 		_angularRoleService = angularRoleService;
 	}
 
+	@Override
+	public Role createRole(java.lang.String name, int type,
+						   java.lang.String className,
+						   java.util.Map<java.util.Locale, java.lang.String> titleMap,
+						   java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+						   java.lang.String subType)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularRoleService.createRole(name, type, className, titleMap,
+			descriptionMap, subType);
+	}
+
+	@Override
+	public Role deleteRole(long roleId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularRoleService.deleteRole(roleId);
+	}
+
+	@Override
+	public Role updateRole(long roleId, java.lang.String name, int type,
+		java.lang.String className,
+		java.util.Map<java.util.Locale, java.lang.String> titleMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		java.lang.String subType)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularRoleService.updateRole(roleId, name, type, className,
+			titleMap, descriptionMap, subType);
+	}
+
 	/**
 	* Returns the OSGi service identifier.
 	*
@@ -49,6 +72,39 @@ public class AngularRoleServiceWrapper implements AngularRoleService,
 	}
 
 	@Override
+	public java.util.List<UserGroupRole> checkUserGroupRoles(long userId,
+															 java.util.List<UserGroupRole> userGroupRoles)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularRoleService.checkUserGroupRoles(userId, userGroupRoles);
+	}
+
+	@Override
+	public java.util.List<Role> getOrganizationRoles(long companyId) {
+		return _angularRoleService.getOrganizationRoles(companyId);
+	}
+
+	@Override
+	public java.util.List<Role> getRegularRoles(long companyId) {
+		return _angularRoleService.getRegularRoles(companyId);
+	}
+
+	@Override
+	public java.util.List<Role> getRolesInCompany(long companyId) {
+		return _angularRoleService.getRolesInCompany(companyId);
+	}
+
+	@Override
+	public java.util.List<Role> getSiteRoles(long companyId) {
+		return _angularRoleService.getSiteRoles(companyId);
+	}
+
+	@Override
+	public long[] checkRoles(long userId, long[] roleIds)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularRoleService.checkRoles(userId, roleIds);
+	}
+
+	@Override
 	public AngularRoleService getWrappedService() {
 		return _angularRoleService;
 	}
@@ -56,55 +112,6 @@ public class AngularRoleServiceWrapper implements AngularRoleService,
 	@Override
 	public void setWrappedService(AngularRoleService angularRoleService) {
 		_angularRoleService = angularRoleService;
-	}
-
-	@Override
-	public java.util.List<com.liferay.portal.kernel.model.Role> getOrganizationRoles(
-			long companyId) {
-		return _angularRoleService.getOrganizationRoles(companyId);
-	}
-
-	@Override
-	public java.util.List<com.liferay.portal.kernel.model.Role> getRegularRoles(
-			long companyId) {
-		return _angularRoleService.getRegularRoles(companyId);
-	}
-
-	@Override
-	public java.util.List<com.liferay.portal.kernel.model.Role> getRolesInCompany(
-			long companyId) {
-		return _angularRoleService.getRolesInCompany(companyId);
-	}
-
-	@Override
-	public java.util.List<com.liferay.portal.kernel.model.Role> getSiteRoles(
-			long companyId) {
-		return _angularRoleService.getSiteRoles(companyId);
-	}
-
-	@Override
-	public Role createRole(String name, int type, String className, Map<Locale, String> titleMap, Map<Locale, String> descriptionMap, String subType) throws PortalException {
-		return _angularRoleService.createRole(name, type, className, titleMap, descriptionMap, subType);
-	}
-
-	@Override
-	public Role updateRole(long roleId, String name, int type, String className, Map<Locale, String> titleMap, Map<Locale, String> descriptionMap, String subType) throws PortalException {
-		return _angularRoleService.updateRole(roleId, name, type, className, titleMap, descriptionMap, subType);
-	}
-
-	@Override
-	public Role deleteRole(long roleId) throws PortalException {
-		return _angularRoleService.deleteRole(roleId);
-	}
-
-	@Override
-	public long[] checkRoles(long userId, long[] roleIds) throws PortalException {
-		return _angularRoleService.checkRoles(userId, roleIds);
-	}
-
-	@Override
-	public List<UserGroupRole> checkUserGroupRoles(long userId, List<UserGroupRole> userGroupRoles) throws PortalException {
-		return _angularRoleService.checkUserGroupRoles(userId,userGroupRoles);
 	}
 
 	private AngularRoleService _angularRoleService;

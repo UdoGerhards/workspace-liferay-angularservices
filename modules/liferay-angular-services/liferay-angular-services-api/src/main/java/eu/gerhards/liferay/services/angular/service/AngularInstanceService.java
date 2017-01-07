@@ -53,28 +53,16 @@ public interface AngularInstanceService extends BaseService {
 	 * Never modify or reference this interface directly. Always use {@link AngularInstanceServiceUtil} to access the Instance remote service. Add custom service methods to {@link eu.gerhards.liferay.services.angular.service.impl.AngularInstanceServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 
-	@JSONWebService(method="POST")
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public String postTest(String string1, String string2, long number);
-
-	/**
-	 * Method getAvailableInstances
-	 *
-	 * Lists all available instances in the installation
-	 *
-	 * @apiNote Needs right "LIST_COMPANIES" to be activated in control panel. @see AngularActionKeys#LIST_COMPANIES
-	 *
-	 * @return
-	 * @throws PortalException
-	 */
-	@JSONWebService(method="GET")
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Company> getAvailableInstances() throws PortalException;
-
 	/**
 	* Returns the OSGi service identifier.
 	*
 	* @return the OSGi service identifier
 	*/
 	public java.lang.String getOSGiServiceIdentifier();
+
+	public java.lang.String postTest(java.lang.String string1,
+		java.lang.String string2, long number);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Company> getAvailableInstances() throws PortalException;
 }

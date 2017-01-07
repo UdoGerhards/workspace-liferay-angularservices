@@ -53,21 +53,21 @@ public interface AngularPermissionService extends BaseService {
 	 * Never modify or reference this interface directly. Always use {@link AngularPermissionServiceUtil} to access the Permission remote service. Add custom service methods to {@link eu.gerhards.liferay.services.angular.service.impl.AngularPermissionServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<ResourcePermission> getPermissions(long roleId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<List<ResourcePermission>> getPermissionsForUser(long userId)
-			throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<List<ResourcePermission>> getPermissionsForUserPerType(
-			long userId, long roleType, long scopeType) throws PortalException;
-
 	/**
 	* Returns the OSGi service identifier.
 	*
 	* @return the OSGi service identifier
 	*/
 	public java.lang.String getOSGiServiceIdentifier();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<ResourcePermission> getPermissions(long roleId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<List<ResourcePermission>> getPermissionsForUser(long userId)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<List<ResourcePermission>> getPermissionsForUserPerType(
+		long userId, long roleType, long scopeType) throws PortalException;
 }

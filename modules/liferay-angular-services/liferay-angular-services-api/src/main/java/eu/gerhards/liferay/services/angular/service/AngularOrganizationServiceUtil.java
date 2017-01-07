@@ -15,9 +15,8 @@
 package eu.gerhards.liferay.services.angular.service;
 
 import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.osgi.util.ServiceTrackerFactory;
-
+import com.liferay.portal.kernel.model.*;
 import org.osgi.util.tracker.ServiceTracker;
 
 /**
@@ -41,6 +40,38 @@ public class AngularOrganizationServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link eu.gerhards.liferay.services.angular.service.impl.AngularOrganizationServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static Organization createOrganization(java.lang.String name,
+												  java.lang.String type, long regionId, long countryId, long statusId,
+												  java.lang.String comment, boolean site, long[] addresses,
+												  long[] emailAddresses, long[] phones, long[] websites, long[] orgLabors)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .createOrganization(name, type, regionId, countryId,
+			statusId, comment, site, addresses, emailAddresses, phones,
+			websites, orgLabors);
+	}
+
+	public static Organization deleteOrganization(long organizationId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deleteOrganization(organizationId);
+	}
+
+	public static Organization getOrganization(long organizationId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getOrganization(organizationId);
+	}
+
+	public static Organization updateOrganization(long organizationId,
+		java.lang.String name, java.lang.String type, long regionId,
+		long countryId, long statusId, java.lang.String comment, boolean site,
+		long[] addresses, long[] emailAddresses, long[] phones,
+		long[] websites, long[] orgLabors)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .updateOrganization(organizationId, name, type, regionId,
+			countryId, statusId, comment, site, addresses, emailAddresses,
+			phones, websites, orgLabors);
+	}
 
 	/**
 	* Returns the OSGi service identifier.
@@ -49,6 +80,40 @@ public class AngularOrganizationServiceUtil {
 	*/
 	public static java.lang.String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
+	}
+
+	public static java.util.List<Address> getOrganizationAdresses(
+		long organizationId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getOrganizationAdresses(organizationId);
+	}
+
+	public static java.util.List<EmailAddress> getOrganizationEmailAddresses(
+		long organizationId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getOrganizationEmailAddresses(organizationId);
+	}
+
+	public static java.util.List<Phone> getOrganizationPhones(
+		long organizationId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getOrganizationPhones(organizationId);
+	}
+
+	public static java.util.List<User> getOrganizationUsers(long organizationId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getOrganizationUsers(organizationId);
+	}
+
+	public static java.util.List<Website> getOrganizationWebsites(
+		long organizationId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getOrganizationWebsites(organizationId);
+	}
+
+	public static long[] checkOrganizations(long userId, long[] organizationIds)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().checkOrganizations(userId, organizationIds);
 	}
 
 	public static AngularOrganizationService getService() {

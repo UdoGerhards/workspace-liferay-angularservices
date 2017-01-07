@@ -2,6 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping auto-import="false" default-lazy="false">
+	<import class="eu.gerhards.liferay.services.angular.model.AngularBootstrap" />
 	<import class="eu.gerhards.liferay.services.angular.model.AngularGroup" />
 	<import class="eu.gerhards.liferay.services.angular.model.AngularInstance" />
 	<import class="eu.gerhards.liferay.services.angular.model.AngularLayout" />
@@ -11,10 +12,16 @@
 	<import class="eu.gerhards.liferay.services.angular.model.AngularResourceBlock" />
 	<import class="eu.gerhards.liferay.services.angular.model.AngularResourcePermission" />
 	<import class="eu.gerhards.liferay.services.angular.model.AngularRole" />
+	<import class="eu.gerhards.liferay.services.angular.model.AngularSite" />
 	<import class="eu.gerhards.liferay.services.angular.model.AngularTeam" />
 	<import class="eu.gerhards.liferay.services.angular.model.AngularUser" />
 	<import class="eu.gerhards.liferay.services.angular.model.AngularUserGroup" />
-	<import class="eu.gerhards.liferay.services.angular.model.AngularVirtualHost" />
+	<import class="eu.gerhards.liferay.services.angular.model.AngularVirtualInstance" />
+	<class name="eu.gerhards.liferay.services.angular.model.impl.AngularBootstrapImpl" table="AngularServices_AngularBootstrap">
+		<id name="bootId" type="long">
+			<generator class="assigned" />
+		</id>
+	</class>
 	<class name="eu.gerhards.liferay.services.angular.model.impl.AngularGroupImpl" table="AngularServices_AngularGroup">
 		<id name="groupId" type="long">
 			<generator class="assigned" />
@@ -60,6 +67,11 @@
 			<generator class="assigned" />
 		</id>
 	</class>
+	<class name="eu.gerhards.liferay.services.angular.model.impl.AngularSiteImpl" table="AngularServices_AngularSite">
+		<id name="siteId" type="long">
+			<generator class="assigned" />
+		</id>
+	</class>
 	<class name="eu.gerhards.liferay.services.angular.model.impl.AngularTeamImpl" table="AngularServices_AngularTeam">
 		<id name="angularTeamId" type="long">
 			<generator class="assigned" />
@@ -75,8 +87,8 @@
 			<generator class="assigned" />
 		</id>
 	</class>
-	<class name="eu.gerhards.liferay.services.angular.model.impl.AngularVirtualHostImpl" table="AngularServices_AngularVirtualHost">
-		<id name="virtualHostId" type="long">
+	<class name="eu.gerhards.liferay.services.angular.model.impl.AngularVirtualInstanceImpl" table="AngularServices_AngularVirtualInstance">
+		<id name="virtualInstanceId" type="long">
 			<generator class="assigned" />
 		</id>
 	</class>

@@ -1,3 +1,7 @@
+create table AngularServices_AngularBootstrap (
+	bootId LONG not null primary key
+);
+
 create table AngularServices_AngularGroup (
 	groupId LONG not null primary key
 );
@@ -34,6 +38,10 @@ create table AngularServices_AngularRole (
 	roleId LONG not null primary key
 );
 
+create table AngularServices_AngularSite (
+	siteId LONG not null primary key
+);
+
 create table AngularServices_AngularTeam (
 	angularTeamId LONG not null primary key
 );
@@ -48,4 +56,8 @@ create table AngularServices_AngularUserGroup (
 
 create table AngularServices_AngularVirtualHost (
 	virtualHostId LONG not null primary key
+);
+
+create table AngularServices_AngularVirtualInstance (
+	virtualInstanceId LONG not null primary key
 );

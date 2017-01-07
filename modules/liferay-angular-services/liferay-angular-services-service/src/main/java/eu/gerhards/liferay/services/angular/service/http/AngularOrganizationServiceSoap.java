@@ -15,10 +15,16 @@
 package eu.gerhards.liferay.services.angular.service.http;
 
 import aQute.bnd.annotation.ProviderType;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.*;
+import eu.gerhards.liferay.services.angular.service.AngularOrganizationServiceUtil;
+
+import java.rmi.RemoteException;
 
 /**
  * Provides the SOAP utility for the
- * {@link eu.gerhards.liferay.services.angular.service.AngularOrganizationServiceUtil} service utility. The
+ * {@link AngularOrganizationServiceUtil} service utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it is difficult for SOAP to
  * support certain types.
@@ -53,9 +59,161 @@ import aQute.bnd.annotation.ProviderType;
  * @author Brian Wing Shun Chan
  * @see AngularOrganizationServiceHttp
  * @see eu.gerhards.liferay.services.angular.model.AngularOrganizationSoap
- * @see eu.gerhards.liferay.services.angular.service.AngularOrganizationServiceUtil
+ * @see AngularOrganizationServiceUtil
  * @generated
  */
 @ProviderType
 public class AngularOrganizationServiceSoap {
+	public static com.liferay.portal.kernel.model.Organization getOrganization(long organizationId)
+		throws RemoteException {
+		try {
+			com.liferay.portal.kernel.model.Organization returnValue = AngularOrganizationServiceUtil.getOrganization(organizationId);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static UserSoap[] getOrganizationUsers(long organizationId)
+		throws RemoteException {
+		try {
+			java.util.List<User> returnValue = AngularOrganizationServiceUtil.getOrganizationUsers(organizationId);
+
+			return UserSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static AddressSoap[] getOrganizationAdresses(long organizationId)
+		throws RemoteException {
+		try {
+			java.util.List<Address> returnValue = AngularOrganizationServiceUtil.getOrganizationAdresses(organizationId);
+
+			return AddressSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static PhoneSoap[] getOrganizationPhones(long organizationId)
+		throws RemoteException {
+		try {
+			java.util.List<Phone> returnValue = AngularOrganizationServiceUtil.getOrganizationPhones(organizationId);
+
+			return PhoneSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static EmailAddressSoap[] getOrganizationEmailAddresses(
+		long organizationId) throws RemoteException {
+		try {
+			java.util.List<EmailAddress> returnValue = AngularOrganizationServiceUtil.getOrganizationEmailAddresses(organizationId);
+
+			return EmailAddressSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static WebsiteSoap[] getOrganizationWebsites(long organizationId)
+		throws RemoteException {
+		try {
+			java.util.List<Website> returnValue = AngularOrganizationServiceUtil.getOrganizationWebsites(organizationId);
+
+			return WebsiteSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.portal.kernel.model.Organization createOrganization(java.lang.String name,
+		java.lang.String type, long regionId, long countryId, long statusId,
+		java.lang.String comment, boolean site, long[] addresses,
+		long[] emailAddresses, long[] phones, long[] websites, long[] orgLabors)
+		throws RemoteException {
+		try {
+			com.liferay.portal.kernel.model.Organization returnValue = AngularOrganizationServiceUtil.createOrganization(name,
+					type, regionId, countryId, statusId, comment, site,
+					addresses, emailAddresses, phones, websites, orgLabors);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.portal.kernel.model.Organization updateOrganization(long organizationId,
+		java.lang.String name, java.lang.String type, long regionId,
+		long countryId, long statusId, java.lang.String comment, boolean site,
+		long[] addresses, long[] emailAddresses, long[] phones,
+		long[] websites, long[] orgLabors) throws RemoteException {
+		try {
+			com.liferay.portal.kernel.model.Organization returnValue = AngularOrganizationServiceUtil.updateOrganization(organizationId,
+					name, type, regionId, countryId, statusId, comment, site,
+					addresses, emailAddresses, phones, websites, orgLabors);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.portal.kernel.model.Organization deleteOrganization(long organizationId)
+		throws RemoteException {
+		try {
+			com.liferay.portal.kernel.model.Organization returnValue = AngularOrganizationServiceUtil.deleteOrganization(organizationId);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static long[] checkOrganizations(long userId, long[] organizationIds)
+		throws RemoteException {
+		try {
+			long[] returnValue = AngularOrganizationServiceUtil.checkOrganizations(userId,
+					organizationIds);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(AngularOrganizationServiceSoap.class);
 }

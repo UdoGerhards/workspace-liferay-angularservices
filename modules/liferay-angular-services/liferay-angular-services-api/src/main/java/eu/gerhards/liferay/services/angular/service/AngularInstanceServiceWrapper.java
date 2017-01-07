@@ -15,7 +15,6 @@
 package eu.gerhards.liferay.services.angular.service;
 
 import aQute.bnd.annotation.ProviderType;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
@@ -44,6 +43,18 @@ public class AngularInstanceServiceWrapper implements AngularInstanceService,
 	}
 
 	@Override
+	public java.lang.String postTest(java.lang.String string1,
+		java.lang.String string2, long number) {
+		return _angularInstanceService.postTest(string1, string2, number);
+	}
+
+	@Override
+	public java.util.List<com.liferay.portal.kernel.model.Company> getAvailableInstances()
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularInstanceService.getAvailableInstances();
+	}
+
+	@Override
 	public AngularInstanceService getWrappedService() {
 		return _angularInstanceService;
 	}
@@ -51,16 +62,6 @@ public class AngularInstanceServiceWrapper implements AngularInstanceService,
 	@Override
 	public void setWrappedService(AngularInstanceService angularInstanceService) {
 		_angularInstanceService = angularInstanceService;
-	}
-
-	@Override
-    public java.util.List<com.liferay.portal.kernel.model.Company> getAvailableInstances() throws PortalException {
-		return _angularInstanceService.getAvailableInstances();
-	}
-
-	@Override
-	public String postTest(String string1, String string2, long number) {
-		return _angularInstanceService.postTest(string1,string2,number);
 	}
 
 	private AngularInstanceService _angularInstanceService;

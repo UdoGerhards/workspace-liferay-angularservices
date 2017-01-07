@@ -15,18 +15,12 @@
 package eu.gerhards.liferay.services.angular.service.base;
 
 import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
-import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
-import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
-import com.liferay.portal.kernel.dao.orm.Projection;
+import com.liferay.portal.kernel.dao.orm.*;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.model.PersistedModel;
@@ -40,28 +34,13 @@ import com.liferay.portal.kernel.service.persistence.UserPersistence;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.spring.extender.service.ServiceReference;
-
 import eu.gerhards.liferay.services.angular.model.AngularTeam;
 import eu.gerhards.liferay.services.angular.service.AngularTeamLocalService;
-import eu.gerhards.liferay.services.angular.service.persistence.AngularGroupPersistence;
-import eu.gerhards.liferay.services.angular.service.persistence.AngularInstancePersistence;
-import eu.gerhards.liferay.services.angular.service.persistence.AngularLayoutPersistence;
-import eu.gerhards.liferay.services.angular.service.persistence.AngularOrganizationPersistence;
-import eu.gerhards.liferay.services.angular.service.persistence.AngularPermissionPersistence;
-import eu.gerhards.liferay.services.angular.service.persistence.AngularPortalPersistence;
-import eu.gerhards.liferay.services.angular.service.persistence.AngularResourceBlockPersistence;
-import eu.gerhards.liferay.services.angular.service.persistence.AngularResourcePermissionPersistence;
-import eu.gerhards.liferay.services.angular.service.persistence.AngularRolePersistence;
-import eu.gerhards.liferay.services.angular.service.persistence.AngularTeamPersistence;
-import eu.gerhards.liferay.services.angular.service.persistence.AngularUserGroupPersistence;
-import eu.gerhards.liferay.services.angular.service.persistence.AngularUserPersistence;
-import eu.gerhards.liferay.services.angular.service.persistence.AngularVirtualHostPersistence;
-
-import java.io.Serializable;
-
-import java.util.List;
+import eu.gerhards.liferay.services.angular.service.persistence.*;
 
 import javax.sql.DataSource;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * Provides the base implementation for the Team local service.
@@ -324,6 +303,44 @@ public abstract class AngularTeamLocalServiceBaseImpl
 	@Override
 	public AngularTeam updateAngularTeam(AngularTeam angularTeam) {
 		return angularTeamPersistence.update(angularTeam);
+	}
+
+	/**
+	 * Returns the Bootstrap local service.
+	 *
+	 * @return the Bootstrap local service
+	 */
+	public eu.gerhards.liferay.services.angular.service.AngularBootstrapLocalService getAngularBootstrapLocalService() {
+		return angularBootstrapLocalService;
+	}
+
+	/**
+	 * Sets the Bootstrap local service.
+	 *
+	 * @param angularBootstrapLocalService the Bootstrap local service
+	 */
+	public void setAngularBootstrapLocalService(
+		eu.gerhards.liferay.services.angular.service.AngularBootstrapLocalService angularBootstrapLocalService) {
+		this.angularBootstrapLocalService = angularBootstrapLocalService;
+	}
+
+	/**
+	 * Returns the Bootstrap persistence.
+	 *
+	 * @return the Bootstrap persistence
+	 */
+	public AngularBootstrapPersistence getAngularBootstrapPersistence() {
+		return angularBootstrapPersistence;
+	}
+
+	/**
+	 * Sets the Bootstrap persistence.
+	 *
+	 * @param angularBootstrapPersistence the Bootstrap persistence
+	 */
+	public void setAngularBootstrapPersistence(
+		AngularBootstrapPersistence angularBootstrapPersistence) {
+		this.angularBootstrapPersistence = angularBootstrapPersistence;
 	}
 
 	/**
@@ -669,6 +686,44 @@ public abstract class AngularTeamLocalServiceBaseImpl
 	}
 
 	/**
+	 * Returns the Site local service.
+	 *
+	 * @return the Site local service
+	 */
+	public eu.gerhards.liferay.services.angular.service.AngularSiteLocalService getAngularSiteLocalService() {
+		return angularSiteLocalService;
+	}
+
+	/**
+	 * Sets the Site local service.
+	 *
+	 * @param angularSiteLocalService the Site local service
+	 */
+	public void setAngularSiteLocalService(
+		eu.gerhards.liferay.services.angular.service.AngularSiteLocalService angularSiteLocalService) {
+		this.angularSiteLocalService = angularSiteLocalService;
+	}
+
+	/**
+	 * Returns the Site persistence.
+	 *
+	 * @return the Site persistence
+	 */
+	public AngularSitePersistence getAngularSitePersistence() {
+		return angularSitePersistence;
+	}
+
+	/**
+	 * Sets the Site persistence.
+	 *
+	 * @param angularSitePersistence the Site persistence
+	 */
+	public void setAngularSitePersistence(
+		AngularSitePersistence angularSitePersistence) {
+		this.angularSitePersistence = angularSitePersistence;
+	}
+
+	/**
 	 * Returns the Team local service.
 	 *
 	 * @return the Team local service
@@ -783,41 +838,41 @@ public abstract class AngularTeamLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the Virtual host local service.
+	 * Returns the Virtual instance local service.
 	 *
-	 * @return the Virtual host local service
+	 * @return the Virtual instance local service
 	 */
-	public eu.gerhards.liferay.services.angular.service.AngularVirtualHostLocalService getAngularVirtualHostLocalService() {
-		return angularVirtualHostLocalService;
+	public eu.gerhards.liferay.services.angular.service.AngularVirtualInstanceLocalService getAngularVirtualInstanceLocalService() {
+		return angularVirtualInstanceLocalService;
 	}
 
 	/**
-	 * Sets the Virtual host local service.
+	 * Sets the Virtual instance local service.
 	 *
-	 * @param angularVirtualHostLocalService the Virtual host local service
+	 * @param angularVirtualInstanceLocalService the Virtual instance local service
 	 */
-	public void setAngularVirtualHostLocalService(
-		eu.gerhards.liferay.services.angular.service.AngularVirtualHostLocalService angularVirtualHostLocalService) {
-		this.angularVirtualHostLocalService = angularVirtualHostLocalService;
+	public void setAngularVirtualInstanceLocalService(
+		eu.gerhards.liferay.services.angular.service.AngularVirtualInstanceLocalService angularVirtualInstanceLocalService) {
+		this.angularVirtualInstanceLocalService = angularVirtualInstanceLocalService;
 	}
 
 	/**
-	 * Returns the Virtual host persistence.
+	 * Returns the Virtual instance persistence.
 	 *
-	 * @return the Virtual host persistence
+	 * @return the Virtual instance persistence
 	 */
-	public AngularVirtualHostPersistence getAngularVirtualHostPersistence() {
-		return angularVirtualHostPersistence;
+	public AngularVirtualInstancePersistence getAngularVirtualInstancePersistence() {
+		return angularVirtualInstancePersistence;
 	}
 
 	/**
-	 * Sets the Virtual host persistence.
+	 * Sets the Virtual instance persistence.
 	 *
-	 * @param angularVirtualHostPersistence the Virtual host persistence
+	 * @param angularVirtualInstancePersistence the Virtual instance persistence
 	 */
-	public void setAngularVirtualHostPersistence(
-		AngularVirtualHostPersistence angularVirtualHostPersistence) {
-		this.angularVirtualHostPersistence = angularVirtualHostPersistence;
+	public void setAngularVirtualInstancePersistence(
+		AngularVirtualInstancePersistence angularVirtualInstancePersistence) {
+		this.angularVirtualInstancePersistence = angularVirtualInstancePersistence;
 	}
 
 	/**
@@ -985,6 +1040,10 @@ public abstract class AngularTeamLocalServiceBaseImpl
 		}
 	}
 
+	@BeanReference(type = eu.gerhards.liferay.services.angular.service.AngularBootstrapLocalService.class)
+	protected eu.gerhards.liferay.services.angular.service.AngularBootstrapLocalService angularBootstrapLocalService;
+	@BeanReference(type = AngularBootstrapPersistence.class)
+	protected AngularBootstrapPersistence angularBootstrapPersistence;
 	@BeanReference(type = eu.gerhards.liferay.services.angular.service.AngularGroupLocalService.class)
 	protected eu.gerhards.liferay.services.angular.service.AngularGroupLocalService angularGroupLocalService;
 	@BeanReference(type = AngularGroupPersistence.class)
@@ -1021,6 +1080,10 @@ public abstract class AngularTeamLocalServiceBaseImpl
 	protected eu.gerhards.liferay.services.angular.service.AngularRoleLocalService angularRoleLocalService;
 	@BeanReference(type = AngularRolePersistence.class)
 	protected AngularRolePersistence angularRolePersistence;
+	@BeanReference(type = eu.gerhards.liferay.services.angular.service.AngularSiteLocalService.class)
+	protected eu.gerhards.liferay.services.angular.service.AngularSiteLocalService angularSiteLocalService;
+	@BeanReference(type = AngularSitePersistence.class)
+	protected AngularSitePersistence angularSitePersistence;
 	@BeanReference(type = AngularTeamLocalService.class)
 	protected AngularTeamLocalService angularTeamLocalService;
 	@BeanReference(type = AngularTeamPersistence.class)
@@ -1033,10 +1096,10 @@ public abstract class AngularTeamLocalServiceBaseImpl
 	protected eu.gerhards.liferay.services.angular.service.AngularUserGroupLocalService angularUserGroupLocalService;
 	@BeanReference(type = AngularUserGroupPersistence.class)
 	protected AngularUserGroupPersistence angularUserGroupPersistence;
-	@BeanReference(type = eu.gerhards.liferay.services.angular.service.AngularVirtualHostLocalService.class)
-	protected eu.gerhards.liferay.services.angular.service.AngularVirtualHostLocalService angularVirtualHostLocalService;
-	@BeanReference(type = AngularVirtualHostPersistence.class)
-	protected AngularVirtualHostPersistence angularVirtualHostPersistence;
+	@BeanReference(type = eu.gerhards.liferay.services.angular.service.AngularVirtualInstanceLocalService.class)
+	protected eu.gerhards.liferay.services.angular.service.AngularVirtualInstanceLocalService angularVirtualInstanceLocalService;
+	@BeanReference(type = AngularVirtualInstancePersistence.class)
+	protected AngularVirtualInstancePersistence angularVirtualInstancePersistence;
 	@ServiceReference(type = com.liferay.counter.kernel.service.CounterLocalService.class)
 	protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
 	@ServiceReference(type = com.liferay.portal.kernel.service.ClassNameLocalService.class)

@@ -15,12 +15,7 @@
 package eu.gerhards.liferay.services.angular.service;
 
 import aQute.bnd.annotation.ProviderType;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.ServiceWrapper;
-
-import java.util.Locale;
-import java.util.Map;
 
 /**
  * Provides a wrapper for {@link AngularGroupService}.
@@ -36,6 +31,34 @@ public class AngularGroupServiceWrapper implements AngularGroupService,
 		_angularGroupService = angularGroupService;
 	}
 
+	@Override
+	public com.liferay.portal.kernel.model.Group createGroup(
+		long parentGroupId, long liveGroupId,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		int type, boolean manualMembership, int membershipRestriction,
+		java.lang.String friendlyURL, boolean site, boolean inheritContent,
+		boolean active)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularGroupService.createGroup(parentGroupId, liveGroupId,
+			nameMap, descriptionMap, type, manualMembership,
+			membershipRestriction, friendlyURL, site, inheritContent, active);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.Group updateGroup(long groupId,
+		long parentGroupId, long liveGroupId,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		int type, boolean manualMembership, int membershipRestriction,
+		java.lang.String friendlyURL, boolean site, boolean inheritContent,
+		boolean active)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularGroupService.updateGroup(groupId, parentGroupId,
+			liveGroupId, nameMap, descriptionMap, type, manualMembership,
+			membershipRestriction, friendlyURL, site, inheritContent, active);
+	}
+
 	/**
 	* Returns the OSGi service identifier.
 	*
@@ -47,6 +70,39 @@ public class AngularGroupServiceWrapper implements AngularGroupService,
 	}
 
 	@Override
+	public java.util.List<com.liferay.portal.kernel.model.Group> getActiveGroups(
+		long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularGroupService.getActiveGroups(companyId);
+	}
+
+	@Override
+	public java.util.List<com.liferay.portal.kernel.model.Group> getInactiveGroups(
+		long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularGroupService.getInactiveGroups(companyId);
+	}
+
+	@Override
+	public java.util.List<com.liferay.portal.kernel.model.Group> getInstanceGroups(
+		long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularGroupService.getInstanceGroups(companyId);
+	}
+
+	@Override
+	public long[] checkGroups(long userId, long[] groupIds)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularGroupService.checkGroups(userId, groupIds);
+	}
+
+	@Override
+	public void deleteGroup(long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_angularGroupService.deleteGroup(groupId);
+	}
+
+	@Override
 	public AngularGroupService getWrappedService() {
 		return _angularGroupService;
 	}
@@ -54,44 +110,6 @@ public class AngularGroupServiceWrapper implements AngularGroupService,
 	@Override
 	public void setWrappedService(AngularGroupService angularGroupService) {
 		_angularGroupService = angularGroupService;
-	}
-
-	@Override
-    public java.util.List<com.liferay.portal.kernel.model.Group> getActiveGroups(
-			long companyId) throws PortalException {
-		return _angularGroupService.getActiveGroups(companyId);
-	}
-
-	@Override
-	public java.util.List<com.liferay.portal.kernel.model.Group> getInactiveGroups(
-			long companyId) throws PortalException {
-		return _angularGroupService.getInactiveGroups(companyId);
-	}
-
-	@Override
-    public java.util.List<com.liferay.portal.kernel.model.Group> getInstanceGroups(
-			long companyId) throws PortalException {
-		return _angularGroupService.getInstanceGroups(companyId);
-	}
-
-	@Override
-	public Group createGroup(long parentGroupId, long liveGroupId, Map<Locale, String> nameMap, Map<Locale, String> descriptionMap, int type, boolean manualMembership, int membershipRestriction, String friendlyURL, boolean site, boolean inheritContent, boolean active) throws PortalException {
-		return _angularGroupService.createGroup(parentGroupId, liveGroupId,nameMap,descriptionMap,type,manualMembership,membershipRestriction,friendlyURL,site, inheritContent, active);
-	}
-
-	@Override
-	public Group updateGroup(long groupId, long parentGroupId, long liveGroupId, Map<Locale, String> nameMap, Map<Locale, String> descriptionMap, int type, boolean manualMembership, int membershipRestriction, String friendlyURL, boolean site, boolean inheritContent, boolean active) throws PortalException {
-		return _angularGroupService.updateGroup(groupId,parentGroupId,liveGroupId,nameMap,descriptionMap,type,manualMembership,membershipRestriction,friendlyURL,site,inheritContent,active);
-	}
-
-	@Override
-	public void deleteGroup(long groupId) throws PortalException {
-		_angularGroupService.deleteGroup(groupId);
-	}
-
-	@Override
-	public long[] checkGroups(long userId, long[] groupIds) throws PortalException {
-		return _angularGroupService.checkGroups(userId, groupIds);
 	}
 
 	private AngularGroupService _angularGroupService;

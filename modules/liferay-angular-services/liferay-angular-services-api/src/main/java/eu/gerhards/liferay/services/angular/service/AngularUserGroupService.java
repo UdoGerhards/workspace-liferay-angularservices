@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
-import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceMode;
 import com.liferay.portal.kernel.model.UserGroup;
 import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.portal.kernel.service.BaseService;
@@ -54,16 +53,16 @@ public interface AngularUserGroupService extends BaseService {
 	 * Never modify or reference this interface directly. Always use {@link AngularUserGroupServiceUtil} to access the User group remote service. Add custom service methods to {@link eu.gerhards.liferay.services.angular.service.impl.AngularUserGroupServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<UserGroup> getUserGroupsInCompany(long companyId);
-
-	@JSONWebService(mode= JSONWebServiceMode.IGNORE)
-	public long[] checkUserGroupIds(long userId, long[] userGroupIds) throws PortalException;
-
 	/**
 	* Returns the OSGi service identifier.
 	*
 	* @return the OSGi service identifier
 	*/
 	public java.lang.String getOSGiServiceIdentifier();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<UserGroup> getUserGroupsInCompany(long companyId);
+
+	public long[] checkUserGroupIds(long userId, long[] userGroupIds)
+		throws PortalException;
 }

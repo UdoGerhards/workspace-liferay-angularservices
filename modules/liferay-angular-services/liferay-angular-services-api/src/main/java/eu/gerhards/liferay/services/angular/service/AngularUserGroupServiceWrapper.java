@@ -15,7 +15,6 @@
 package eu.gerhards.liferay.services.angular.service;
 
 import aQute.bnd.annotation.ProviderType;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
@@ -44,6 +43,18 @@ public class AngularUserGroupServiceWrapper implements AngularUserGroupService,
 	}
 
 	@Override
+	public java.util.List<com.liferay.portal.kernel.model.UserGroup> getUserGroupsInCompany(
+		long companyId) {
+		return _angularUserGroupService.getUserGroupsInCompany(companyId);
+	}
+
+	@Override
+	public long[] checkUserGroupIds(long userId, long[] userGroupIds)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularUserGroupService.checkUserGroupIds(userId, userGroupIds);
+	}
+
+	@Override
 	public AngularUserGroupService getWrappedService() {
 		return _angularUserGroupService;
 	}
@@ -52,17 +63,6 @@ public class AngularUserGroupServiceWrapper implements AngularUserGroupService,
 	public void setWrappedService(
 		AngularUserGroupService angularUserGroupService) {
 		_angularUserGroupService = angularUserGroupService;
-	}
-
-	@Override
-	public java.util.List<com.liferay.portal.kernel.model.UserGroup> getUserGroupsInCompany(
-			long companyId) {
-		return _angularUserGroupService.getUserGroupsInCompany(companyId);
-	}
-
-	@Override
-	public long[] checkUserGroupIds(long userId, long[] userGroupIds) throws PortalException {
-		return _angularUserGroupService.checkUserGroupIds(userId, userGroupIds);
 	}
 
 	private AngularUserGroupService _angularUserGroupService;

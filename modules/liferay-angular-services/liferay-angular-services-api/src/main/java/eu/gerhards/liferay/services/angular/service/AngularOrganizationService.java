@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
-import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceMode;
 import com.liferay.portal.kernel.model.*;
 import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.portal.kernel.service.BaseService;
@@ -53,173 +52,24 @@ public interface AngularOrganizationService extends BaseService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link AngularOrganizationServiceUtil} to access the Organization remote service. Add custom service methods to {@link eu.gerhards.liferay.services.angular.service.impl.AngularOrganizationServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public Organization createOrganization(java.lang.String name,
+		java.lang.String type, long regionId, long countryId, long statusId,
+		java.lang.String comment, boolean site, long[] addresses,
+		long[] emailAddresses, long[] phones, long[] websites, long[] orgLabors)
+		throws PortalException;
 
-	/**
-	 * Method getOrganization
-	 *
-	 * Gets the information about an organization identified by the given organizationId
-	 *
-	 * @apiNote Needs right "LIST_ORGANIZATION" to be activated in the control panel. @see AngularActionKeys#LIST_ORGANIZATIONS
-	 *
-	 * @param organizationId
-	 * @return
-	 * @throws PortalException
-	 */
-	@JSONWebService(method="GET")
+	public Organization deleteOrganization(long organizationId)
+		throws PortalException;
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Organization getOrganization(long organizationId)
-			throws PortalException;
+		throws PortalException;
 
-	/**
-	 * Method getOrganizationAddress
-	 *
-	 * Gets all addresses for an organization identified by the given organizationID.
-	 *
-	 * @apiNote Needs right "LIST_ORGANIZATION" to be activated in the control panel. @see AngularActionKeys#LIST_ORGANIZATIONS
-	 *
-	 * @param organizationId
-	 * @return
-	 * @throws PortalException
-	 */
-	@JSONWebService(method="GET")
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Address> getOrganizationAdresses(long organizationId)
-			throws PortalException;
-
-	/**
-	 * Method getOrganizationEmailAddresses
-	 *
-	 * Gets all email address for an organization identified by the given organizationID.
-	 *
-	 * @apiNote Needs right "LIST_ORGANIZATION" to be activated in the control panel. @see AngularActionKeys#LIST_ORGANIZATIONS
-	 *
-	 * @param organizationId
-	 * @return
-	 * @throws PortalException
-	 */
-	@JSONWebService(method="GET")
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<EmailAddress> getOrganizationEmailAddresses(long organizationId)
-			throws PortalException;
-
-	/**
-	 * Method getOrganizationPhones
-	 *
-	 * Gets all phones for an organization identified by the given organizationID.
-	 *
-	 * @apiNote Needs right "LIST_ORGANIZATION" to be activated in the control panel. @see AngularActionKeys#LIST_ORGANIZATIONS
-	 *
-	 * @param organizationId
-	 * @return
-	 * @throws PortalException
-	 */
-	@JSONWebService(method="GET")
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Phone> getOrganizationPhones(long organizationId)
-			throws PortalException;
-
-	/**
-	 * Method getOrganizationUsers
-	 *
-	 * Gets all related users for an organization identified by the given organizationID.
-	 *
-	 * @apiNote Needs right "LIST_ORGANIZATION" to be activated in the control panel. @see AngularActionKeys#LIST_ORGANIZATIONS
-	 *
-	 * @param organizationId
-	 * @return
-	 * @throws PortalException
-	 */
-	@JSONWebService(method="GET")
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<User> getOrganizationUsers(long organizationId)
-			throws PortalException;
-
-	/**
-	 * Method getOrganizationWebsites
-	 *
-	 * Gets all websites for an organization identified by the given organizationID.
-	 *
-	 * @apiNote Needs right "LIST_ORGANIZATION" to be activated in the control panel. @see AngularActionKeys#LIST_ORGANIZATIONS
-	 *
-	 * @param organizationId
-	 * @return
-	 * @throws PortalException
-	 */
-	@JSONWebService(method="GET")
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Website> getOrganizationWebsites(long organizationId)
-			throws PortalException;
-
-	/**
-	 * Method createOrganization
-	 *
-	 * Creates a new organization.
-	 *
-	 * @apiNote Needs right "ADD_COMMUNITY" to be activated in the control panel. @see ActionKeys#ADD_COMMUNITY
-	 *
-	 * @param organizationId
-	 * @return
-	 * @throws PortalException
-	 */
-	@JSONWebService(method="POST")
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Organization createOrganization(String name, String type, long regionId, long countryId, long statusId, String comment, boolean site, long[] addresses, long[] emailAddresses, long[] phones, long[] websites, long[] orgLabors) throws PortalException;
-
-	/**
-	 * Method updateOrganization
-	 *
-	 * Updates an organization identified by the given oganizationId.
-	 *
-	 * @apiNote Needs right "UPDATE_COMMUNITY" to be activated in the control panel. @see AngularActionKeys#UPDATE_COMMUNITY
-	 *
-	 * @param organizationId
-	 * @param name
-	 * @param type
-	 * @param regionId
-	 * @param countryId
-	 * @param statusId
-	 * @param comment
-	 * @param site
-	 * @param addresses
-	 * @param emailAddresses
-	 * @param phones
-	 * @param websites
-	 * @param orgLabors
-	 * @return
-	 * @throws PortalException
-	 */
-	@JSONWebService(method="PUT")
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Organization updateOrganization(long organizationId, String name, String type, long regionId, long countryId, long statusId, String comment, boolean site, long[] addresses, long[] emailAddresses, long[] phones, long[] websites, long[] orgLabors) throws PortalException;
-
-
-	/**
-	 * Method deleteOrganization
-	 *
-	 * Deltes an organization from the portal identified by the given organizationId
-	 *
-	 * @apiNote Needs right "DELETE_COMMUNITY" to be activated in the control panel. @see AngularActionKeys#DELETE_COMMUNITY
-	 *
-	 * @param organizationId
-	 * @return
-	 * @throws PortalException
-	 */
-	@JSONWebService(method="DELETE")
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Organization deleteOrganization(long organizationId) throws PortalException;
-
-	/**
-	 * Sercurity check for assigned organizations
-	 *
-	 * @param userId
-	 * @param organizationIds
-	 * @throws PortalException
-	 */
-	@JSONWebService(mode= JSONWebServiceMode.IGNORE)
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long[] checkOrganizations(long userId, long[] organizationIds) throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Organization updateOrganization(long organizationId,
+		java.lang.String name, java.lang.String type, long regionId,
+		long countryId, long statusId, java.lang.String comment, boolean site,
+		long[] addresses, long[] emailAddresses, long[] phones,
+		long[] websites, long[] orgLabors) throws PortalException;
 
 	/**
 	* Returns the OSGi service identifier.
@@ -227,4 +77,27 @@ public interface AngularOrganizationService extends BaseService {
 	* @return the OSGi service identifier
 	*/
 	public java.lang.String getOSGiServiceIdentifier();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Address> getOrganizationAdresses(long organizationId)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<EmailAddress> getOrganizationEmailAddresses(long organizationId)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Phone> getOrganizationPhones(long organizationId)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<User> getOrganizationUsers(long organizationId)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Website> getOrganizationWebsites(long organizationId)
+		throws PortalException;
+
+	public long[] checkOrganizations(long userId, long[] organizationIds)
+		throws PortalException;
 }

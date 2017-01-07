@@ -15,10 +15,15 @@
 package eu.gerhards.liferay.services.angular.service.http;
 
 import aQute.bnd.annotation.ProviderType;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import eu.gerhards.liferay.services.angular.service.AngularInstanceServiceUtil;
+
+import java.rmi.RemoteException;
 
 /**
  * Provides the SOAP utility for the
- * {@link eu.gerhards.liferay.services.angular.service.AngularInstanceServiceUtil} service utility. The
+ * {@link AngularInstanceServiceUtil} service utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it is difficult for SOAP to
  * support certain types.
@@ -53,9 +58,39 @@ import aQute.bnd.annotation.ProviderType;
  * @author Brian Wing Shun Chan
  * @see AngularInstanceServiceHttp
  * @see eu.gerhards.liferay.services.angular.model.AngularInstanceSoap
- * @see eu.gerhards.liferay.services.angular.service.AngularInstanceServiceUtil
+ * @see AngularInstanceServiceUtil
  * @generated
  */
 @ProviderType
 public class AngularInstanceServiceSoap {
+	public static com.liferay.portal.kernel.model.CompanySoap[] getAvailableInstances()
+		throws RemoteException {
+		try {
+			java.util.List<com.liferay.portal.kernel.model.Company> returnValue = AngularInstanceServiceUtil.getAvailableInstances();
+
+			return com.liferay.portal.kernel.model.CompanySoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static java.lang.String postTest(java.lang.String string1,
+		java.lang.String string2, long number) throws RemoteException {
+		try {
+			java.lang.String returnValue = AngularInstanceServiceUtil.postTest(string1,
+					string2, number);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(AngularInstanceServiceSoap.class);
 }

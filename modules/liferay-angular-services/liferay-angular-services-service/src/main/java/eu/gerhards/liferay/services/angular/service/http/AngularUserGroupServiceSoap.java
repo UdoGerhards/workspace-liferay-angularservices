@@ -15,10 +15,15 @@
 package eu.gerhards.liferay.services.angular.service.http;
 
 import aQute.bnd.annotation.ProviderType;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import eu.gerhards.liferay.services.angular.service.AngularUserGroupServiceUtil;
+
+import java.rmi.RemoteException;
 
 /**
  * Provides the SOAP utility for the
- * {@link eu.gerhards.liferay.services.angular.service.AngularUserGroupServiceUtil} service utility. The
+ * {@link AngularUserGroupServiceUtil} service utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it is difficult for SOAP to
  * support certain types.
@@ -53,9 +58,40 @@ import aQute.bnd.annotation.ProviderType;
  * @author Brian Wing Shun Chan
  * @see AngularUserGroupServiceHttp
  * @see eu.gerhards.liferay.services.angular.model.AngularUserGroupSoap
- * @see eu.gerhards.liferay.services.angular.service.AngularUserGroupServiceUtil
+ * @see AngularUserGroupServiceUtil
  * @generated
  */
 @ProviderType
 public class AngularUserGroupServiceSoap {
+	public static com.liferay.portal.kernel.model.UserGroupSoap[] getUserGroupsInCompany(
+		long companyId) throws RemoteException {
+		try {
+			java.util.List<com.liferay.portal.kernel.model.UserGroup> returnValue =
+				AngularUserGroupServiceUtil.getUserGroupsInCompany(companyId);
+
+			return com.liferay.portal.kernel.model.UserGroupSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static long[] checkUserGroupIds(long userId, long[] userGroupIds)
+		throws RemoteException {
+		try {
+			long[] returnValue = AngularUserGroupServiceUtil.checkUserGroupIds(userId,
+					userGroupIds);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(AngularUserGroupServiceSoap.class);
 }

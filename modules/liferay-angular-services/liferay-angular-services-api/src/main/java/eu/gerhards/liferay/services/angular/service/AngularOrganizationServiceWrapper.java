@@ -15,7 +15,6 @@
 package eu.gerhards.liferay.services.angular.service;
 
 import aQute.bnd.annotation.ProviderType;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.*;
 import com.liferay.portal.kernel.service.ServiceWrapper;
 
@@ -35,6 +34,41 @@ public class AngularOrganizationServiceWrapper
 		_angularOrganizationService = angularOrganizationService;
 	}
 
+	@Override
+	public Organization createOrganization(java.lang.String name,
+										   java.lang.String type, long regionId, long countryId, long statusId,
+										   java.lang.String comment, boolean site, long[] addresses,
+										   long[] emailAddresses, long[] phones, long[] websites, long[] orgLabors)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularOrganizationService.createOrganization(name, type,
+			regionId, countryId, statusId, comment, site, addresses,
+			emailAddresses, phones, websites, orgLabors);
+	}
+
+	@Override
+	public Organization deleteOrganization(long organizationId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularOrganizationService.deleteOrganization(organizationId);
+	}
+
+	@Override
+	public Organization getOrganization(long organizationId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularOrganizationService.getOrganization(organizationId);
+	}
+
+	@Override
+	public Organization updateOrganization(long organizationId,
+		java.lang.String name, java.lang.String type, long regionId,
+		long countryId, long statusId, java.lang.String comment, boolean site,
+		long[] addresses, long[] emailAddresses, long[] phones,
+		long[] websites, long[] orgLabors)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularOrganizationService.updateOrganization(organizationId,
+			name, type, regionId, countryId, statusId, comment, site,
+			addresses, emailAddresses, phones, websites, orgLabors);
+	}
+
 	/**
 	* Returns the OSGi service identifier.
 	*
@@ -46,71 +80,52 @@ public class AngularOrganizationServiceWrapper
 	}
 
 	@Override
-	public AngularOrganizationService getWrappedService() {
-		return _angularOrganizationService;
+	public java.util.List<Address> getOrganizationAdresses(long organizationId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularOrganizationService.getOrganizationAdresses(organizationId);
 	}
 
 	@Override
-	public Organization getOrganization(long organizationId)
-			throws com.liferay.portal.kernel.exception.PortalException {
-		return _angularOrganizationService.getOrganization(organizationId);
+	public java.util.List<EmailAddress> getOrganizationEmailAddresses(
+		long organizationId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularOrganizationService.getOrganizationEmailAddresses(organizationId);
+	}
+
+	@Override
+	public java.util.List<Phone> getOrganizationPhones(long organizationId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularOrganizationService.getOrganizationPhones(organizationId);
+	}
+
+	@Override
+	public java.util.List<User> getOrganizationUsers(long organizationId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularOrganizationService.getOrganizationUsers(organizationId);
+	}
+
+	@Override
+	public java.util.List<Website> getOrganizationWebsites(long organizationId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularOrganizationService.getOrganizationWebsites(organizationId);
+	}
+
+	@Override
+	public long[] checkOrganizations(long userId, long[] organizationIds)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularOrganizationService.checkOrganizations(userId,
+			organizationIds);
+	}
+
+	@Override
+	public AngularOrganizationService getWrappedService() {
+		return _angularOrganizationService;
 	}
 
 	@Override
 	public void setWrappedService(
 		AngularOrganizationService angularOrganizationService) {
 		_angularOrganizationService = angularOrganizationService;
-	}
-
-	@Override
-	public java.util.List<Address> getOrganizationAdresses(long organizationId)
-			throws com.liferay.portal.kernel.exception.PortalException {
-		return _angularOrganizationService.getOrganizationAdresses(organizationId);
-	}
-
-	@Override
-	public Organization createOrganization(String name, String type, long regionId, long countryId, long statusId, String comment, boolean site, long[] addresses, long[] emailAddresses, long[] phones, long[] websites, long[] orgLabors) throws PortalException {
-		return _angularOrganizationService.createOrganization(name, type, regionId, countryId, statusId,comment, site, addresses, emailAddresses, phones, websites, orgLabors);
-	}
-
-	@Override
-	public Organization updateOrganization(long organizationId, String name, String type, long regionId, long countryId, long statusId, String comment, boolean site, long[] addresses, long[] emailAddresses, long[] phones, long[] websites, long[] orgLabors) throws PortalException {
-		return _angularOrganizationService.updateOrganization(organizationId, name, type, regionId, countryId, statusId, comment, site, addresses, emailAddresses, phones, websites, orgLabors);
-	}
-
-	@Override
-	public java.util.List<EmailAddress> getOrganizationEmailAddresses(
-			long organizationId)
-			throws com.liferay.portal.kernel.exception.PortalException {
-		return _angularOrganizationService.getOrganizationEmailAddresses(organizationId);
-	}
-
-	@Override
-	public java.util.List<Phone> getOrganizationPhones(long organizationId)
-			throws com.liferay.portal.kernel.exception.PortalException {
-		return _angularOrganizationService.getOrganizationPhones(organizationId);
-	}
-
-	@Override
-	public java.util.List<User> getOrganizationUsers(long organizationId)
-			throws com.liferay.portal.kernel.exception.PortalException {
-		return _angularOrganizationService.getOrganizationUsers(organizationId);
-	}
-
-	@Override
-	public java.util.List<Website> getOrganizationWebsites(long organizationId)
-			throws com.liferay.portal.kernel.exception.PortalException {
-		return _angularOrganizationService.getOrganizationWebsites(organizationId);
-	}
-
-	@Override
-	public Organization deleteOrganization(long organizationId) throws PortalException {
-		return _angularOrganizationService.deleteOrganization(organizationId);
-	}
-
-	@Override
-	public long[] checkOrganizations(long userId, long[] organizationIds) throws PortalException {
-		return _angularOrganizationService.checkOrganizations(userId, organizationIds);
 	}
 
 	private AngularOrganizationService _angularOrganizationService;

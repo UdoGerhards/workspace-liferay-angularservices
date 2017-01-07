@@ -15,10 +15,22 @@
 package eu.gerhards.liferay.services.angular.service.http;
 
 import aQute.bnd.annotation.ProviderType;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.Role;
+import com.liferay.portal.kernel.model.RoleSoap;
+import com.liferay.portal.kernel.model.UserGroupRole;
+import com.liferay.portal.kernel.model.UserGroupRoleSoap;
+import com.liferay.portal.kernel.util.LocalizationUtil;
+import eu.gerhards.liferay.services.angular.service.AngularRoleServiceUtil;
+
+import java.rmi.RemoteException;
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * Provides the SOAP utility for the
- * {@link eu.gerhards.liferay.services.angular.service.AngularRoleServiceUtil} service utility. The
+ * {@link AngularRoleServiceUtil} service utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it is difficult for SOAP to
  * support certain types.
@@ -53,9 +65,157 @@ import aQute.bnd.annotation.ProviderType;
  * @author Brian Wing Shun Chan
  * @see AngularRoleServiceHttp
  * @see eu.gerhards.liferay.services.angular.model.AngularRoleSoap
- * @see eu.gerhards.liferay.services.angular.service.AngularRoleServiceUtil
+ * @see AngularRoleServiceUtil
  * @generated
  */
 @ProviderType
 public class AngularRoleServiceSoap {
+	public static RoleSoap[] getRolesInCompany(long companyId)
+		throws RemoteException {
+		try {
+			java.util.List<Role> returnValue = AngularRoleServiceUtil.getRolesInCompany(companyId);
+
+			return RoleSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static RoleSoap[] getRegularRoles(long companyId)
+		throws RemoteException {
+		try {
+			java.util.List<Role> returnValue = AngularRoleServiceUtil.getRegularRoles(companyId);
+
+			return RoleSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static RoleSoap[] getSiteRoles(long companyId)
+		throws RemoteException {
+		try {
+			java.util.List<Role> returnValue = AngularRoleServiceUtil.getSiteRoles(companyId);
+
+			return RoleSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.portal.kernel.model.Role createRole(java.lang.String name, int type,
+		java.lang.String className, java.lang.String[] titleMapLanguageIds,
+		java.lang.String[] titleMapValues,
+		java.lang.String[] descriptionMapLanguageIds,
+		java.lang.String[] descriptionMapValues, java.lang.String subType)
+		throws RemoteException {
+		try {
+			Map<Locale, String> titleMap = LocalizationUtil.getLocalizationMap(titleMapLanguageIds,
+					titleMapValues);
+			Map<Locale, String> descriptionMap = LocalizationUtil.getLocalizationMap(descriptionMapLanguageIds,
+					descriptionMapValues);
+
+			Role returnValue = AngularRoleServiceUtil.createRole(name, type,
+					className, titleMap, descriptionMap, subType);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static Role updateRole(long roleId, java.lang.String name, int type,
+		java.lang.String className, java.lang.String[] titleMapLanguageIds,
+		java.lang.String[] titleMapValues,
+		java.lang.String[] descriptionMapLanguageIds,
+		java.lang.String[] descriptionMapValues, java.lang.String subType)
+		throws RemoteException {
+		try {
+			Map<Locale, String> titleMap = LocalizationUtil.getLocalizationMap(titleMapLanguageIds,
+					titleMapValues);
+			Map<Locale, String> descriptionMap = LocalizationUtil.getLocalizationMap(descriptionMapLanguageIds,
+					descriptionMapValues);
+
+			Role returnValue = AngularRoleServiceUtil.updateRole(roleId, name,
+					type, className, titleMap, descriptionMap, subType);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static Role deleteRole(long roleId) throws RemoteException {
+		try {
+			Role returnValue = AngularRoleServiceUtil.deleteRole(roleId);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static RoleSoap[] getOrganizationRoles(long companyId)
+		throws RemoteException {
+		try {
+			java.util.List<Role> returnValue = AngularRoleServiceUtil.getOrganizationRoles(companyId);
+
+			return RoleSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static long[] checkRoles(long userId, long[] roleIds)
+		throws RemoteException {
+		try {
+			long[] returnValue = AngularRoleServiceUtil.checkRoles(userId,
+					roleIds);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static UserGroupRoleSoap[] checkUserGroupRoles(long userId,
+														  java.util.List<UserGroupRole> userGroupRoles) throws RemoteException {
+		try {
+			java.util.List<UserGroupRole> returnValue = AngularRoleServiceUtil.checkUserGroupRoles(userId,
+					userGroupRoles);
+
+			return UserGroupRoleSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(AngularRoleServiceSoap.class);
 }

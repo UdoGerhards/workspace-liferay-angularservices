@@ -15,9 +15,9 @@
 package eu.gerhards.liferay.services.angular.service;
 
 import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.osgi.util.ServiceTrackerFactory;
-
+import com.liferay.portal.kernel.model.Role;
+import com.liferay.portal.kernel.model.UserGroupRole;
 import org.osgi.util.tracker.ServiceTracker;
 
 /**
@@ -41,6 +41,32 @@ public class AngularRoleServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link eu.gerhards.liferay.services.angular.service.impl.AngularRoleServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static Role createRole(java.lang.String name, int type,
+								  java.lang.String className,
+								  java.util.Map<java.util.Locale, java.lang.String> titleMap,
+								  java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+								  java.lang.String subType)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .createRole(name, type, className, titleMap, descriptionMap,
+			subType);
+	}
+
+	public static Role deleteRole(long roleId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deleteRole(roleId);
+	}
+
+	public static Role updateRole(long roleId, java.lang.String name, int type,
+		java.lang.String className,
+		java.util.Map<java.util.Locale, java.lang.String> titleMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		java.lang.String subType)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .updateRole(roleId, name, type, className, titleMap,
+			descriptionMap, subType);
+	}
 
 	/**
 	* Returns the OSGi service identifier.
@@ -49,6 +75,33 @@ public class AngularRoleServiceUtil {
 	*/
 	public static java.lang.String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
+	}
+
+	public static java.util.List<UserGroupRole> checkUserGroupRoles(
+		long userId, java.util.List<UserGroupRole> userGroupRoles)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().checkUserGroupRoles(userId, userGroupRoles);
+	}
+
+	public static java.util.List<Role> getOrganizationRoles(long companyId) {
+		return getService().getOrganizationRoles(companyId);
+	}
+
+	public static java.util.List<Role> getRegularRoles(long companyId) {
+		return getService().getRegularRoles(companyId);
+	}
+
+	public static java.util.List<Role> getRolesInCompany(long companyId) {
+		return getService().getRolesInCompany(companyId);
+	}
+
+	public static java.util.List<Role> getSiteRoles(long companyId) {
+		return getService().getSiteRoles(companyId);
+	}
+
+	public static long[] checkRoles(long userId, long[] roleIds)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().checkRoles(userId, roleIds);
 	}
 
 	public static AngularRoleService getService() {

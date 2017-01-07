@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 
 <model-hints>
+	<model name="eu.gerhards.liferay.services.angular.model.AngularBootstrap">
+		<field name="bootId" type="long" />
+	</model>
 	<model name="eu.gerhards.liferay.services.angular.model.AngularGroup">
 		<field name="groupId" type="long" />
 	</model>
@@ -28,6 +31,9 @@
 	<model name="eu.gerhards.liferay.services.angular.model.AngularRole">
 		<field name="roleId" type="long" />
 	</model>
+	<model name="eu.gerhards.liferay.services.angular.model.AngularSite">
+		<field name="siteId" type="long" />
+	</model>
 	<model name="eu.gerhards.liferay.services.angular.model.AngularTeam">
 		<field name="angularTeamId" type="long" />
 	</model>
@@ -37,7 +43,7 @@
 	<model name="eu.gerhards.liferay.services.angular.model.AngularUserGroup">
 		<field name="groupId" type="long" />
 	</model>
-	<model name="eu.gerhards.liferay.services.angular.model.AngularVirtualHost">
-		<field name="virtualHostId" type="long" />
+	<model name="eu.gerhards.liferay.services.angular.model.AngularVirtualInstance">
+		<field name="virtualInstanceId" type="long" />
 	</model>
 </model-hints>

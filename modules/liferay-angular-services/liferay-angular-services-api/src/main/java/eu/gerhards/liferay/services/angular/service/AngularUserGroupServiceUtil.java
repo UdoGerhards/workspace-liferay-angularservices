@@ -15,9 +15,7 @@
 package eu.gerhards.liferay.services.angular.service;
 
 import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.osgi.util.ServiceTrackerFactory;
-
 import org.osgi.util.tracker.ServiceTracker;
 
 /**
@@ -49,6 +47,16 @@ public class AngularUserGroupServiceUtil {
 	*/
 	public static java.lang.String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
+	}
+
+	public static java.util.List<com.liferay.portal.kernel.model.UserGroup> getUserGroupsInCompany(
+		long companyId) {
+		return getService().getUserGroupsInCompany(companyId);
+	}
+
+	public static long[] checkUserGroupIds(long userId, long[] userGroupIds)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().checkUserGroupIds(userId, userGroupIds);
 	}
 
 	public static AngularUserGroupService getService() {

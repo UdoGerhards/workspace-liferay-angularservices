@@ -63,12 +63,6 @@
 			<order-column name="layoutId" />
 		</order>
 	</entity>
-	<entity local-service="true" name="AngularVirtualHost" remote-service="true" uuid="false" human-name="Virtual host ">
-		<column name="virtualHostId" type="long" primary="true" />
-		<order by="asc">
-			<order-column name="virtualHostId" />
-		</order>
-	</entity>
 	<entity local-service="true" name="AngularPortal" remote-service="true" uuid="false" human-name="Portal ">
 		<column name="portalId" type="long" primary="true" />
 		<order by="asc">
@@ -79,6 +73,30 @@
 		<column name="angularTeamId" type="long" primary="true" />
 		<order by="asc">
 			<order-column name="angularTeamId" />
+		</order>
+	</entity>
+	<entity local-service="true" name="AngularVirtualInstance" remote-service="true" uuid="false" human-name="Virtual instance ">
+		<column name="virtualInstanceId" type="long" primary="true" />
+		<order by="asc">
+			<order-column name="virtualInstanceId" />
+		</order>
+	</entity>
+	<entity local-service="true" name="AngularSite" remote-service="true" uuid="false" human-name="Site ">
+		<column name="siteId" type="long" primary="true" />
+		<order by="asc">
+			<order-column name="siteId" />
+		</order>
+	</entity>
+	<entity local-service="true" name="AngularPortal" remote-service="true" uuid="false" human-name="Portal ">
+		<column name="portalId" type="long" primary="true" />
+		<order by="asc">
+			<order-column name="portalId" />
+		</order>
+	</entity>
+	<entity local-service="true" name="AngularBootstrap" remote-service="true" uuid="false" human-name="Bootstrap ">
+		<column name="bootId" type="long" primary="true" />
+		<order by="asc">
+			<order-column name="bootId" />
 		</order>
 	</entity>
 </service-builder>

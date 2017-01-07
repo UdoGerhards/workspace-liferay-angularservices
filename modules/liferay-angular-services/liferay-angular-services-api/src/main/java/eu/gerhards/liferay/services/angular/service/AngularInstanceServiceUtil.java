@@ -15,9 +15,7 @@
 package eu.gerhards.liferay.services.angular.service;
 
 import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.osgi.util.ServiceTrackerFactory;
-
 import org.osgi.util.tracker.ServiceTracker;
 
 /**
@@ -49,6 +47,16 @@ public class AngularInstanceServiceUtil {
 	*/
 	public static java.lang.String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
+	}
+
+	public static java.lang.String postTest(java.lang.String string1,
+		java.lang.String string2, long number) {
+		return getService().postTest(string1, string2, number);
+	}
+
+	public static java.util.List<com.liferay.portal.kernel.model.Company> getAvailableInstances()
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getAvailableInstances();
 	}
 
 	public static AngularInstanceService getService() {
