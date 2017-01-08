@@ -81,4 +81,4 @@ Providing servicesfor working with virtual instances
 
 The extension is still in **alpha state** and will be implemented currently. Therefore **it is far away** to be used in working [Liferay](https://www.liferay.com/) installations since it is more a **POC at the moment**.
 
-SOAP services are not supported currently but will be added later on with the progress of the project!
+SOAP services are not supported yet but will be added later on with the progress of the project!
