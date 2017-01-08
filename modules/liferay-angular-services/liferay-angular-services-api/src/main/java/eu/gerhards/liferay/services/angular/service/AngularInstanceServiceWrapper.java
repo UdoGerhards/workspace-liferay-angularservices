@@ -49,12 +49,6 @@ public class AngularInstanceServiceWrapper implements AngularInstanceService,
 	}
 
 	@Override
-	public java.util.List<com.liferay.portal.kernel.model.Company> getAvailableInstances()
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _angularInstanceService.getAvailableInstances();
-	}
-
-	@Override
 	public AngularInstanceService getWrappedService() {
 		return _angularInstanceService;
 	}

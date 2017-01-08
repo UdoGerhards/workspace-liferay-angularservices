@@ -28,4 +28,14 @@ public final class AngularActionKeys {
     public static final String LIST_TEAMS="LIST_TEAMS";
     public static final String LIST_COMPANIES="LIST_COMPANIES";
     public static final String LIST_INSTANCES="LIST_INSTANCES";
+    public static final String ASSIGN_USER_TO_ORGANIZATION="ASSIGN_USER_TO_ORGANIZATION";
+    public static final String ASSIGN_USER_TO_ROLE="ASSIGN_USER_TO_ROLE";
+    public static final String ASSIGN_USER_TO_USER_GROUP="ASSIGN_USER_TO_USER_GROUP";
+    public static final String ASSIGN_USER_TO_TEAM="ASSIGN_USER_TO_TEAM";
+    public static final String ASSIGN_USER_TO_PAGE="ASSIGN_USER_TO_PAGE";
+    public static final String ASSIGN_ROLE_TO_ORGANIZATION="ASSIGN_ROLE_TO_ORGANIZATION";
+    public static final String ASSIGN_TEAM_TO_PAGE="ASSIGN_TEAM_TO_PAGE";
+    public static final String ASSIGN_ROLE_TO_PAGE="ASSIGN_ROLE_TO_PAGE";
+    public static final String CHECK_PERMISSIONS="CHECK_PERMISSIONS";
+    public static final String ASSIGN_USER_GROUP_TO_TEAM="ASSIGN_USER_GROUP_TO_TEAM";
 }

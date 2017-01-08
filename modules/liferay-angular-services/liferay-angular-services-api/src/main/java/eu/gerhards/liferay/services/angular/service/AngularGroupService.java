@@ -18,6 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
+import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceMode;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.portal.kernel.service.BaseService;
@@ -88,6 +89,7 @@ public interface AngularGroupService extends BaseService {
 							 java.lang.String friendlyURL, boolean site, boolean inheritContent,
 							 boolean active) throws PortalException;
 
+	@JSONWebService(mode= JSONWebServiceMode.IGNORE)
 	public long[] checkGroups(long userId, long[] groupIds)
 		throws PortalException;
 

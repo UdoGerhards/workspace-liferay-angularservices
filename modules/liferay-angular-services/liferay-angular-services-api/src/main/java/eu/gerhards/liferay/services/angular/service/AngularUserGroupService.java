@@ -18,6 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.UserGroup;
 import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.portal.kernel.service.BaseService;
@@ -62,6 +63,48 @@ public interface AngularUserGroupService extends BaseService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<UserGroup> getUserGroupsInCompany(long companyId);
+
+	public com.liferay.portal.kernel.model.UserGroup getUserGroup(long userGroupId) throws PortalException;
+
+	public java.util.List<com.liferay.portal.kernel.model.UserGroup> getUserGroups(long[] userGroupIds) throws PortalException;
+
+	public List<User> getUserGroupUsers(long userGroupId) throws PortalException;
+
+	public java.util.List<com.liferay.portal.kernel.model.UserGroup> getTeamUserGroups(long teamId) throws PortalException;
+
+	public com.liferay.portal.kernel.model.UserGroup createUserGroup(long userId, long companyId, String name, String description) throws PortalException;
+
+	public com.liferay.portal.kernel.model.UserGroup updateUserGroup(long companyId, long userGroupId, String name, String description) throws PortalException;
+
+	public void deleteUserGroup(long userGroupId) throws PortalException;
+
+	public void deleteUserGroups(long[] userGroupIds) throws PortalException;
+
+	public void assignTeamUserGroup(long teamId, long userGroupId) throws PortalException;
+
+	public void assignTeamUserGroups(long teamId, long[] userGroupIds) throws PortalException;
+
+	public void removeTeamUserGroup(long teamId, long userGroupId) throws PortalException;
+
+	public void removeTeamUserGroups(long teamId, long[] userGroupIds) throws PortalException;
+
+	public void assignUserUserGroup(long userId, long userGroupId) throws PortalException;
+
+	public void assignUserUserGroups(long userId, long[] userGroupIds) throws PortalException;
+
+	public void removeUserUserGroup(long userId, long userGroupId) throws PortalException;
+
+	public void removeUserUserGroups(long userId, long[] userGroupIds) throws PortalException;
+
+	public boolean isUserGroupMemberOfTeam(long teamId, long userGroupId) throws PortalException;
+
+	public boolean hasTeamUserGroups(long teamId) throws PortalException;
+
+	public boolean isUserMemberOfUserGroup(long userId, long userGroupId) throws PortalException;
+
+	public boolean hasUserUserGroups(long userId) throws PortalException;
+
+	public boolean hasPermission(long userGroupId, String actionId) throws PortalException;
 
 	public long[] checkUserGroupIds(long userId, long[] userGroupIds)
 		throws PortalException;

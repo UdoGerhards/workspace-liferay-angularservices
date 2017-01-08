@@ -15,16 +15,9 @@
 package eu.gerhards.liferay.services.angular.service.impl;
 
 import aQute.bnd.annotation.ProviderType;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.model.Company;
-import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
-import com.liferay.portal.kernel.service.permission.PortalPermissionUtil;
 import eu.gerhards.liferay.services.angular.service.base.AngularInstanceServiceBaseImpl;
-import eu.gerhards.liferay.services.angular.service.util.AngularActionKeys;
-
-import java.util.List;
 
 /**
  * The implementation of the Instance remote service.
@@ -49,21 +42,6 @@ public class AngularInstanceServiceImpl extends AngularInstanceServiceBaseImpl {
 	 */
 
     public static Log _log = LogFactoryUtil.getLog(AngularInstanceServiceImpl.class);
-
-    @Override
-    public List<Company> getAvailableInstances() throws PortalException {
-
-        _log.info("Getting all instances ... ");
-
-        _log.debug("    ... security check ...");
-
-        PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.LIST_COMPANIES);
-
-        _log.debug("   ... getting information ...");
-
-        List<Company> companies = CompanyLocalServiceUtil.getCompanies();
-        return companies;
-    }
 
     @Override
     public String postTest(String string1, String string2, long number) {

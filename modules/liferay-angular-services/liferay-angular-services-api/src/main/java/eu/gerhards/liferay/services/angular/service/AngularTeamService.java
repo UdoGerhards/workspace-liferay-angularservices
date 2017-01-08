@@ -15,7 +15,6 @@
 package eu.gerhards.liferay.services.angular.service;
 
 import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
@@ -23,6 +22,7 @@ import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.portal.kernel.service.BaseService;
 import com.liferay.portal.kernel.spring.osgi.OSGiBeanProperties;
 import com.liferay.portal.kernel.transaction.Isolation;
+import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 
 /**
@@ -56,4 +56,44 @@ public interface AngularTeamService extends BaseService {
 	* @return the OSGi service identifier
 	*/
 	public java.lang.String getOSGiServiceIdentifier();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.model.Team getTeam(long teamId) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.portal.kernel.model.Team> getTeamsForUserGroup(long groupId) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.portal.kernel.model.Team> getUserTeams(long userId) throws PortalException;
+
+	public com.liferay.portal.kernel.model.Team createTeam(long userId, long groupId, String name, String description) throws PortalException;
+
+	public void assignUserToTeam(long userId, long teamId) throws PortalException;
+
+	public void assignUserToTeams(long userId, java.util.List<com.liferay.portal.kernel.model.Team> teams) throws PortalException;
+
+	public void assignUserToTeams(long userId, long[] teamIds) throws PortalException;
+
+	public void assignUserGroupTeam(long userGroupId, long teamId) throws PortalException;
+
+	public void assignUserGroupTeams(long userGroupId, java.util.List<com.liferay.portal.kernel.model.Team> teams) throws PortalException;
+
+	public void assignUserGroupTeams(long userGroupId, long[] teamIds) throws PortalException;
+
+	public com.liferay.portal.kernel.model.Team deleteTeam(long teamId) throws PortalException;
+
+	public void deleteUserTeam(long userId, long teamId) throws PortalException;
+
+	public void deleteUserGroupTeams(long userGroupId, long[] teamIds) throws PortalException;
+
+	public boolean hasUserGroupTeam(long userGroupId, long teamId) throws PortalException;
+
+	public boolean hasUserGroupTeams(long userGroupId) throws PortalException;
+
+	public boolean hasUserTeam(long userId, long teamId) throws PortalException;
+
+	public boolean hasUserTeams(long userId) throws PortalException;
+
+	public boolean hasPermission(long teamId, String actionId) throws PortalException;
+
 }

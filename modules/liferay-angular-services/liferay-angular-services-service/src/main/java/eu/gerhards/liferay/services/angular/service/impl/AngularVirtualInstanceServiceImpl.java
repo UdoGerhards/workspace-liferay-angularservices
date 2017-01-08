@@ -15,8 +15,16 @@
 package eu.gerhards.liferay.services.angular.service.impl;
 
 import aQute.bnd.annotation.ProviderType;
-import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
+import com.liferay.portal.kernel.service.permission.PortalPermissionUtil;
 import eu.gerhards.liferay.services.angular.service.base.AngularVirtualInstanceServiceBaseImpl;
+import eu.gerhards.liferay.services.angular.service.util.AngularActionKeys;
+
+import java.util.List;
 
 /**
  * The implementation of the Virtual instance remote service.
@@ -41,8 +49,20 @@ public class AngularVirtualInstanceServiceImpl
 	 * Never reference this class directly. Always use {@link eu.gerhards.liferay.services.angular.service.AngularVirtualInstanceServiceUtil} to access the Virtual instance remote service.
 	 */
 
+	public static Log _log = LogFactoryUtil.getLog(AngularVirtualInstanceServiceImpl.class);
+
 	@Override
-	public Group getVirtualInstances() {
-		return null;
+	public List<Company> getAvailableInstances() throws PortalException {
+
+		_log.info("Getting all instances ... ");
+
+		_log.debug("    ... security check ...");
+
+		PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.LIST_COMPANIES);
+
+		_log.debug("   ... getting information ...");
+
+		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
+		return companies;
 	}
 }

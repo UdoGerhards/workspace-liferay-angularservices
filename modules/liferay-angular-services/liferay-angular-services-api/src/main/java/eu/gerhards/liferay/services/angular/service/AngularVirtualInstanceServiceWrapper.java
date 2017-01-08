@@ -15,8 +15,11 @@
 package eu.gerhards.liferay.services.angular.service;
 
 import aQute.bnd.annotation.ProviderType;
-import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.service.ServiceWrapper;
+
+import java.util.List;
 
 /**
  * Provides a wrapper for {@link AngularVirtualInstanceService}.
@@ -56,8 +59,8 @@ public class AngularVirtualInstanceServiceWrapper
 	}
 
 	@Override
-	public Group getVirtualInstances() {
-		return _angularVirtualInstanceService.getVirtualInstances();
+	public List<Company> getAvailableInstances() throws PortalException {
+		return _angularVirtualInstanceService.getAvailableInstances();
 	}
 
 	private AngularVirtualInstanceService _angularVirtualInstanceService;

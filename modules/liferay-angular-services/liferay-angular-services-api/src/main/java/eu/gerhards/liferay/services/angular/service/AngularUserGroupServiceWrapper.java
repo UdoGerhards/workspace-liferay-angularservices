@@ -15,7 +15,12 @@
 package eu.gerhards.liferay.services.angular.service;
 
 import aQute.bnd.annotation.ProviderType;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.model.UserGroup;
 import com.liferay.portal.kernel.service.ServiceWrapper;
+
+import java.util.List;
 
 /**
  * Provides a wrapper for {@link AngularUserGroupService}.
@@ -63,6 +68,111 @@ public class AngularUserGroupServiceWrapper implements AngularUserGroupService,
 	public void setWrappedService(
 		AngularUserGroupService angularUserGroupService) {
 		_angularUserGroupService = angularUserGroupService;
+	}
+
+	@Override
+	public UserGroup getUserGroup(long userGroupId) throws PortalException {
+		return _angularUserGroupService.getUserGroup(userGroupId);
+	}
+
+	@Override
+	public List<UserGroup> getUserGroups(long[] userGroupIds) throws PortalException {
+		return _angularUserGroupService.getUserGroups(userGroupIds);
+	}
+
+	@Override
+	public List<User> getUserGroupUsers(long userGroupId) throws PortalException {
+		return _angularUserGroupService.getUserGroupUsers(userGroupId);
+	}
+
+	@Override
+	public List<UserGroup> getTeamUserGroups(long teamId) throws PortalException {
+		return _angularUserGroupService.getTeamUserGroups(teamId);
+	}
+
+	@Override
+	public UserGroup createUserGroup(long userId, long companyId, String name, String description) throws PortalException {
+		return _angularUserGroupService.createUserGroup(userId, companyId, name, description);
+	}
+
+	@Override
+	public UserGroup updateUserGroup(long companyId, long userGroupId, String name, String description) throws PortalException {
+		return _angularUserGroupService.updateUserGroup(companyId, userGroupId, name, description);
+	}
+
+	@Override
+	public void deleteUserGroup(long userGroupId) throws PortalException {
+		_angularUserGroupService.deleteUserGroup(userGroupId);
+	}
+
+	@Override
+	public void deleteUserGroups(long[] userGroupIds) throws PortalException {
+		_angularUserGroupService.deleteUserGroups(userGroupIds);
+	}
+
+	@Override
+	public void assignTeamUserGroup(long teamId, long userGroupId) throws PortalException {
+		_angularUserGroupService.assignTeamUserGroup(teamId, userGroupId);
+	}
+
+	@Override
+	public void assignTeamUserGroups(long teamId, long[] userGroupIds) throws PortalException {
+		_angularUserGroupService.assignTeamUserGroups(teamId, userGroupIds);
+	}
+
+	@Override
+	public void removeTeamUserGroup(long teamId, long userGroupId) throws PortalException {
+		_angularUserGroupService.removeTeamUserGroup(teamId, userGroupId);
+	}
+
+	@Override
+	public void removeTeamUserGroups(long teamId, long[] userGroupIds) throws PortalException {
+		_angularUserGroupService.removeTeamUserGroups(teamId, userGroupIds);
+	}
+
+	@Override
+	public void assignUserUserGroup(long userId, long userGroupId) throws PortalException {
+		_angularUserGroupService.assignTeamUserGroup(userId, userGroupId);
+	}
+
+	@Override
+	public void assignUserUserGroups(long userId, long[] userGroupIds) throws PortalException {
+		_angularUserGroupService.assignTeamUserGroups(userId, userGroupIds);
+	}
+
+	@Override
+	public void removeUserUserGroup(long userId, long userGroupId) throws PortalException {
+		_angularUserGroupService.removeTeamUserGroup(userId, userGroupId);
+	}
+
+	@Override
+	public void removeUserUserGroups(long userId, long[] userGroupIds) throws PortalException {
+		_angularUserGroupService.removeTeamUserGroups(userId, userGroupIds);
+	}
+
+	@Override
+	public boolean isUserGroupMemberOfTeam(long teamId, long userGroupId) throws PortalException {
+		return _angularUserGroupService.isUserGroupMemberOfTeam(teamId, userGroupId);
+	}
+
+	@Override
+	public boolean hasTeamUserGroups(long teamId) throws PortalException {
+		return _angularUserGroupService.hasTeamUserGroups(teamId);
+	}
+
+	@Override
+	public boolean isUserMemberOfUserGroup(long userId, long userGroupId) throws PortalException {
+		return _angularUserGroupService.isUserMemberOfUserGroup(userId, userGroupId);
+	}
+
+	@Override
+	public boolean hasUserUserGroups(long userId) throws PortalException {
+		return _angularUserGroupService.hasUserUserGroups(userId);
+	}
+
+	@Override
+	public boolean hasPermission(long userGroupId, String actionId) throws PortalException {
+		return _angularUserGroupService.hasPermission(userGroupId, actionId);
 	}
 
 	private AngularUserGroupService _angularUserGroupService;

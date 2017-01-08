@@ -54,11 +54,6 @@ public class AngularInstanceServiceUtil {
 		return getService().postTest(string1, string2, number);
 	}
 
-	public static java.util.List<com.liferay.portal.kernel.model.Company> getAvailableInstances()
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getAvailableInstances();
-	}
-
 	public static AngularInstanceService getService() {
 		return _serviceTracker.getService();
 	}

@@ -63,19 +63,6 @@ import java.rmi.RemoteException;
  */
 @ProviderType
 public class AngularInstanceServiceSoap {
-	public static com.liferay.portal.kernel.model.CompanySoap[] getAvailableInstances()
-		throws RemoteException {
-		try {
-			java.util.List<com.liferay.portal.kernel.model.Company> returnValue = AngularInstanceServiceUtil.getAvailableInstances();
-
-			return com.liferay.portal.kernel.model.CompanySoap.toSoapModels(returnValue);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
 
 	public static java.lang.String postTest(java.lang.String string1,
 		java.lang.String string2, long number) throws RemoteException {

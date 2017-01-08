@@ -30,6 +30,16 @@
                 <action-key>LIST_TEAMS</action-key>
                 <action-key>LIST_COMPANIES</action-key>
                 <action-key>LIST_INSTANCES</action-key>
+                <action-key>ASSIGN_USER_TO_ORGANIZATION</action-key>
+                <action-key>ASSIGN_USER_TO_ROLE</action-key>
+                <action-key>ASSIGN_USER_TO_USER_GROUP</action-key>
+                <action-key>ASSIGN_USER_TO_TEAM</action-key>
+                <action-key>ASSIGN_USER_TO_PAGE</action-key>
+                <action-key>ASSIGN_TEAM_TO_PAGE</action-key>
+                <action-key>ASSIGN_ROLE_TO_PAGE</action-key>
+                <action-key>ASSIGN_ROLE_TO_ORGANIZATION</action-key>
+                <action-key>CHECK_PERMISSIONS</action-key>
+                <action-key>ASSIGN_USER_GROUP_TO_TEAM</action-key>
             </supports>
             <site-member-defaults>
             </site-member-defaults>
@@ -59,6 +69,16 @@
                 <action-key>LIST_TEAMS</action-key>
                 <action-key>LIST_COMPANIES</action-key>
                 <action-key>LIST_INSTANCES</action-key>
+                <action-key>ASSIGN_USER_TO_ORGANIZATION</action-key>
+                <action-key>ASSIGN_USER_TO_ROLE</action-key>
+                <action-key>ASSIGN_USER_TO_USER_GROUP</action-key>
+                <action-key>ASSIGN_USER_TO_TEAM</action-key>
+                <action-key>ASSIGN_USER_TO_PAGE</action-key>
+                <action-key>ASSIGN_TEAM_TO_PAGE</action-key>
+                <action-key>ASSIGN_ROLE_TO_PAGE</action-key>
+                <action-key>ASSIGN_ROLE_TO_ORGANIZATION</action-key>
+                <action-key>CHECK_PERMISSIONS</action-key>
+                <action-key>ASSIGN_USER_GROUP_TO_TEAM</action-key>
             </guest-unsupported>
         </permissions>
     </portlet-resource>

@@ -18,11 +18,16 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
+import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.portal.kernel.service.BaseService;
 import com.liferay.portal.kernel.spring.osgi.OSGiBeanProperties;
 import com.liferay.portal.kernel.transaction.Isolation;
+import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * Provides the remote service interface for AngularSite. Methods of this
@@ -55,4 +60,33 @@ public interface AngularSiteService extends BaseService {
 	* @return the OSGi service identifier
 	*/
 	public java.lang.String getOSGiServiceIdentifier();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<Group> getActiveSites(long companyId)
+			throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<Group> getInactiveSites(long companyId)
+			throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<Group> getInstanceSites(long companyId)
+			throws PortalException;
+
+	public Group createSite(long parentSiteId, long liveGroupId,
+							 Map<Locale, String> nameMap,
+							 Map<Locale, java.lang.String> descriptionMap, int type,
+							 boolean manualMembership, int membershipRestriction,
+							 java.lang.String friendlyURL, boolean site, boolean inheritContent,
+							 boolean active) throws PortalException;
+
+	public Group updateSite(long siteId, long parentSiteId,
+							 long liveGroupId, Map<Locale, java.lang.String> nameMap,
+							 Map<Locale, java.lang.String> descriptionMap, int type,
+							 boolean manualMembership, int membershipRestriction,
+							 java.lang.String friendlyURL, boolean site, boolean inheritContent,
+							 boolean active) throws PortalException;
+
+	public void deleteSite(long siteId) throws PortalException;
+
 }

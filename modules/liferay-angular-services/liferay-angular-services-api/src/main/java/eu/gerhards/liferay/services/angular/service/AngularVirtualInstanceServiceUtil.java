@@ -55,4 +55,9 @@ public class AngularVirtualInstanceServiceUtil {
 
 	private static ServiceTracker<AngularVirtualInstanceService, AngularVirtualInstanceService> _serviceTracker =
 		ServiceTrackerFactory.open(AngularVirtualInstanceService.class);
+
+	public static java.util.List<com.liferay.portal.kernel.model.Company> getAvailableInstances()
+			throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getAvailableInstances();
+	}
 }

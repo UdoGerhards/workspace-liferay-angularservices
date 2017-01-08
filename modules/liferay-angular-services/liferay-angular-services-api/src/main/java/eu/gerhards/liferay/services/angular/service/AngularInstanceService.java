@@ -18,15 +18,11 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
-import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.portal.kernel.service.BaseService;
 import com.liferay.portal.kernel.spring.osgi.OSGiBeanProperties;
 import com.liferay.portal.kernel.transaction.Isolation;
-import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
-
-import java.util.List;
 
 /**
  * Provides the remote service interface for AngularInstance. Methods of this
@@ -62,7 +58,4 @@ public interface AngularInstanceService extends BaseService {
 
 	public java.lang.String postTest(java.lang.String string1,
 		java.lang.String string2, long number);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Company> getAvailableInstances() throws PortalException;
 }
