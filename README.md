@@ -7,7 +7,7 @@ The extension is build up to be used with AngularJS. But also other Javascript f
 
 Also some new user and resource permissions are shipped with the extension in order to extend the permission system of liferay and to add according permission which are needed for the proper work of the framework.
 
-Provided services are:
+##Provided services are:
 
 - AngularBootstrapService
 - AngularGroupService
@@ -25,7 +25,7 @@ Provided services are:
 - AngularVirtualHostService
 - AngularVirtualInstanceService
 
-New action ids are:
+##New action ids are:
 
 - DELETE_USER
 - UPDATE_USER
@@ -59,5 +59,7 @@ New action ids are:
 - ASSIGN_ROLE_TO_ORGANIZATION
 - CHECK_PERMISSIONS
 - ASSIGN_USER_GROUP_TO_TEAM
+
+##Remark:
 
 The extension is still in **alpha state** and will be implemented currently. Therefore **it is far away** to be used in working liferay installation since it is more a **POC at the moment**.
