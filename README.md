@@ -62,4 +62,4 @@ Also some new user and resource permissions are shipped with the extension in or
 
 ##Remark:
 
-The extension is still in **alpha state** and will be implemented currently. Therefore **it is far away** to be used in working liferay installation since it is more a **POC at the moment**.
+The extension is still in **alpha state** and will be implemented currently. Therefore **it is far away** to be used in working liferay installations since it is more a **POC at the moment**.
