@@ -11,21 +11,36 @@ The framework is not intended to replace the restful json api of [Liferay](https
 
 ##Provided services are:
 
-- AngularBootstrapService
-- AngularGroupService
-- AngularInstanceService
-- AngularLayoutService
-- AngularOrganizationService
-- AngularPermissionService
-- AngularPortalService
-- AngularRessourceBlockService
-- AngularRoleService
-- AngularSiteService
-- AngularTeamService
-- AngularUserGroupService
-- AngularUserService
-- AngularVirtualHostService
-- AngularVirtualInstanceService
+- AngularBootstrapService  
+Providing basic system information for angular apps
+- AngularGroupService  
+Providing services for working with system groups
+- AngularInstanceService  
+Providing services for working with the server instance
+- AngularLayoutService  
+Providing services for working with layouts and layout sets
+- AngularOrganizationService  
+Providing services for working with organizations
+- AngularPermissionService  
+Providing services for working with permissions
+- AngularPortalService  
+Providing services for working with the portal itself
+- AngularResourceBlockService  
+Providing services for working with resource block permissions
+- AngularRoleService  
+Providing services for working with roles
+- AngularSiteService  
+Providing services for working with webpages
+- AngularTeamService  
+Providing services for working with teams
+- AngularUserGroupService  
+Providing services for working with user groups
+- AngularUserService  
+Providing services for working with users
+- AngularVirtualHostService  
+Providing services for working with virtual hosts
+- AngularVirtualInstanceService  
+Providing servicesfor working with virtual instances
 
 ##New action ids are:
 
