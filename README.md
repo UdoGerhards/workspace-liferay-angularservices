@@ -25,4 +25,4 @@ Provided services are:
 - AngularVirtualHostService
 - AngularVirtualInstanceService
 
-The extension is still in **alpha state** and is currently implemented. Therefore **it is far away** to be used in working liferay installation since it is more a **POC at the moment**.
+The extension is still in **alpha state** and will be currently implemented. Therefore **it is far away** to be used in working liferay installation since it is more a **POC at the moment**.
