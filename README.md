@@ -3,11 +3,11 @@ Restful [Liferay](https://www.liferay.com/) services for angular js!
 
 New service builder extension for Liferay. This extension adds more services to the existing restful service api in order to build modern Javascript webpages with [Liferay](https://www.liferay.com/) as basis.
 
-The extension is build up to be used with AngularJS. But also other Javascript framework can use the provided services.
+The extension is build up to be used with AngularJS. But other Javascript framework can use the provided services also.
 
 Also some new user and resource permissions are shipped with the extension in order to extend the permission system of [Liferay](https://www.liferay.com/) and to add according permission which are needed for the proper work of the framework.
 
-The framework is not intended to replace the restful json api of portal but moreover should provide more convenient services for the work with the portal server.
+The framework is not intended to replace the restful json api of the portal but moreover should provide more convenient services for the work with the portal server.
 
 ##Provided services are:
 
