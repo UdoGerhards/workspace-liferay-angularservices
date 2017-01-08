@@ -9,8 +9,6 @@ Also some new user and resource permissions are shipped with the extension in or
 
 The framework is not intended to replace the restful json api of the portal itself but moreover should provide additional convenient services for the work with the portal server.
 
-If you want to know more about the project please contact me at <Udo.Gerhards@gerhards.eu>.
-
 ##Provided services are:
 
 - AngularBootstrapService  
@@ -84,3 +82,5 @@ Providing servicesfor working with virtual instances
 The extension is still in **alpha state** and will be implemented currently. Therefore **it is far away** to be used in working [Liferay](https://www.liferay.com/) installations since it is more a **POC at the moment**.
 
 SOAP services are not supported yet but will be added later on with the progress of the project!
+
+If you want to know more about the project please contact me at <Udo.Gerhards@gerhards.eu>.
