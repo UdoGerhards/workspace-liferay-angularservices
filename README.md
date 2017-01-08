@@ -1,5 +1,5 @@
 # workspace-liferay-angularservices
-Restful liferay services for angular js
+Restful [Liferay](https://www.liferay.com/) services for angular js!
 
 New service builder extension for Liferay. This extension adds more services to the restful service api of [Liferay](https://www.liferay.com/) to build modern Javascript webpages with [Liferay](https://www.liferay.com/) as basis.
 
@@ -7,7 +7,7 @@ The extension is build up to be used with AngularJS. But also other Javascript f
 
 Also some new user and resource permissions are shipped with the extension in order to extend the permission system of [Liferay](https://www.liferay.com/) and to add according permission which are needed for the proper work of the framework.
 
-The framework is not intended to replace the restful json api of [Liferay](https://www.liferay.com/) but moreover should provide more convenient services.
+The framework is not intended to replace the restful json api of [Liferay](https://www.liferay.com/) but moreover should provide more convenient services for the work with the portal server.
 
 ##Provided services are:
 
