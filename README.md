@@ -40,7 +40,7 @@ Providing services for working with users
 - AngularVirtualHostService  
 Providing services for working with virtual hosts
 - AngularVirtualInstanceService  
-Providing servicesfor working with virtual instances
+Providing services for working with virtual instances
 
 ##New action ids are:
 
