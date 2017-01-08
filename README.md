@@ -7,6 +7,8 @@ The extension is build up to be used with AngularJS. But also other Javascript f
 
 Also some new user and resource permissions are shipped with the extension in order to extend the permission system of [Liferay](https://www.liferay.com/) and to add according permission which are needed for the proper work of the framework.
 
+The framework is not intended to replace the restful json api of [Liferay](https://www.liferay.com/) but moreover should provide more convenient services.
+
 ##Provided services are:
 
 - AngularBootstrapService
@@ -63,3 +65,5 @@ Also some new user and resource permissions are shipped with the extension in or
 ##Remark:
 
 The extension is still in **alpha state** and will be implemented currently. Therefore **it is far away** to be used in working [Liferay](https://www.liferay.com/) installations since it is more a **POC at the moment**.
+
+SOAP services are not supported currently!
