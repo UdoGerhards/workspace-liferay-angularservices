@@ -7,7 +7,7 @@ The extension is build up to be used with AngularJS. But also other Javascript f
 
 Also some new user and resource permissions are shipped with the extension in order to extend the permission system of [Liferay](https://www.liferay.com/) and to add according permission which are needed for the proper work of the framework.
 
-The framework is not intended to replace the restful json api of [Liferay](https://www.liferay.com/) but moreover should provide more convenient services for the work with the portal server.
+The framework is not intended to replace the restful json api of portal but moreover should provide more convenient services for the work with the portal server.
 
 ##Provided services are:
 
