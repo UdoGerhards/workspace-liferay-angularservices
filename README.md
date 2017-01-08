@@ -27,7 +27,6 @@ Provided services are:
 
 New action ids are:
 
-- ADD_USER_TO_PAGE
 - DELETE_USER
 - UPDATE_USER
 - UPDATE_ORGANIZATION
