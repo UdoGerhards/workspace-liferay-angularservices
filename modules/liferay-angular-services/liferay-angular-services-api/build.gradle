@@ -4,3 +4,14 @@ dependencies {
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "2.0.0"
 	compileOnly group: "org.osgi", name: "org.osgi.core", version: "6.0.0"
 }
+
+apply plugin: 'maven'
+
+uploadArchives {
+	repositories {
+		mavenDeployer {
+			repository(url: "file:///Users/udogerhards/.m2/repository")
+			pom.groupId="gerhards-liferay"
+		}
+	}
+}

@@ -15,6 +15,7 @@
 package eu.gerhards.liferay.services.angular.service;
 
 import aQute.bnd.annotation.ProviderType;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.UserGroupRole;
 import com.liferay.portal.kernel.service.ServiceWrapper;
@@ -84,17 +85,17 @@ public class AngularRoleServiceWrapper implements AngularRoleService,
 	}
 
 	@Override
-	public java.util.List<Role> getRegularRoles(long companyId) {
+    public java.util.List<Role> getRegularRoles(long companyId) throws PortalException {
 		return _angularRoleService.getRegularRoles(companyId);
 	}
 
 	@Override
-	public java.util.List<Role> getRolesInCompany(long companyId) {
+    public java.util.List<Role> getRolesInCompany(long companyId) throws PortalException {
 		return _angularRoleService.getRolesInCompany(companyId);
 	}
 
 	@Override
-	public java.util.List<Role> getSiteRoles(long companyId) {
+	public java.util.List<Role> getSiteRoles(long companyId) throws PortalException {
 		return _angularRoleService.getSiteRoles(companyId);
 	}
 

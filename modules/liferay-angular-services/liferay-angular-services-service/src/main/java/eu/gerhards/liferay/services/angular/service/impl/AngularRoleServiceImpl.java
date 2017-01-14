@@ -31,6 +31,7 @@ import com.liferay.portal.kernel.service.permission.UserGroupRolePermissionUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.users.admin.kernel.util.UsersAdminUtil;
 import eu.gerhards.liferay.services.angular.service.base.AngularRoleServiceBaseImpl;
+import eu.gerhards.liferay.services.angular.service.util.AngularActionKeys;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +63,9 @@ public class AngularRoleServiceImpl extends AngularRoleServiceBaseImpl {
     public static Log _log = LogFactoryUtil.getLog(AngularRoleServiceImpl.class.getName());
 
     @Override
-    public List<Role> getRolesInCompany(long companyId) {
+    public List<Role> getRolesInCompany(long companyId) throws PortalException {
+
+        PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.LIST_ROLES);
 
         List<Role> companyRoles = RoleLocalServiceUtil.getRoles(companyId);
 
@@ -70,16 +73,28 @@ public class AngularRoleServiceImpl extends AngularRoleServiceBaseImpl {
     }
 
     @Override
-    public List<Role> getRegularRoles(long companyId) {
+    public List<Role> getRegularRoles(long companyId) throws PortalException {
 
-        List<Role> allRoles = this.getRolesInCompany(companyId);
-        return this.getRolesForSpecificType(allRoles, RoleConstants.TYPE_REGULAR);
+        try {
+            List<Role> allRoles = this.getRolesInCompany(companyId);
+            return this.getRolesForSpecificType(allRoles, RoleConstants.TYPE_REGULAR);
+
+        } catch (PortalException e) {
+            e.printStackTrace();
+            throw e;
+        }
+
     }
 
     @Override
-    public List<Role> getSiteRoles(long companyId) {
-        List<Role> allRoles = this.getRolesInCompany(companyId);
-        return this.getRolesForSpecificType(allRoles, RoleConstants.TYPE_SITE);
+    public List<Role> getSiteRoles(long companyId) throws PortalException {
+        try {
+            List<Role> allRoles = this.getRolesInCompany(companyId);
+            return this.getRolesForSpecificType(allRoles, RoleConstants.TYPE_SITE);
+        } catch (PortalException e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     @Override
@@ -98,7 +113,7 @@ public class AngularRoleServiceImpl extends AngularRoleServiceBaseImpl {
     @Override
     public Role updateRole(long roleId, String name, int type, String className, Map<Locale, String> titleMap, Map<Locale, String> descriptionMap, String subType) throws PortalException {
 
-        _log.info("Creating role ... ");
+        _log.info("Updating role ... ");
 
         _log.debug("    security check ... ");
 
@@ -126,7 +141,12 @@ public class AngularRoleServiceImpl extends AngularRoleServiceBaseImpl {
 
     @Override
     public List<Role> getOrganizationRoles(long companyId) {
-        List<Role> allRoles = this.getRolesInCompany(companyId);
+        List<Role> allRoles = null;
+        try {
+            allRoles = this.getRolesInCompany(companyId);
+        } catch (PortalException e) {
+            e.printStackTrace();
+        }
         return this.getRolesForSpecificType(allRoles, RoleConstants.TYPE_ORGANIZATION);
     }
 

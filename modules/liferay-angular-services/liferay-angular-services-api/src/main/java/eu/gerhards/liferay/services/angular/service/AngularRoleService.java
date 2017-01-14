@@ -81,13 +81,13 @@ public interface AngularRoleService extends BaseService {
 	public List<Role> getOrganizationRoles(long companyId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Role> getRegularRoles(long companyId);
+    public List<Role> getRegularRoles(long companyId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Role> getRolesInCompany(long companyId);
+    public List<Role> getRolesInCompany(long companyId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Role> getSiteRoles(long companyId);
+	public List<Role> getSiteRoles(long companyId) throws PortalException;
 
 	public long[] checkRoles(long userId, long[] roleIds)
 		throws PortalException;
