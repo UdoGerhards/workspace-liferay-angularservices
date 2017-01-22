@@ -63,7 +63,7 @@ public class AngularRoleServiceTest {
         PowerMockito.mockStatic(RolePermissionUtil.class);
 
         // Permission checker
-        mockUser = this.createMockUser(1L,"Doe", "John", 123L);
+        mockUser = AngularTestHelper.createMockUser(1L,"Doe", "John", "JohnDoe", 123L);
         _permissionChecker.init(mockUser);
 
         when(PermissionThreadLocal.getPermissionChecker()).thenReturn(_permissionChecker);
@@ -110,6 +110,7 @@ public class AngularRoleServiceTest {
         List<Role> roles = _service.getRegularRoles(123L);
         Role role = roles.get(0);
         assertEquals(1, roles.size());
+        assertEquals(0, roles.get(0).getRoleId());
 
     }
 
@@ -130,6 +131,31 @@ public class AngularRoleServiceTest {
         List<Role> roles = _service.getSiteRoles(123L);
         Role role = roles.get(0);
         assertEquals(1, roles.size());
+        assertEquals(1, roles.get(0).getRoleId());
+    }
+
+    @Test()
+    public void getOrganizationRoles() throws PortalException, PrincipalException {
+        // Prepare
+        List<Role> roleList = new ArrayList<Role>();
+
+        com.liferay.portal.kernel.model.Role role1 = this.createMockedRole(123L, "Mock role1", 0L, RoleConstants.TYPE_ORGANIZATION, null);
+        roleList.add(role1);
+
+        com.liferay.portal.kernel.model.Role role2 = this.createMockedRole(123L, "Mock role2", 1L, RoleConstants.TYPE_SITE, null);
+        roleList.add(role2);
+
+        com.liferay.portal.kernel.model.Role role3 = this.createMockedRole(123L, "Mock role2", 2L, RoleConstants.TYPE_REGULAR, null);
+        roleList.add(role3);
+
+        when(RoleLocalServiceUtil.getRoles(123L)).thenReturn(roleList);
+
+        // Test
+        List<Role> roles = _service.getOrganizationRoles(123L);
+        Role role = roles.get(0);
+        assertEquals(1, roles.size());
+        assertEquals(0, roles.get(0).getRoleId());
+
     }
 
     @Test()
@@ -217,17 +243,5 @@ public class AngularRoleServiceTest {
         when(role.getClassName()).thenReturn(className);
 
         return role;
-    }
-
-    protected com.liferay.portal.kernel.model.User createMockUser(long userId, String lastName, String firstName, long companyId) {
-
-        com.liferay.portal.kernel.model.User user = mock(com.liferay.portal.kernel.model.User.class);
-
-        when(user.getUserId()).thenReturn(userId);
-        when(user.getCompanyId()).thenReturn(companyId);
-        when(user.getLastName()).thenReturn(lastName);
-        when(user.getFirstName()).thenReturn(firstName);
-
-        return user;
     }
 }

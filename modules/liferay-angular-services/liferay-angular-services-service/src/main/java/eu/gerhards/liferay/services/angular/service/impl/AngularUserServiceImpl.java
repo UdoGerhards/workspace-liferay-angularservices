@@ -231,6 +231,27 @@ public class AngularUserServiceImpl extends AngularUserServiceBaseImpl {
     }
 
     @Override
+    public List<Group> getUserSites(long userId) throws PortalException {
+
+        _log.info("Getting sites for user with id: "+String.valueOf(userId));
+
+        _log.debug("    ... security check ...");
+
+        PortalPermissionUtil.check(getPermissionChecker(), ActionKeys.VIEW);
+
+        _log.debug("    ... getting information");
+
+        User user = UserLocalServiceUtil.getUser(userId);
+        List<Group> groups = new ArrayList<>();
+
+        if (user != null) {
+            groups = user.getMySiteGroups();
+        }
+
+        return groups;
+    }
+
+    @Override
     public List<Group> getUserGroups(long userId) throws PortalException {
 
         _log.info("Getting groups for user with id: "+String.valueOf(userId));

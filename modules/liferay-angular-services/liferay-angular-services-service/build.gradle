@@ -21,6 +21,8 @@ dependencies {
     testCompile "org.mockito:mockito-core:1.10.+"
     testCompile group: 'org.powermock', name: 'powermock-api-mockito', version: '1.6.4'
     testCompile group: 'org.powermock', name: 'powermock-module-junit4', version: '1.6.4'
+    testCompile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.7'
+
 
 }
 

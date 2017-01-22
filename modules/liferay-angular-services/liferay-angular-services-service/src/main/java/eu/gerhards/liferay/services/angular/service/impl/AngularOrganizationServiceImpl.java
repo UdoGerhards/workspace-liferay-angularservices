@@ -123,7 +123,7 @@ public class AngularOrganizationServiceImpl
 	@Override
 	public List<Phone> getOrganizationPhones(long organizationId) throws PortalException {
 
-		_log.info("getting websites for organization id: "+String.valueOf(organizationId));
+		_log.info("getting phones for organization id: "+String.valueOf(organizationId));
 
 		_log.debug("    ... security check ...");
 
@@ -137,11 +137,12 @@ public class AngularOrganizationServiceImpl
 		if (organization != null){
 
 			long companyId = organization.getCompanyId();
+
 			phones = PhoneLocalServiceUtil.getPhones(companyId, Organization.class.getName(), organization.getOrganizationId());
 
 		}
 
-		return null;
+		return phones;
 	}
 
 	@Override
@@ -206,39 +207,14 @@ public class AngularOrganizationServiceImpl
 		User creator = this.getGuestOrUser();
 
 		ServiceContext serviceContext = new ServiceContext();
-		boolean indexingEnabled = true;
 
-		if (serviceContext != null) {
-			indexingEnabled = serviceContext.isIndexingEnabled();
+		Organization organization = OrganizationLocalServiceUtil.addOrganization(creator.getUserId(), OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID, name, type, regionId, countryId, statusId, comment, site, serviceContext);
 
-			serviceContext.setIndexingEnabled(false);
-		}
+		_log.debug("        ... organization ...");
 
-		try {
+		this.updateOrganizationParts(organization, addresses, emailAddresses, phones, websites, orgLabors);
 
-			Organization organization = OrganizationLocalServiceUtil.addOrganization(creator.getUserId(), OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID, name, type, regionId, countryId, statusId, comment, site, serviceContext);
-
-			_log.debug("        ... organization ...");
-
-			this. updateOrganizationParts(organization, addresses, emailAddresses, phones, websites, orgLabors);
-
-			if (indexingEnabled) {
-				Indexer<Organization> indexer =
-						IndexerRegistryUtil.nullSafeGetIndexer(Organization.class);
-
-				indexer.reindex(organization);
-			}
-
-			OrganizationMembershipPolicyUtil.verifyPolicy(organization);
-
-			return organization;
-
-		}
-		finally {
-			if (serviceContext != null) {
-				serviceContext.setIndexingEnabled(indexingEnabled);
-			}
-		}
+		return organization;
 	}
 
 	@Override

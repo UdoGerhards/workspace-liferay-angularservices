@@ -63,5 +63,45 @@ public class AngularVirtualInstanceServiceWrapper
 		return _angularVirtualInstanceService.getAvailableInstances();
 	}
 
+	@Override
+	public Company createVirtualInstance(String webId, String virtualHostname, String mx, boolean system, int maxUsers, boolean active) throws PortalException {
+		return _angularVirtualInstanceService.createVirtualInstance(webId, virtualHostname, mx, system, maxUsers, active);
+	}
+
+	@Override
+	public Company updateVirtualInstance(long companyId, String virtualHostname, String mx, int maxUsers, boolean active) throws PortalException {
+		return _angularVirtualInstanceService.updateVirtualInstance(companyId, virtualHostname, mx, maxUsers, active);
+	}
+
+	@Override
+	public Company updateVirtualInstanceExtended(long companyId, String virtualHostname, String mx, String homeUrl, boolean logo, byte[] logoBytes, String name, String legalName, String legalId, String legalType, String sicCode, String tickerSymbol, String industry, String type, String size) throws PortalException {
+		return _angularVirtualInstanceService.updateVirtualInstanceExtended(companyId, virtualHostname, mx, homeUrl, logo, logoBytes, name, legalName, legalId, legalType, sicCode, tickerSymbol, industry, type, size);
+	}
+
+	@Override
+	public void deleteVirtualInstance(long companyId) throws PortalException {
+		_angularVirtualInstanceService.deleteVirtualInstance(companyId);
+	}
+
+	@Override
+	public Company updateLogo(long companyId, byte[] bytes) throws PortalException {
+		return _angularVirtualInstanceService.updateLogo(companyId, bytes);
+	}
+
+	@Override
+	public void deleteCompanyLogo(long companyId) throws PortalException {
+		_angularVirtualInstanceService.deleteVirtualInstance(companyId);
+	}
+
+	@Override
+	public Company getVirtualInstance(long companyId) throws PortalException {
+		return _angularVirtualInstanceService.getVirtualInstance(companyId);
+	}
+
+	@Override
+	public void updateCompanySecurity(long companyId, String authType, boolean autoLogin, boolean sendPassword, boolean strangers, boolean strangesWithMx, boolean strangersVerify, boolean siteLogo) throws PortalException {
+		_angularVirtualInstanceService.updateCompanySecurity(companyId, authType, autoLogin, sendPassword, strangers, strangesWithMx, strangersVerify, siteLogo);
+	}
+
 	private AngularVirtualInstanceService _angularVirtualInstanceService;
 }

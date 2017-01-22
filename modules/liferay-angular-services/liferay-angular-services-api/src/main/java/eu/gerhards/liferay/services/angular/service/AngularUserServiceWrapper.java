@@ -15,9 +15,12 @@
 package eu.gerhards.liferay.services.angular.service;
 
 import aQute.bnd.annotation.ProviderType;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.*;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceWrapper;
+
+import java.util.List;
 
 /**
  * Provides a wrapper for {@link AngularUserService}.
@@ -182,6 +185,11 @@ public class AngularUserServiceWrapper implements AngularUserService,
 	public void updateUserOrganizations(long userId, long[] organizationIds)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		_angularUserService.updateUserOrganizations(userId, organizationIds);
+	}
+
+	@Override
+	public List<Group> getUserSites(long userId) throws PortalException {
+		return _angularUserService.getUserSites(userId);
 	}
 
 	@Override

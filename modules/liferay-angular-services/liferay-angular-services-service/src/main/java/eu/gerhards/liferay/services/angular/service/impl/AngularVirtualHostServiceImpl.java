@@ -15,7 +15,6 @@
 package eu.gerhards.liferay.services.angular.service.impl;
 
 import aQute.bnd.annotation.ProviderType;
-
 import eu.gerhards.liferay.services.angular.service.base.AngularVirtualHostServiceBaseImpl;
 
 /**
@@ -40,4 +39,7 @@ public class AngularVirtualHostServiceImpl
 	 *
 	 * Never reference this class directly. Always use {@link eu.gerhards.liferay.services.angular.service.AngularVirtualHostServiceUtil} to access the Virtual host remote service.
 	 */
+
+
+
 }
