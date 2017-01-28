@@ -63,7 +63,6 @@ import java.rmi.RemoteException;
  */
 @ProviderType
 public class AngularInstanceServiceSoap {
-
 	public static java.lang.String postTest(java.lang.String string1,
 		java.lang.String string2, long number) throws RemoteException {
 		try {

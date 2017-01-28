@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
-import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceMode;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.portal.kernel.service.BaseService;
@@ -55,6 +54,19 @@ public interface AngularGroupService extends BaseService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link AngularGroupServiceUtil} to access the Group remote service. Add custom service methods to {@link eu.gerhards.liferay.services.angular.service.impl.AngularGroupServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public Group createGroup(long parentGroupId, long liveGroupId,
+		Map<Locale, java.lang.String> nameMap,
+		Map<Locale, java.lang.String> descriptionMap, int type,
+		boolean manualMembership, int membershipRestriction,
+		java.lang.String friendlyURL, boolean site, boolean inheritContent,
+		boolean active) throws PortalException;
+
+	public Group updateGroup(long groupId, long parentGroupId,
+		long liveGroupId, Map<Locale, java.lang.String> nameMap,
+		Map<Locale, java.lang.String> descriptionMap, int type,
+		boolean manualMembership, int membershipRestriction,
+		java.lang.String friendlyURL, boolean site, boolean inheritContent,
+		boolean active) throws PortalException;
 
 	/**
 	* Returns the OSGi service identifier.
@@ -75,21 +87,6 @@ public interface AngularGroupService extends BaseService {
 	public List<Group> getInstanceGroups(long companyId)
 		throws PortalException;
 
-	public Group createGroup(long parentGroupId, long liveGroupId,
-							 Map<Locale, java.lang.String> nameMap,
-							 Map<Locale, java.lang.String> descriptionMap, int type,
-							 boolean manualMembership, int membershipRestriction,
-							 java.lang.String friendlyURL, boolean site, boolean inheritContent,
-							 boolean active) throws PortalException;
-
-	public Group updateGroup(long groupId, long parentGroupId,
-							 long liveGroupId, Map<Locale, java.lang.String> nameMap,
-							 Map<Locale, java.lang.String> descriptionMap, int type,
-							 boolean manualMembership, int membershipRestriction,
-							 java.lang.String friendlyURL, boolean site, boolean inheritContent,
-							 boolean active) throws PortalException;
-
-	@JSONWebService(mode= JSONWebServiceMode.IGNORE)
 	public long[] checkGroups(long userId, long[] groupIds)
 		throws PortalException;
 

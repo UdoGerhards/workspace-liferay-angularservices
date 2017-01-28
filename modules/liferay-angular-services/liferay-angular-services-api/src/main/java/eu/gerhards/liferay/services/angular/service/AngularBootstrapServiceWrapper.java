@@ -43,6 +43,11 @@ public class AngularBootstrapServiceWrapper implements AngularBootstrapService,
 	}
 
 	@Override
+	public java.lang.String getServiceConfiguration() {
+		return _angularBootstrapService.getServiceConfiguration();
+	}
+
+	@Override
 	public AngularBootstrapService getWrappedService() {
 		return _angularBootstrapService;
 	}
@@ -51,11 +56,6 @@ public class AngularBootstrapServiceWrapper implements AngularBootstrapService,
 	public void setWrappedService(
 		AngularBootstrapService angularBootstrapService) {
 		_angularBootstrapService = angularBootstrapService;
-	}
-
-	@Override
-	public String getServiceConfiguration() {
-		return _angularBootstrapService.getServiceConfiguration();
 	}
 
 	private AngularBootstrapService _angularBootstrapService;

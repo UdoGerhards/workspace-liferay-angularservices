@@ -15,7 +15,6 @@
 package eu.gerhards.liferay.services.angular.service;
 
 import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
@@ -44,6 +43,26 @@ public class AngularPermissionServiceWrapper implements AngularPermissionService
 	}
 
 	@Override
+	public java.util.List<com.liferay.portal.kernel.model.ResourcePermission> getPermissions(
+		long roleId) {
+		return _angularPermissionService.getPermissions(roleId);
+	}
+
+	@Override
+	public java.util.List<java.util.List<com.liferay.portal.kernel.model.ResourcePermission>> getPermissionsForUser(
+		long userId) throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularPermissionService.getPermissionsForUser(userId);
+	}
+
+	@Override
+	public java.util.List<java.util.List<com.liferay.portal.kernel.model.ResourcePermission>> getPermissionsForUserPerType(
+		long userId, long roleType, long scopeType)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularPermissionService.getPermissionsForUserPerType(userId,
+			roleType, scopeType);
+	}
+
+	@Override
 	public AngularPermissionService getWrappedService() {
 		return _angularPermissionService;
 	}
@@ -52,26 +71,6 @@ public class AngularPermissionServiceWrapper implements AngularPermissionService
 	public void setWrappedService(
 		AngularPermissionService angularPermissionService) {
 		_angularPermissionService = angularPermissionService;
-	}
-
-	@Override
-	public java.util.List<com.liferay.portal.kernel.model.ResourcePermission> getPermissions(
-			long roleId) {
-		return _angularPermissionService.getPermissions(roleId);
-	}
-
-	@Override
-	public java.util.List<java.util.List<com.liferay.portal.kernel.model.ResourcePermission>> getPermissionsForUser(
-			long userId) throws com.liferay.portal.kernel.exception.PortalException {
-		return _angularPermissionService.getPermissionsForUser(userId);
-	}
-
-	@Override
-	public java.util.List<java.util.List<com.liferay.portal.kernel.model.ResourcePermission>> getPermissionsForUserPerType(
-			long userId, long roleType, long scopeType)
-			throws com.liferay.portal.kernel.exception.PortalException {
-		return _angularPermissionService.getPermissionsForUserPerType(userId,
-				roleType, scopeType);
 	}
 
 	private AngularPermissionService _angularPermissionService;

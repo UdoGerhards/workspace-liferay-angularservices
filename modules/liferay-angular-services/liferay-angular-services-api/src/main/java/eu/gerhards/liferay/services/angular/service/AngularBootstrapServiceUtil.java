@@ -49,6 +49,10 @@ public class AngularBootstrapServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
+	public static java.lang.String getServiceConfiguration() {
+		return getService().getServiceConfiguration();
+	}
+
 	public static AngularBootstrapService getService() {
 		return _serviceTracker.getService();
 	}

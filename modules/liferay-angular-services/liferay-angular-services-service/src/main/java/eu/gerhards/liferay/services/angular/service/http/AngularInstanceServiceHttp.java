@@ -53,43 +53,11 @@ import eu.gerhards.liferay.services.angular.service.AngularInstanceServiceUtil;
  */
 @ProviderType
 public class AngularInstanceServiceHttp {
-	public static java.util.List<com.liferay.portal.kernel.model.Company> getAvailableInstances(
-		HttpPrincipal httpPrincipal)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		try {
-			MethodKey methodKey = new MethodKey(AngularInstanceServiceUtil.class,
-					"getAvailableInstances",
-					_getAvailableInstancesParameterTypes0);
-
-			MethodHandler methodHandler = new MethodHandler(methodKey);
-
-			Object returnObj = null;
-
-			try {
-				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
-			}
-			catch (Exception e) {
-				if (e instanceof com.liferay.portal.kernel.exception.PortalException) {
-					throw (com.liferay.portal.kernel.exception.PortalException)e;
-				}
-
-				throw new com.liferay.portal.kernel.exception.SystemException(e);
-			}
-
-			return (java.util.List<com.liferay.portal.kernel.model.Company>)returnObj;
-		}
-		catch (com.liferay.portal.kernel.exception.SystemException se) {
-			_log.error(se, se);
-
-			throw se;
-		}
-	}
-
 	public static java.lang.String postTest(HttpPrincipal httpPrincipal,
 		java.lang.String string1, java.lang.String string2, long number) {
 		try {
 			MethodKey methodKey = new MethodKey(AngularInstanceServiceUtil.class,
-					"postTest", _postTestParameterTypes1);
+					"postTest", _postTestParameterTypes0);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey, string1,
 					string2, number);
@@ -113,10 +81,7 @@ public class AngularInstanceServiceHttp {
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(AngularInstanceServiceHttp.class);
-	private static final Class<?>[] _getAvailableInstancesParameterTypes0 = new Class[] {
-			
-		};
-	private static final Class<?>[] _postTestParameterTypes1 = new Class[] {
+	private static final Class<?>[] _postTestParameterTypes0 = new Class[] {
 			java.lang.String.class, java.lang.String.class, long.class
 		};
 }

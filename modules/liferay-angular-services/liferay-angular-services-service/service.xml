@@ -63,6 +63,12 @@
 			<order-column name="layoutId" />
 		</order>
 	</entity>
+	<entity local-service="true" name="AngularLayoutSet" remote-service="true" uuid="false" human-name="LayoutSet ">
+		<column name="layoutSetId" type="long" primary="true" />
+		<order by="asc">
+			<order-column name="layoutSetId" />
+		</order>
+	</entity>
 	<entity local-service="true" name="AngularPortal" remote-service="true" uuid="false" human-name="Portal ">
 		<column name="portalId" type="long" primary="true" />
 		<order by="asc">

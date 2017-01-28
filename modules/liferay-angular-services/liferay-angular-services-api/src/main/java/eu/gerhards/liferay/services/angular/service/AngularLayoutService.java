@@ -18,13 +18,17 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
+import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.portal.kernel.service.BaseService;
 import com.liferay.portal.kernel.spring.osgi.OSGiBeanProperties;
 import com.liferay.portal.kernel.transaction.Isolation;
+import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * Provides the remote service interface for AngularLayout. Methods of this
@@ -50,6 +54,41 @@ public interface AngularLayoutService extends BaseService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link AngularLayoutServiceUtil} to access the Layout remote service. Add custom service methods to {@link eu.gerhards.liferay.services.angular.service.impl.AngularLayoutServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public Layout createLayout(long userId, long groupId,
+		boolean privateLayout, long parentLayoutId,
+		Map<Locale, java.lang.String> nameMap,
+		Map<Locale, java.lang.String> titleMap,
+		Map<Locale, java.lang.String> descriptionMap,
+		Map<Locale, java.lang.String> keywordsMap,
+		Map<Locale, java.lang.String> robotsMap, java.lang.String type,
+		java.lang.String typeSettings, boolean hidden,
+		Map<Locale, java.lang.String> friendlyURLMap) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Layout getLayoutbyId(long layoutId) throws PortalException;
+
+	public Layout updateFriendlyURL(long plid, java.lang.String friendlyURL,
+		java.lang.String languageId) throws PortalException;
+
+	public Layout updateLayout(long groupId, boolean privateLayout,
+		long layoutId, long parentLayoutId,
+		Map<Locale, java.lang.String> nameMap,
+		Map<Locale, java.lang.String> titleMap,
+		Map<Locale, java.lang.String> descriptionMap,
+		Map<Locale, java.lang.String> keywordsMap,
+		Map<Locale, java.lang.String> robotsMap, java.lang.String type,
+		boolean hidden, Map<Locale, java.lang.String> friendlyURLMap,
+		boolean iconImage, byte[] iconBytes) throws PortalException;
+
+	public Layout updateLookAndFeel(long groupId, boolean privateLayout,
+		long layoutId, java.lang.String themeId,
+		java.lang.String colorSchemeId, java.lang.String css);
+
+	public Layout updateName(long layoutId, java.lang.String name,
+		java.lang.String languageId);
+
+	public Layout updatePriority(long layoutId, int priority)
+		throws PortalException;
 
 	/**
 	* Returns the OSGi service identifier.
@@ -58,23 +97,12 @@ public interface AngularLayoutService extends BaseService {
 	*/
 	public java.lang.String getOSGiServiceIdentifier();
 
-	public com.liferay.portal.kernel.model.Layout getLayoutbyId(long layoutId) throws PortalException;
-
-	public java.util.List<com.liferay.portal.kernel.model.Layout> getLayouts(long groupId, boolean privateLayout) throws PortalException;
-
-	public void setLayouts(long groupId, boolean privateLayout, long parentLayoutId, long[] layoutIds) throws PortalException;
-
-	public com.liferay.portal.kernel.model.Layout createLayout(long userId, long groupId, boolean privateLayout, long parentLayoutId, java.util.Map<Locale,String> nameMap, java.util.Map<Locale,String> titleMap, java.util.Map<Locale,String> descriptionMap, java.util.Map<Locale,String> keywordsMap, java.util.Map<Locale,String> robotsMap, String type, String typeSettings, boolean hidden, java.util.Map<Locale,String> friendlyURLMap) throws PortalException;
-
-	public com.liferay.portal.kernel.model.Layout updateLayout(long groupId, boolean privateLayout, long layoutId, long parentLayoutId, java.util.Map<Locale,String> nameMap, java.util.Map<Locale,String> titleMap, java.util.Map<Locale,String> descriptionMap, java.util.Map<Locale,String> keywordsMap, java.util.Map<Locale,String> robotsMap, String type, boolean hidden, java.util.Map<Locale,String> friendlyURLMap, boolean iconImage, byte[] iconBytes) throws PortalException;
-
-	public com.liferay.portal.kernel.model.Layout updateName(long layoutId, String name, String languageId);
-
-	public com.liferay.portal.kernel.model.Layout updateFriendlyURL(long plid, String friendlyURL, String languageId) throws PortalException;
-
-	public com.liferay.portal.kernel.model.Layout updatePriority(long layoutId, int priority) throws PortalException;
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Layout> getLayouts(long groupId, boolean privateLayout)
+		throws PortalException;
 
 	public void deleteLayout(long groupId) throws PortalException;
 
-	public com.liferay.portal.kernel.model.Layout updateLookAndFeel(long groupId, boolean privateLayout, long layoutId, String themeId, String colorSchemeId, String css);
+	public void setLayouts(long groupId, boolean privateLayout,
+		long parentLayoutId, long[] layoutIds) throws PortalException;
 }

@@ -154,7 +154,7 @@ public class AngularOrganizationServiceSoap {
 		long[] emailAddresses, long[] phones, long[] websites, long[] orgLabors)
 		throws RemoteException {
 		try {
-			com.liferay.portal.kernel.model.Organization returnValue = AngularOrganizationServiceUtil.createOrganization(name,
+			Organization returnValue = AngularOrganizationServiceUtil.createOrganization(name,
 					type, regionId, countryId, statusId, comment, site,
 					addresses, emailAddresses, phones, websites, orgLabors);
 
@@ -173,7 +173,7 @@ public class AngularOrganizationServiceSoap {
 		long[] addresses, long[] emailAddresses, long[] phones,
 		long[] websites, long[] orgLabors) throws RemoteException {
 		try {
-			com.liferay.portal.kernel.model.Organization returnValue = AngularOrganizationServiceUtil.updateOrganization(organizationId,
+			Organization returnValue = AngularOrganizationServiceUtil.updateOrganization(organizationId,
 					name, type, regionId, countryId, statusId, comment, site,
 					addresses, emailAddresses, phones, websites, orgLabors);
 
@@ -189,7 +189,7 @@ public class AngularOrganizationServiceSoap {
 	public static com.liferay.portal.kernel.model.Organization deleteOrganization(long organizationId)
 		throws RemoteException {
 		try {
-			com.liferay.portal.kernel.model.Organization returnValue = AngularOrganizationServiceUtil.deleteOrganization(organizationId);
+			Organization returnValue = AngularOrganizationServiceUtil.deleteOrganization(organizationId);
 
 			return returnValue;
 		}

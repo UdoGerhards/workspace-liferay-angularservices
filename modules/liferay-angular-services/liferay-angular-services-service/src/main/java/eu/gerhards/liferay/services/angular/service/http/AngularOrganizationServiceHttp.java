@@ -17,7 +17,10 @@ package eu.gerhards.liferay.services.angular.service.http;
 import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.model.*;
+import com.liferay.portal.kernel.model.EmailAddress;
+import com.liferay.portal.kernel.model.Organization;
+import com.liferay.portal.kernel.model.Phone;
+import com.liferay.portal.kernel.model.Website;
 import com.liferay.portal.kernel.security.auth.HttpPrincipal;
 import com.liferay.portal.kernel.service.http.TunnelUtil;
 import com.liferay.portal.kernel.util.MethodHandler;
@@ -54,7 +57,7 @@ import eu.gerhards.liferay.services.angular.service.AngularOrganizationServiceUt
  */
 @ProviderType
 public class AngularOrganizationServiceHttp {
-	public static Organization getOrganization(HttpPrincipal httpPrincipal,
+	public static com.liferay.portal.kernel.model.Organization getOrganization(HttpPrincipal httpPrincipal,
 											   long organizationId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
@@ -77,7 +80,7 @@ public class AngularOrganizationServiceHttp {
 				throw new com.liferay.portal.kernel.exception.SystemException(e);
 			}
 
-			return (Organization)returnObj;
+			return (com.liferay.portal.kernel.model.Organization)returnObj;
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException se) {
 			_log.error(se, se);
@@ -86,7 +89,7 @@ public class AngularOrganizationServiceHttp {
 		}
 	}
 
-	public static java.util.List<User> getOrganizationUsers(
+	public static java.util.List<com.liferay.portal.kernel.model.User> getOrganizationUsers(
 		HttpPrincipal httpPrincipal, long organizationId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
@@ -109,7 +112,7 @@ public class AngularOrganizationServiceHttp {
 				throw new com.liferay.portal.kernel.exception.SystemException(e);
 			}
 
-			return (java.util.List<User>)returnObj;
+			return (java.util.List<com.liferay.portal.kernel.model.User>)returnObj;
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException se) {
 			_log.error(se, se);
@@ -118,7 +121,7 @@ public class AngularOrganizationServiceHttp {
 		}
 	}
 
-	public static java.util.List<Address> getOrganizationAdresses(
+	public static java.util.List<com.liferay.portal.kernel.model.Address> getOrganizationAdresses(
 		HttpPrincipal httpPrincipal, long organizationId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
@@ -142,7 +145,7 @@ public class AngularOrganizationServiceHttp {
 				throw new com.liferay.portal.kernel.exception.SystemException(e);
 			}
 
-			return (java.util.List<Address>)returnObj;
+			return (java.util.List<com.liferay.portal.kernel.model.Address>)returnObj;
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException se) {
 			_log.error(se, se);

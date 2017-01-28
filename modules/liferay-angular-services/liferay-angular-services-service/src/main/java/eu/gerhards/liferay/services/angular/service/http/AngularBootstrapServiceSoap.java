@@ -15,10 +15,15 @@
 package eu.gerhards.liferay.services.angular.service.http;
 
 import aQute.bnd.annotation.ProviderType;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import eu.gerhards.liferay.services.angular.service.AngularBootstrapServiceUtil;
+
+import java.rmi.RemoteException;
 
 /**
  * Provides the SOAP utility for the
- * {@link eu.gerhards.liferay.services.angular.service.AngularBootstrapServiceUtil} service utility. The
+ * {@link AngularBootstrapServiceUtil} service utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it is difficult for SOAP to
  * support certain types.
@@ -53,9 +58,24 @@ import aQute.bnd.annotation.ProviderType;
  * @author Brian Wing Shun Chan
  * @see AngularBootstrapServiceHttp
  * @see eu.gerhards.liferay.services.angular.model.AngularBootstrapSoap
- * @see eu.gerhards.liferay.services.angular.service.AngularBootstrapServiceUtil
+ * @see AngularBootstrapServiceUtil
  * @generated
  */
 @ProviderType
 public class AngularBootstrapServiceSoap {
+	public static java.lang.String getServiceConfiguration()
+		throws RemoteException {
+		try {
+			java.lang.String returnValue = AngularBootstrapServiceUtil.getServiceConfiguration();
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(AngularBootstrapServiceSoap.class);
 }

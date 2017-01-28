@@ -58,5 +58,5 @@ public interface AngularBootstrapService extends BaseService {
 	public java.lang.String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public String getServiceConfiguration();
+	public java.lang.String getServiceConfiguration();
 }

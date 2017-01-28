@@ -460,6 +460,44 @@ public abstract class AngularBootstrapLocalServiceBaseImpl
 	}
 
 	/**
+	 * Returns the LayoutSet local service.
+	 *
+	 * @return the LayoutSet local service
+	 */
+	public eu.gerhards.liferay.services.angular.service.AngularLayoutSetLocalService getAngularLayoutSetLocalService() {
+		return angularLayoutSetLocalService;
+	}
+
+	/**
+	 * Sets the LayoutSet local service.
+	 *
+	 * @param angularLayoutSetLocalService the LayoutSet local service
+	 */
+	public void setAngularLayoutSetLocalService(
+		eu.gerhards.liferay.services.angular.service.AngularLayoutSetLocalService angularLayoutSetLocalService) {
+		this.angularLayoutSetLocalService = angularLayoutSetLocalService;
+	}
+
+	/**
+	 * Returns the LayoutSet persistence.
+	 *
+	 * @return the LayoutSet persistence
+	 */
+	public AngularLayoutSetPersistence getAngularLayoutSetPersistence() {
+		return angularLayoutSetPersistence;
+	}
+
+	/**
+	 * Sets the LayoutSet persistence.
+	 *
+	 * @param angularLayoutSetPersistence the LayoutSet persistence
+	 */
+	public void setAngularLayoutSetPersistence(
+		AngularLayoutSetPersistence angularLayoutSetPersistence) {
+		this.angularLayoutSetPersistence = angularLayoutSetPersistence;
+	}
+
+	/**
 	 * Returns the Organization local service.
 	 *
 	 * @return the Organization local service
@@ -1058,6 +1096,10 @@ public abstract class AngularBootstrapLocalServiceBaseImpl
 	protected eu.gerhards.liferay.services.angular.service.AngularLayoutLocalService angularLayoutLocalService;
 	@BeanReference(type = AngularLayoutPersistence.class)
 	protected AngularLayoutPersistence angularLayoutPersistence;
+	@BeanReference(type = eu.gerhards.liferay.services.angular.service.AngularLayoutSetLocalService.class)
+	protected eu.gerhards.liferay.services.angular.service.AngularLayoutSetLocalService angularLayoutSetLocalService;
+	@BeanReference(type = AngularLayoutSetPersistence.class)
+	protected AngularLayoutSetPersistence angularLayoutSetPersistence;
 	@BeanReference(type = eu.gerhards.liferay.services.angular.service.AngularOrganizationLocalService.class)
 	protected eu.gerhards.liferay.services.angular.service.AngularOrganizationLocalService angularOrganizationLocalService;
 	@BeanReference(type = AngularOrganizationPersistence.class)

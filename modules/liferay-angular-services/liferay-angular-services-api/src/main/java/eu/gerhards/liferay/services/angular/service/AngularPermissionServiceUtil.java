@@ -15,9 +15,7 @@
 package eu.gerhards.liferay.services.angular.service;
 
 import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.osgi.util.ServiceTrackerFactory;
-
 import org.osgi.util.tracker.ServiceTracker;
 
 /**
@@ -49,6 +47,23 @@ public class AngularPermissionServiceUtil {
 	*/
 	public static java.lang.String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
+	}
+
+	public static java.util.List<com.liferay.portal.kernel.model.ResourcePermission> getPermissions(
+		long roleId) {
+		return getService().getPermissions(roleId);
+	}
+
+	public static java.util.List<java.util.List<com.liferay.portal.kernel.model.ResourcePermission>> getPermissionsForUser(
+		long userId) throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPermissionsForUser(userId);
+	}
+
+	public static java.util.List<java.util.List<com.liferay.portal.kernel.model.ResourcePermission>> getPermissionsForUserPerType(
+		long userId, long roleType, long scopeType)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .getPermissionsForUserPerType(userId, roleType, scopeType);
 	}
 
 	public static AngularPermissionService getService() {

@@ -15,7 +15,9 @@
 package eu.gerhards.liferay.services.angular.service;
 
 import aQute.bnd.annotation.ProviderType;
-import com.liferay.portal.kernel.model.*;
+import com.liferay.portal.kernel.model.EmailAddress;
+import com.liferay.portal.kernel.model.Phone;
+import com.liferay.portal.kernel.model.Website;
 import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
@@ -35,7 +37,7 @@ public class AngularOrganizationServiceWrapper
 	}
 
 	@Override
-	public Organization createOrganization(java.lang.String name,
+	public com.liferay.portal.kernel.model.Organization createOrganization(java.lang.String name,
 										   java.lang.String type, long regionId, long countryId, long statusId,
 										   java.lang.String comment, boolean site, long[] addresses,
 										   long[] emailAddresses, long[] phones, long[] websites, long[] orgLabors)
@@ -46,19 +48,19 @@ public class AngularOrganizationServiceWrapper
 	}
 
 	@Override
-	public Organization deleteOrganization(long organizationId)
+	public com.liferay.portal.kernel.model.Organization deleteOrganization(long organizationId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _angularOrganizationService.deleteOrganization(organizationId);
 	}
 
 	@Override
-	public Organization getOrganization(long organizationId)
+	public com.liferay.portal.kernel.model.Organization getOrganization(long organizationId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _angularOrganizationService.getOrganization(organizationId);
 	}
 
 	@Override
-	public Organization updateOrganization(long organizationId,
+	public com.liferay.portal.kernel.model.Organization updateOrganization(long organizationId,
 		java.lang.String name, java.lang.String type, long regionId,
 		long countryId, long statusId, java.lang.String comment, boolean site,
 		long[] addresses, long[] emailAddresses, long[] phones,
@@ -80,7 +82,7 @@ public class AngularOrganizationServiceWrapper
 	}
 
 	@Override
-	public java.util.List<Address> getOrganizationAdresses(long organizationId)
+	public java.util.List<com.liferay.portal.kernel.model.Address> getOrganizationAdresses(long organizationId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _angularOrganizationService.getOrganizationAdresses(organizationId);
 	}
@@ -99,7 +101,7 @@ public class AngularOrganizationServiceWrapper
 	}
 
 	@Override
-	public java.util.List<User> getOrganizationUsers(long organizationId)
+	public java.util.List<com.liferay.portal.kernel.model.User> getOrganizationUsers(long organizationId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _angularOrganizationService.getOrganizationUsers(organizationId);
 	}
