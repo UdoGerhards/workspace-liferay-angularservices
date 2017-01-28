@@ -15,6 +15,14 @@
 package eu.gerhards.liferay.services.angular.service.impl;
 
 import aQute.bnd.annotation.ProviderType;
+import com.liferay.counter.kernel.service.CounterLocalServiceUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.VirtualHost;
+import com.liferay.portal.kernel.security.permission.ActionKeys;
+import com.liferay.portal.kernel.service.VirtualHostLocalServiceUtil;
+import com.liferay.portal.kernel.service.permission.PortalPermissionUtil;
 import eu.gerhards.liferay.services.angular.service.base.AngularVirtualHostServiceBaseImpl;
 
 /**
@@ -34,12 +42,55 @@ import eu.gerhards.liferay.services.angular.service.base.AngularVirtualHostServi
 @ProviderType
 public class AngularVirtualHostServiceImpl
 	extends AngularVirtualHostServiceBaseImpl {
+
+	public static Log _log = LogFactoryUtil.getLog(AngularVirtualHostServiceImpl.class);
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never reference this class directly. Always use {@link eu.gerhards.liferay.services.angular.service.AngularVirtualHostServiceUtil} to access the Virtual host remote service.
 	 */
 
+	@Override
+	public VirtualHost createVirtualHost(long companyId, String virtualHostName) throws PortalException {
 
+		_log.info("creating virtual host id: "+virtualHostName);
 
+		_log.debug("    ... security check ...");
+
+		// TODO: Right
+		PortalPermissionUtil.check(getPermissionChecker(), ActionKeys.VIEW);
+
+		_log.debug("    ... creating ...");
+
+		long nextVhostId = CounterLocalServiceUtil.increment(VirtualHost.class.getName());
+
+		VirtualHost vhost = VirtualHostLocalServiceUtil.createVirtualHost(nextVhostId);
+		vhost.setCompanyId(companyId);
+		vhost.setHostname(virtualHostName);
+
+		vhost = VirtualHostLocalServiceUtil.updateVirtualHost(vhost);
+
+		return vhost;
+	}
+
+	@Override
+	public void deleteVirtualHost() throws PortalException {
+
+	}
+
+	@Override
+	public VirtualHost updateVirtualHost(long companyId, long layoutSetId, String hostname) throws PortalException {
+		_log.info("Updating virtual host with name: "+hostname);
+
+		_log.debug("    ... security check ...");
+
+		// TODO: Right
+		PortalPermissionUtil.check(getPermissionChecker(), ActionKeys.VIEW);
+
+		_log.debug("    ... updating ... ");
+
+		VirtualHost vhost = VirtualHostLocalServiceUtil.updateVirtualHost(companyId, layoutSetId, hostname);
+
+		return vhost;
+	}
 }

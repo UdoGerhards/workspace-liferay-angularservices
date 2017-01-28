@@ -15,7 +15,8 @@
 package eu.gerhards.liferay.services.angular.service;
 
 import aQute.bnd.annotation.ProviderType;
-
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.VirtualHost;
 import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
@@ -53,6 +54,21 @@ public class AngularVirtualHostServiceWrapper
 	public void setWrappedService(
 		AngularVirtualHostService angularVirtualHostService) {
 		_angularVirtualHostService = angularVirtualHostService;
+	}
+
+	@Override
+	public VirtualHost createVirtualHost(long companyId, String virtualHostName) throws PortalException {
+		return _angularVirtualHostService.createVirtualHost(companyId, virtualHostName);
+	}
+
+	@Override
+	public void deleteVirtualHost() throws PortalException {
+		_angularVirtualHostService.deleteVirtualHost();
+	}
+
+	@Override
+	public VirtualHost updateVirtualHost(long companyId, long layoutSetId, String hostname) throws PortalException {
+		return _angularVirtualHostService.updateVirtualHost(companyId, layoutSetId, hostname);
 	}
 
 	private AngularVirtualHostService _angularVirtualHostService;

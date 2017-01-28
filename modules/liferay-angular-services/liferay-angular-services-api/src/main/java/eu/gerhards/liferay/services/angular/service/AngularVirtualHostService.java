@@ -15,10 +15,10 @@
 package eu.gerhards.liferay.services.angular.service;
 
 import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
+import com.liferay.portal.kernel.model.VirtualHost;
 import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.portal.kernel.service.BaseService;
 import com.liferay.portal.kernel.spring.osgi.OSGiBeanProperties;
@@ -56,4 +56,12 @@ public interface AngularVirtualHostService extends BaseService {
 	* @return the OSGi service identifier
 	*/
 	public java.lang.String getOSGiServiceIdentifier();
+
+	public VirtualHost createVirtualHost(long companyId, String virtualHostName) throws PortalException;
+
+	public void deleteVirtualHost() throws PortalException;
+
+	public VirtualHost updateVirtualHost(long companyId, long layoutSetId, String hostname) throws PortalException;
+
+
 }

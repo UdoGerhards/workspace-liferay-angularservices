@@ -2,6 +2,7 @@ package eu.gerhards.liferay.services.angular.service.junit;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.model.VirtualHost;
 
 import java.util.Date;
 import java.util.Locale;
@@ -223,6 +224,32 @@ public class AngularTestHelper {
         when(company.getDefaultUser()).thenReturn(defaultUser);
 
         return company;
+    }
+
+    public static com.liferay.portal.kernel.model.VirtualHost createVirtualHost(long virtualHostId, long companyId, String vhostName) {
+
+        VirtualHost vhost = mock(VirtualHost.class);
+
+        when(vhost.getVirtualHostId()).thenReturn((virtualHostId));
+        when(vhost.getCompanyId()).thenReturn(companyId);
+        when(vhost.getHostname()).thenReturn(vhostName);
+        when(vhost.getPrimaryKey()).thenReturn(virtualHostId);
+
+        return vhost;
+    }
+
+    public static com.liferay.portal.kernel.model.Layout createLayout(long groupId, long layoutId, long companyId, long parentId, String name, String friendlyUrl, String target) {
+
+        com.liferay.portal.kernel.model.Layout layout = mock(com.liferay.portal.kernel.model.Layout.class);
+        when(layout.getLayoutId()).thenReturn(layoutId);
+        when(layout.getGroupId()).thenReturn(groupId);
+        when(layout.getCompanyId()).thenReturn(companyId);
+        when(layout.getName()).thenReturn(name);
+        when(layout.getFriendlyURL()).thenReturn(friendlyUrl);
+        when(layout.getTarget()).thenReturn(target);
+        when(layout.getParentLayoutId()).thenReturn(parentId);
+
+        return layout;
     }
 }
 
