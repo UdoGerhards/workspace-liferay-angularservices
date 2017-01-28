@@ -227,9 +227,9 @@ public class AngularLayoutServiceSoap {
 	}
 
 	public static com.liferay.portal.kernel.model.Layout updatePriority(
-		long layoutId, int priority) throws RemoteException {
+			long groupId, boolean privateLayout, long layoutId, int priority) throws RemoteException {
 		try {
-			com.liferay.portal.kernel.model.Layout returnValue = AngularLayoutServiceUtil.updatePriority(layoutId,
+			com.liferay.portal.kernel.model.Layout returnValue = AngularLayoutServiceUtil.updatePriority(groupId, privateLayout, layoutId,
 					priority);
 
 			return returnValue;

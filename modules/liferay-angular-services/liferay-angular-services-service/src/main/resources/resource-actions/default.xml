@@ -40,6 +40,14 @@
                 <action-key>ASSIGN_ROLE_TO_ORGANIZATION</action-key>
                 <action-key>CHECK_PERMISSIONS</action-key>
                 <action-key>ASSIGN_USER_GROUP_TO_TEAM</action-key>
+                <action-key>ADD_VIRTUAL_INSTANCE</action-key>
+                <action-key>DELETE_VIRTUAL_INSTANCE</action-key>
+                <action-key>UPDATE_VIRTUAL_INSTANCE</action-key>
+                <action-key>LIST_VIRTUAL_INSTANCES</action-key>
+                <action-key>ADD_LAYOUT</action-key>
+                <action-key>DELETE_LAYOUT</action-key>
+                <action-key>LIST_LAYOUTS</action-key>
+                <action-key>UPDATE_LAYOUT</action-key>
             </supports>
             <site-member-defaults>
             </site-member-defaults>
@@ -79,6 +87,14 @@
                 <action-key>ASSIGN_ROLE_TO_ORGANIZATION</action-key>
                 <action-key>CHECK_PERMISSIONS</action-key>
                 <action-key>ASSIGN_USER_GROUP_TO_TEAM</action-key>
+                <action-key>ADD_VIRTUAL_INSTANCE</action-key>
+                <action-key>DELETE_VIRTUAL_INSTANCE</action-key>
+                <action-key>UPDATE_VIRTUAL_INSTANCE</action-key>
+                <action-key>LIST_VIRTUAL_INSTANCES</action-key>
+                <action-key>ADD_LAYOUT</action-key>
+                <action-key>DELETE_LAYOUT</action-key>
+                <action-key>LIST_LAYOUTS</action-key>
+                <action-key>UPDATE_LAYOUT</action-key>
             </guest-unsupported>
         </permissions>
     </portlet-resource>

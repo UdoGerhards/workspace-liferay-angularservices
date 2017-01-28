@@ -38,4 +38,11 @@ public final class AngularActionKeys {
     public static final String ASSIGN_ROLE_TO_PAGE="ASSIGN_ROLE_TO_PAGE";
     public static final String CHECK_PERMISSIONS="CHECK_PERMISSIONS";
     public static final String ASSIGN_USER_GROUP_TO_TEAM="ASSIGN_USER_GROUP_TO_TEAM";
+    public static final String ADD_VIRTUAL_INSTANCE="ADD_VIRTUAL_INSTANCE";
+    public static final String DELETE_VIRTUAL_INSTANCE="DELETE_VIRTUAL_INSTANCE";
+    public static final String UPDATE_VIRTUAL_INSTANCE="UPDATE_VIRTUAL_INSTANCE";
+    public static final String LIST_VIRTUAL_INSTANCES="LIST_VIRTUAL_INSTANCES";
+    public static final String DELETE_LAYOUT="DELETE_LAYOUT";
+    public static final String UPDATE_LAYOUT="UPDATE_LAYOUT";
+    public static final String LIST_LAYOUTS="LIST_LAYOUTS";
 }

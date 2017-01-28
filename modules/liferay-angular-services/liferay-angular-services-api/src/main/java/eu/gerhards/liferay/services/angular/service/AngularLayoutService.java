@@ -54,15 +54,15 @@ public interface AngularLayoutService extends BaseService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link AngularLayoutServiceUtil} to access the Layout remote service. Add custom service methods to {@link eu.gerhards.liferay.services.angular.service.impl.AngularLayoutServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public Layout createLayout(long userId, long groupId,
-		boolean privateLayout, long parentLayoutId,
-		Map<Locale, java.lang.String> nameMap,
-		Map<Locale, java.lang.String> titleMap,
-		Map<Locale, java.lang.String> descriptionMap,
-		Map<Locale, java.lang.String> keywordsMap,
-		Map<Locale, java.lang.String> robotsMap, java.lang.String type,
-		java.lang.String typeSettings, boolean hidden,
-		Map<Locale, java.lang.String> friendlyURLMap) throws PortalException;
+	public Layout createLayout(long groupId,
+                               boolean privateLayout, long parentLayoutId,
+                               Map<Locale, String> nameMap,
+                               Map<Locale, String> titleMap,
+                               Map<Locale, String> descriptionMap,
+                               Map<Locale, String> keywordsMap,
+                               Map<Locale, String> robotsMap, String type,
+                               String typeSettings, boolean hidden,
+                               Map<Locale, String> friendlyURLMap) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Layout getLayoutbyId(long layoutId) throws PortalException;
@@ -81,14 +81,16 @@ public interface AngularLayoutService extends BaseService {
 		boolean iconImage, byte[] iconBytes) throws PortalException;
 
 	public Layout updateLookAndFeel(long groupId, boolean privateLayout,
-		long layoutId, java.lang.String themeId,
-		java.lang.String colorSchemeId, java.lang.String css);
+		long layoutId, String themeId,
+		String colorSchemeId, String css) throws PortalException;
 
-	public Layout updateName(long layoutId, java.lang.String name,
-		java.lang.String languageId);
+	public Layout updateName(long layoutId, String name,
+                             String languageId) throws PortalException;
 
-	public Layout updatePriority(long layoutId, int priority)
+	public Layout updatePriority(long groupId, boolean privateLayout, long layoutId, int priority)
 		throws PortalException;
+
+	public void updatePriorities(long groupId, boolean privateLayout) throws PortalException;
 
 	/**
 	* Returns the OSGi service identifier.
