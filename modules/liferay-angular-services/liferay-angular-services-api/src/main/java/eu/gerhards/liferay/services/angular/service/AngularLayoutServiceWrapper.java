@@ -15,11 +15,7 @@
 package eu.gerhards.liferay.services.angular.service;
 
 import aQute.bnd.annotation.ProviderType;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.service.ServiceWrapper;
-
-import java.util.Locale;
-import java.util.Map;
 
 /**
  * Provides a wrapper for {@link AngularLayoutService}.
@@ -37,18 +33,19 @@ public class AngularLayoutServiceWrapper implements AngularLayoutService,
 	}
 
 	@Override
-	public com.liferay.portal.kernel.model.Layout createLayout(long groupId, boolean privateLayout, long parentLayoutId,
-															   Map<Locale, String> nameMap,
-															   Map<Locale, String> titleMap,
-															   Map<Locale, String> descriptionMap,
-															   Map<Locale, String> keywordsMap,
-															   Map<Locale, String> robotsMap,
-															   String type, String typeSettings, boolean hidden,
-															   Map<Locale, String> friendlyURLMap)
+	public com.liferay.portal.kernel.model.Layout createLayout(long groupId,
+		boolean privateLayout, long parentLayoutId,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Map<java.util.Locale, java.lang.String> titleMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		java.util.Map<java.util.Locale, java.lang.String> keywordsMap,
+		java.util.Map<java.util.Locale, java.lang.String> robotsMap,
+		java.lang.String type, java.lang.String typeSettings, boolean hidden,
+		java.util.Map<java.util.Locale, java.lang.String> friendlyURLMap)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _angularLayoutService.createLayout(groupId,
-			privateLayout, parentLayoutId, nameMap, titleMap, descriptionMap,
-			keywordsMap, robotsMap, type, typeSettings, hidden, friendlyURLMap);
+		return _angularLayoutService.createLayout(groupId, privateLayout,
+			parentLayoutId, nameMap, titleMap, descriptionMap, keywordsMap,
+			robotsMap, type, typeSettings, hidden, friendlyURLMap);
 	}
 
 	@Override
@@ -86,28 +83,26 @@ public class AngularLayoutServiceWrapper implements AngularLayoutService,
 	@Override
 	public com.liferay.portal.kernel.model.Layout updateLookAndFeel(
 		long groupId, boolean privateLayout, long layoutId,
-		String themeId, String colorSchemeId,
-		String css) throws PortalException {
+		java.lang.String themeId, java.lang.String colorSchemeId,
+		java.lang.String css)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _angularLayoutService.updateLookAndFeel(groupId, privateLayout,
 			layoutId, themeId, colorSchemeId, css);
 	}
 
 	@Override
-    public com.liferay.portal.kernel.model.Layout updateName(long layoutId,
-		String name, String languageId) throws PortalException {
+	public com.liferay.portal.kernel.model.Layout updateName(long layoutId,
+		java.lang.String name, java.lang.String languageId)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _angularLayoutService.updateName(layoutId, name, languageId);
 	}
 
 	@Override
-	public com.liferay.portal.kernel.model.Layout updatePriority(
-			long groupId, boolean privateLayout, long layoutId, int priority)
+	public com.liferay.portal.kernel.model.Layout updatePriority(long groupId,
+		boolean privateLayout, long layoutId, int priority)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _angularLayoutService.updatePriority(groupId,privateLayout , layoutId, priority);
-	}
-
-	@Override
-	public void updatePriorities(long groupId, boolean privateLayout) throws PortalException {
-		_angularLayoutService.updatePriorities(groupId, privateLayout);
+		return _angularLayoutService.updatePriority(groupId, privateLayout,
+			layoutId, priority);
 	}
 
 	/**
@@ -139,6 +134,12 @@ public class AngularLayoutServiceWrapper implements AngularLayoutService,
 		throws com.liferay.portal.kernel.exception.PortalException {
 		_angularLayoutService.setLayouts(groupId, privateLayout,
 			parentLayoutId, layoutIds);
+	}
+
+	@Override
+	public void updatePriorities(long groupId, boolean privateLayout)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_angularLayoutService.updatePriorities(groupId, privateLayout);
 	}
 
 	@Override

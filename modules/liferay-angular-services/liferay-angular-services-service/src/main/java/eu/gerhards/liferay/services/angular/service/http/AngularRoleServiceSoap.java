@@ -112,7 +112,7 @@ public class AngularRoleServiceSoap {
 		}
 	}
 
-	public static com.liferay.portal.kernel.model.Role createRole(java.lang.String name, int type,
+	public static Role createRole(java.lang.String name, int type,
 		java.lang.String className, java.lang.String[] titleMapLanguageIds,
 		java.lang.String[] titleMapValues,
 		java.lang.String[] descriptionMapLanguageIds,

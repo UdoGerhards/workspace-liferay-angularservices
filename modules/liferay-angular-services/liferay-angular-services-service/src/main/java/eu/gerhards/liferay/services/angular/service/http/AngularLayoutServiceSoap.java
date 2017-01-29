@@ -109,7 +109,7 @@ public class AngularLayoutServiceSoap {
 	}
 
 	public static com.liferay.portal.kernel.model.Layout createLayout(
-		long userId, long groupId, boolean privateLayout, long parentLayoutId,
+		long groupId, boolean privateLayout, long parentLayoutId,
 		java.lang.String[] nameMapLanguageIds,
 		java.lang.String[] nameMapValues,
 		java.lang.String[] titleMapLanguageIds,
@@ -137,8 +137,8 @@ public class AngularLayoutServiceSoap {
 			Map<Locale, String> friendlyURLMap = LocalizationUtil.getLocalizationMap(friendlyURLMapLanguageIds,
 					friendlyURLMapValues);
 
-			com.liferay.portal.kernel.model.Layout returnValue = AngularLayoutServiceUtil.createLayout(userId,
-					groupId, privateLayout, parentLayoutId, nameMap, titleMap,
+			com.liferay.portal.kernel.model.Layout returnValue = AngularLayoutServiceUtil.createLayout(groupId,
+					privateLayout, parentLayoutId, nameMap, titleMap,
 					descriptionMap, keywordsMap, robotsMap, type, typeSettings,
 					hidden, friendlyURLMap);
 
@@ -227,10 +227,11 @@ public class AngularLayoutServiceSoap {
 	}
 
 	public static com.liferay.portal.kernel.model.Layout updatePriority(
-			long groupId, boolean privateLayout, long layoutId, int priority) throws RemoteException {
+		long groupId, boolean privateLayout, long layoutId, int priority)
+		throws RemoteException {
 		try {
-			com.liferay.portal.kernel.model.Layout returnValue = AngularLayoutServiceUtil.updatePriority(groupId, privateLayout, layoutId,
-					priority);
+			com.liferay.portal.kernel.model.Layout returnValue = AngularLayoutServiceUtil.updatePriority(groupId,
+					privateLayout, layoutId, priority);
 
 			return returnValue;
 		}
@@ -261,6 +262,18 @@ public class AngularLayoutServiceSoap {
 					privateLayout, layoutId, themeId, colorSchemeId, css);
 
 			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void updatePriorities(long groupId, boolean privateLayout)
+		throws RemoteException {
+		try {
+			AngularLayoutServiceUtil.updatePriorities(groupId, privateLayout);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

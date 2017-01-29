@@ -15,18 +15,9 @@
 package eu.gerhards.liferay.services.angular.service.impl;
 
 import aQute.bnd.annotation.ProviderType;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.model.ResourcePermission;
-import com.liferay.portal.kernel.model.Role;
-import com.liferay.portal.kernel.model.User;
-import com.liferay.portal.kernel.service.ResourcePermissionLocalServiceUtil;
-import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import eu.gerhards.liferay.services.angular.service.base.AngularPermissionServiceBaseImpl;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * The implementation of the Permission remote service.
@@ -53,7 +44,7 @@ public class AngularPermissionServiceImpl
 
 	public static Log _log = LogFactoryUtil.getLog(AngularPermissionServiceImpl.class);
 
-	@Override
+/*	@Override
 	public List<ResourcePermission> getPermissions(long roleId) {
 
 		_log.debug("Role id: "+roleId);
@@ -63,8 +54,8 @@ public class AngularPermissionServiceImpl
 		_log.debug("Permissions: "+permissions);
 
 		return permissions;
-	}
-
+	}*/
+/*
 	@Override
 	public List<List<ResourcePermission>> getPermissionsForUser(long userId) throws PortalException {
 
@@ -132,5 +123,5 @@ public class AngularPermissionServiceImpl
 		_log.debug("All permissions: "+permissionsPerRole);
 
 		return permissionsPerRole;
-	}
+	}*/
 }

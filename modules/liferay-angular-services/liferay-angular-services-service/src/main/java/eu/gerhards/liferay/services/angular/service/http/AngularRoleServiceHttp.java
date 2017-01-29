@@ -55,7 +55,8 @@ import eu.gerhards.liferay.services.angular.service.AngularRoleServiceUtil;
 @ProviderType
 public class AngularRoleServiceHttp {
 	public static java.util.List<com.liferay.portal.kernel.model.Role> getRolesInCompany(
-		HttpPrincipal httpPrincipal, long companyId) {
+		HttpPrincipal httpPrincipal, long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(AngularRoleServiceUtil.class,
 					"getRolesInCompany", _getRolesInCompanyParameterTypes0);
@@ -68,6 +69,10 @@ public class AngularRoleServiceHttp {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception e) {
+				if (e instanceof com.liferay.portal.kernel.exception.PortalException) {
+					throw (com.liferay.portal.kernel.exception.PortalException)e;
+				}
+
 				throw new com.liferay.portal.kernel.exception.SystemException(e);
 			}
 
@@ -81,7 +86,8 @@ public class AngularRoleServiceHttp {
 	}
 
 	public static java.util.List<com.liferay.portal.kernel.model.Role> getRegularRoles(
-		HttpPrincipal httpPrincipal, long companyId) {
+		HttpPrincipal httpPrincipal, long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(AngularRoleServiceUtil.class,
 					"getRegularRoles", _getRegularRolesParameterTypes1);
@@ -94,6 +100,10 @@ public class AngularRoleServiceHttp {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception e) {
+				if (e instanceof com.liferay.portal.kernel.exception.PortalException) {
+					throw (com.liferay.portal.kernel.exception.PortalException)e;
+				}
+
 				throw new com.liferay.portal.kernel.exception.SystemException(e);
 			}
 
@@ -107,7 +117,8 @@ public class AngularRoleServiceHttp {
 	}
 
 	public static java.util.List<com.liferay.portal.kernel.model.Role> getSiteRoles(
-		HttpPrincipal httpPrincipal, long companyId) {
+		HttpPrincipal httpPrincipal, long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(AngularRoleServiceUtil.class,
 					"getSiteRoles", _getSiteRolesParameterTypes2);
@@ -120,6 +131,10 @@ public class AngularRoleServiceHttp {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception e) {
+				if (e instanceof com.liferay.portal.kernel.exception.PortalException) {
+					throw (com.liferay.portal.kernel.exception.PortalException)e;
+				}
+
 				throw new com.liferay.portal.kernel.exception.SystemException(e);
 			}
 

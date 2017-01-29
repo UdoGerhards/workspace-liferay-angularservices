@@ -16,6 +16,7 @@ package eu.gerhards.liferay.services.angular.service.impl;
 
 import aQute.bnd.annotation.ProviderType;
 import com.liferay.announcements.kernel.model.AnnouncementsDelivery;
+import com.liferay.announcements.kernel.service.AnnouncementsDeliveryLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.exception.UserEmailAddressException;
@@ -361,7 +362,7 @@ public class AngularUserServiceImpl extends AngularUserServiceBaseImpl {
                 }
             }
 
-            organizationLocalService.addUserOrganizations(user.getUserId(), organizationIds);
+            OrganizationLocalServiceUtil.addUserOrganizations(user.getUserId(), organizationIds);
 
             UserLocalServiceUtil.updateOrganizations(user.getUserId(), organizationIds, null);
 
@@ -977,8 +978,7 @@ public class AngularUserServiceImpl extends AngularUserServiceBaseImpl {
         List<UserGroupRole> oldOrganizationUserGroupRoles = new ArrayList<>();
         List<UserGroupRole> oldSiteUserGroupRoles = new ArrayList<>();
 
-        List<UserGroupRole> oldUserGroupRoles =
-                userGroupRolePersistence.findByUserId(userId);
+        List<UserGroupRole> oldUserGroupRoles = UserGroupRoleLocalServiceUtil.getUserGroupRoles(userId);
 
         for (UserGroupRole oldUserGroupRole : oldUserGroupRoles) {
             Role role = oldUserGroupRole.getRole();
@@ -1195,14 +1195,8 @@ public class AngularUserServiceImpl extends AngularUserServiceBaseImpl {
             throws PortalException {
 
         if (announcementsDeliveries != null) {
-            for (AnnouncementsDelivery announcementsDelivery :
-                    announcementsDeliveries) {
-
-                announcementsDeliveryService.updateDelivery(
-                        userId, announcementsDelivery.getType(),
-                        announcementsDelivery.getEmail(),
-                        announcementsDelivery.getSms(),
-                        announcementsDelivery.getWebsite());
+            for (AnnouncementsDelivery announcementsDelivery : announcementsDeliveries) {
+                AnnouncementsDeliveryLocalServiceUtil.updateDelivery(userId, announcementsDelivery.getType(), announcementsDelivery.getEmail(), announcementsDelivery.getSms(), announcementsDelivery.getWebsite());
             }
         }
     }
@@ -1210,8 +1204,7 @@ public class AngularUserServiceImpl extends AngularUserServiceBaseImpl {
     protected void validateEmail(String emailAddress, User user) throws PortalException {
 
         if (user != null && !user.hasCompanyMx() && user.hasCompanyMx(emailAddress)) {
-            Company company = companyPersistence.findByPrimaryKey(
-                    user.getCompanyId());
+            Company company = CompanyLocalServiceUtil.getCompany(user.getCompanyId());
 
             if (!company.isStrangersWithMx()) {
                 throw new UserEmailAddressException.MustNotUseCompanyMx(
@@ -1222,7 +1215,7 @@ public class AngularUserServiceImpl extends AngularUserServiceBaseImpl {
 
     protected void checkDeleteUserPermission(long deleteUserId, long companyId, long userId, ServiceContext serviceContext) throws PortalException{
 
-        Company company = companyPersistence.findByPrimaryKey(companyId);
+        Company company = CompanyLocalServiceUtil.getCompany(companyId);
 
         boolean anonymousUser = ParamUtil.getBoolean(
                 serviceContext, "anonymousUser");
@@ -1264,7 +1257,7 @@ public class AngularUserServiceImpl extends AngularUserServiceBaseImpl {
 
     protected void checkUpdateUserPermission(long updateUserId, long userId, long companyId, long[] groupIds, long[] organizationIds, long[] roleIds, long[] userGroupIds, ServiceContext serviceContext) throws PortalException {
 
-        Company company = companyPersistence.findByPrimaryKey(companyId);
+        Company company = CompanyLocalServiceUtil.getCompany(companyId);
 
         // Adding user must be member of everything he adds
 
@@ -1394,7 +1387,7 @@ public class AngularUserServiceImpl extends AngularUserServiceBaseImpl {
             long[] userGroupIds, ServiceContext serviceContext)
             throws PortalException {
 
-        Company company = companyPersistence.findByPrimaryKey(companyId);
+        Company company = CompanyLocalServiceUtil.getCompany(companyId);
 
         // Check if user has an according right assigned with add user permission; Either he owns the right itself, by his roles or by his user roles
         User creator = this.getGuestOrUser();
@@ -1479,7 +1472,8 @@ public class AngularUserServiceImpl extends AngularUserServiceBaseImpl {
      * @param user the user
      */
     protected void addOrganizationUser(long organizationId, User user) {
-        organizationPersistence.addUser(organizationId, user);
+
+        OrganizationLocalServiceUtil.addUserOrganization(user.getUserId(), organizationId);
 
         try {
             reindex(user);
@@ -1498,7 +1492,9 @@ public class AngularUserServiceImpl extends AngularUserServiceBaseImpl {
     protected void addOrganizationUsers(long organizationId, List<User> users)
             throws PortalException {
 
-        organizationPersistence.addUsers(organizationId, users);
+        for(User user:users) {
+            OrganizationLocalServiceUtil.addUserOrganization(user.getUserId(), organizationId);
+        }
 
         reindex(users);
     }
@@ -1512,9 +1508,7 @@ public class AngularUserServiceImpl extends AngularUserServiceBaseImpl {
     protected void addOrganizationUsers(long organizationId, long[] userIds)
             throws PortalException {
 
-
-
-        organizationPersistence.addUsers(organizationId, userIds);
+        UserLocalServiceUtil.addOrganizationUsers(organizationId, userIds);
 
         reindex(userIds);
     }
@@ -1529,15 +1523,13 @@ public class AngularUserServiceImpl extends AngularUserServiceBaseImpl {
             long organizationId, final long[] userIds)
             throws PortalException {
 
-        Organization organization = organizationPersistence.findByPrimaryKey(
-                organizationId);
+        Organization organization = OrganizationLocalServiceUtil.getOrganization(organizationId);
 
         final Group group = organization.getGroup();
 
-        userGroupRoleLocalService.deleteUserGroupRoles(
+        UserGroupRoleLocalServiceUtil.deleteUserGroupRoles(
                 userIds, group.getGroupId());
-
-        organizationPersistence.removeUsers(organizationId, userIds);
+           UserLocalServiceUtil.deleteOrganizationUsers(organizationId, userIds);
 
         reindex(userIds);
 

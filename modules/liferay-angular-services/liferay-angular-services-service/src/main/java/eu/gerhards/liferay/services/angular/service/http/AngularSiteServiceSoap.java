@@ -15,10 +15,18 @@
 package eu.gerhards.liferay.services.angular.service.http;
 
 import aQute.bnd.annotation.ProviderType;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.LocalizationUtil;
+import eu.gerhards.liferay.services.angular.service.AngularSiteServiceUtil;
+
+import java.rmi.RemoteException;
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * Provides the SOAP utility for the
- * {@link eu.gerhards.liferay.services.angular.service.AngularSiteServiceUtil} service utility. The
+ * {@link AngularSiteServiceUtil} service utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it is difficult for SOAP to
  * support certain types.
@@ -53,9 +61,121 @@ import aQute.bnd.annotation.ProviderType;
  * @author Brian Wing Shun Chan
  * @see AngularSiteServiceHttp
  * @see eu.gerhards.liferay.services.angular.model.AngularSiteSoap
- * @see eu.gerhards.liferay.services.angular.service.AngularSiteServiceUtil
+ * @see AngularSiteServiceUtil
  * @generated
  */
 @ProviderType
 public class AngularSiteServiceSoap {
+	public static com.liferay.portal.kernel.model.GroupSoap[] getInstanceSites(
+		long companyId) throws RemoteException {
+		try {
+			java.util.List<com.liferay.portal.kernel.model.Group> returnValue = AngularSiteServiceUtil.getInstanceSites(companyId);
+
+			return com.liferay.portal.kernel.model.GroupSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.portal.kernel.model.GroupSoap[] getActiveSites(
+		long companyId) throws RemoteException {
+		try {
+			java.util.List<com.liferay.portal.kernel.model.Group> returnValue = AngularSiteServiceUtil.getActiveSites(companyId);
+
+			return com.liferay.portal.kernel.model.GroupSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.portal.kernel.model.GroupSoap[] getInactiveSites(
+		long companyId) throws RemoteException {
+		try {
+			java.util.List<com.liferay.portal.kernel.model.Group> returnValue = AngularSiteServiceUtil.getInactiveSites(companyId);
+
+			return com.liferay.portal.kernel.model.GroupSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.portal.kernel.model.Group createSite(
+		long parentSiteId, long liveGroupId,
+		java.lang.String[] nameMapLanguageIds,
+		java.lang.String[] nameMapValues,
+		java.lang.String[] descriptionMapLanguageIds,
+		java.lang.String[] descriptionMapValues, int type,
+		boolean manualMembership, int membershipRestriction,
+		java.lang.String friendlyURL, boolean site, boolean inheritContent,
+		boolean active) throws RemoteException {
+		try {
+			Map<Locale, String> nameMap = LocalizationUtil.getLocalizationMap(nameMapLanguageIds,
+					nameMapValues);
+			Map<Locale, String> descriptionMap = LocalizationUtil.getLocalizationMap(descriptionMapLanguageIds,
+					descriptionMapValues);
+
+			com.liferay.portal.kernel.model.Group returnValue = AngularSiteServiceUtil.createSite(parentSiteId,
+					liveGroupId, nameMap, descriptionMap, type,
+					manualMembership, membershipRestriction, friendlyURL, site,
+					inheritContent, active);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.portal.kernel.model.Group updateSite(
+		long siteId, long parentSiteId, long liveGroupId,
+		java.lang.String[] nameMapLanguageIds,
+		java.lang.String[] nameMapValues,
+		java.lang.String[] descriptionMapLanguageIds,
+		java.lang.String[] descriptionMapValues, int type,
+		boolean manualMembership, int membershipRestriction,
+		java.lang.String friendlyURL, boolean site, boolean inheritContent,
+		boolean active) throws RemoteException {
+		try {
+			Map<Locale, String> nameMap = LocalizationUtil.getLocalizationMap(nameMapLanguageIds,
+					nameMapValues);
+			Map<Locale, String> descriptionMap = LocalizationUtil.getLocalizationMap(descriptionMapLanguageIds,
+					descriptionMapValues);
+
+			com.liferay.portal.kernel.model.Group returnValue = AngularSiteServiceUtil.updateSite(siteId,
+					parentSiteId, liveGroupId, nameMap, descriptionMap, type,
+					manualMembership, membershipRestriction, friendlyURL, site,
+					inheritContent, active);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void deleteSite(long siteId) throws RemoteException {
+		try {
+			AngularSiteServiceUtil.deleteSite(siteId);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(AngularSiteServiceSoap.class);
 }

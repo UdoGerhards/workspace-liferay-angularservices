@@ -39,6 +39,33 @@ public class AngularSiteServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link eu.gerhards.liferay.services.angular.service.impl.AngularSiteServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static com.liferay.portal.kernel.model.Group createSite(
+		long parentSiteId, long liveGroupId,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		int type, boolean manualMembership, int membershipRestriction,
+		java.lang.String friendlyURL, boolean site, boolean inheritContent,
+		boolean active)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .createSite(parentSiteId, liveGroupId, nameMap,
+			descriptionMap, type, manualMembership, membershipRestriction,
+			friendlyURL, site, inheritContent, active);
+	}
+
+	public static com.liferay.portal.kernel.model.Group updateSite(
+		long siteId, long parentSiteId, long liveGroupId,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		int type, boolean manualMembership, int membershipRestriction,
+		java.lang.String friendlyURL, boolean site, boolean inheritContent,
+		boolean active)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .updateSite(siteId, parentSiteId, liveGroupId, nameMap,
+			descriptionMap, type, manualMembership, membershipRestriction,
+			friendlyURL, site, inheritContent, active);
+	}
 
 	/**
 	* Returns the OSGi service identifier.
@@ -47,6 +74,29 @@ public class AngularSiteServiceUtil {
 	*/
 	public static java.lang.String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
+	}
+
+	public static java.util.List<com.liferay.portal.kernel.model.Group> getActiveSites(
+		long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getActiveSites(companyId);
+	}
+
+	public static java.util.List<com.liferay.portal.kernel.model.Group> getInactiveSites(
+		long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getInactiveSites(companyId);
+	}
+
+	public static java.util.List<com.liferay.portal.kernel.model.Group> getInstanceSites(
+		long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getInstanceSites(companyId);
+	}
+
+	public static void deleteSite(long siteId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().deleteSite(siteId);
 	}
 
 	public static AngularSiteService getService() {

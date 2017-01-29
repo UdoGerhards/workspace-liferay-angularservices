@@ -17,7 +17,6 @@ package eu.gerhards.liferay.services.angular.service;
 import aQute.bnd.annotation.ProviderType;
 import com.liferay.osgi.util.ServiceTrackerFactory;
 import com.liferay.portal.kernel.model.*;
-import com.liferay.portal.kernel.service.ServiceContext;
 import org.osgi.util.tracker.ServiceTracker;
 
 /**
@@ -102,7 +101,7 @@ public class AngularUserServiceUtil {
 								  java.util.List<EmailAddress> emailAddresses,
 								  java.util.List<Phone> phones, java.util.List<Website> websites,
 								  java.util.List<com.liferay.announcements.kernel.model.AnnouncementsDelivery> announcementsDelivers,
-								  ServiceContext serviceContext)
+								  com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateUser(userId, oldPassword, newPassword1, newPassword2,
@@ -158,6 +157,11 @@ public class AngularUserServiceUtil {
 	public static java.util.List<Role> getUserRoles(long userId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getUserRoles(userId);
+	}
+
+	public static java.util.List<Group> getUserSites(long userId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getUserSites(userId);
 	}
 
 	public static java.util.List<Website> getUserWebsites(long userId)

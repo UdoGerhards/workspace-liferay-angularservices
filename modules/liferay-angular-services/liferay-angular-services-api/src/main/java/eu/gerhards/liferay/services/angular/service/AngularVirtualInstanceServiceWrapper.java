@@ -15,11 +15,7 @@
 package eu.gerhards.liferay.services.angular.service;
 
 import aQute.bnd.annotation.ProviderType;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.service.ServiceWrapper;
-
-import java.util.List;
 
 /**
  * Provides a wrapper for {@link AngularVirtualInstanceService}.
@@ -37,6 +33,52 @@ public class AngularVirtualInstanceServiceWrapper
 		_angularVirtualInstanceService = angularVirtualInstanceService;
 	}
 
+	@Override
+	public com.liferay.portal.kernel.model.Company createVirtualInstance(
+		java.lang.String webId, java.lang.String virtualHostname,
+		java.lang.String mx, boolean system, int maxUsers, boolean active)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularVirtualInstanceService.createVirtualInstance(webId,
+			virtualHostname, mx, system, maxUsers, active);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.Company getVirtualInstance(
+		long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularVirtualInstanceService.getVirtualInstance(companyId);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.Company updateLogo(long companyId,
+		byte[] bytes)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularVirtualInstanceService.updateLogo(companyId, bytes);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.Company updateVirtualInstance(
+		long companyId, java.lang.String virtualHostname, java.lang.String mx,
+		int maxUsers, boolean active)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularVirtualInstanceService.updateVirtualInstance(companyId,
+			virtualHostname, mx, maxUsers, active);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.Company updateVirtualInstanceExtended(
+		long companyId, java.lang.String virtualHostname, java.lang.String mx,
+		java.lang.String homeUrl, boolean logo, byte[] logoBytes,
+		java.lang.String name, java.lang.String legalName,
+		java.lang.String legalId, java.lang.String legalType,
+		java.lang.String sicCode, java.lang.String tickerSymbol,
+		java.lang.String industry, java.lang.String type, java.lang.String size)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularVirtualInstanceService.updateVirtualInstanceExtended(companyId,
+			virtualHostname, mx, homeUrl, logo, logoBytes, name, legalName,
+			legalId, legalType, sicCode, tickerSymbol, industry, type, size);
+	}
+
 	/**
 	* Returns the OSGi service identifier.
 	*
@@ -48,6 +90,35 @@ public class AngularVirtualInstanceServiceWrapper
 	}
 
 	@Override
+	public java.util.List<com.liferay.portal.kernel.model.Company> getAvailableInstances()
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularVirtualInstanceService.getAvailableInstances();
+	}
+
+	@Override
+	public void deleteCompanyLogo(long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_angularVirtualInstanceService.deleteCompanyLogo(companyId);
+	}
+
+	@Override
+	public void deleteVirtualInstance(long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_angularVirtualInstanceService.deleteVirtualInstance(companyId);
+	}
+
+	@Override
+	public void updateCompanySecurity(long companyId,
+		java.lang.String authType, boolean autoLogin, boolean sendPassword,
+		boolean strangers, boolean strangesWithMx, boolean strangersVerify,
+		boolean siteLogo)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_angularVirtualInstanceService.updateCompanySecurity(companyId,
+			authType, autoLogin, sendPassword, strangers, strangesWithMx,
+			strangersVerify, siteLogo);
+	}
+
+	@Override
 	public AngularVirtualInstanceService getWrappedService() {
 		return _angularVirtualInstanceService;
 	}
@@ -56,51 +127,6 @@ public class AngularVirtualInstanceServiceWrapper
 	public void setWrappedService(
 		AngularVirtualInstanceService angularVirtualInstanceService) {
 		_angularVirtualInstanceService = angularVirtualInstanceService;
-	}
-
-	@Override
-	public List<Company> getAvailableInstances() throws PortalException {
-		return _angularVirtualInstanceService.getAvailableInstances();
-	}
-
-	@Override
-	public Company createVirtualInstance(String webId, String virtualHostname, String mx, boolean system, int maxUsers, boolean active) throws PortalException {
-		return _angularVirtualInstanceService.createVirtualInstance(webId, virtualHostname, mx, system, maxUsers, active);
-	}
-
-	@Override
-	public Company updateVirtualInstance(long companyId, String virtualHostname, String mx, int maxUsers, boolean active) throws PortalException {
-		return _angularVirtualInstanceService.updateVirtualInstance(companyId, virtualHostname, mx, maxUsers, active);
-	}
-
-	@Override
-	public Company updateVirtualInstanceExtended(long companyId, String virtualHostname, String mx, String homeUrl, boolean logo, byte[] logoBytes, String name, String legalName, String legalId, String legalType, String sicCode, String tickerSymbol, String industry, String type, String size) throws PortalException {
-		return _angularVirtualInstanceService.updateVirtualInstanceExtended(companyId, virtualHostname, mx, homeUrl, logo, logoBytes, name, legalName, legalId, legalType, sicCode, tickerSymbol, industry, type, size);
-	}
-
-	@Override
-	public void deleteVirtualInstance(long companyId) throws PortalException {
-		_angularVirtualInstanceService.deleteVirtualInstance(companyId);
-	}
-
-	@Override
-	public Company updateLogo(long companyId, byte[] bytes) throws PortalException {
-		return _angularVirtualInstanceService.updateLogo(companyId, bytes);
-	}
-
-	@Override
-	public void deleteCompanyLogo(long companyId) throws PortalException {
-		_angularVirtualInstanceService.deleteVirtualInstance(companyId);
-	}
-
-	@Override
-	public Company getVirtualInstance(long companyId) throws PortalException {
-		return _angularVirtualInstanceService.getVirtualInstance(companyId);
-	}
-
-	@Override
-	public void updateCompanySecurity(long companyId, String authType, boolean autoLogin, boolean sendPassword, boolean strangers, boolean strangesWithMx, boolean strangersVerify, boolean siteLogo) throws PortalException {
-		_angularVirtualInstanceService.updateCompanySecurity(companyId, authType, autoLogin, sendPassword, strangers, strangesWithMx, strangersVerify, siteLogo);
 	}
 
 	private AngularVirtualInstanceService _angularVirtualInstanceService;

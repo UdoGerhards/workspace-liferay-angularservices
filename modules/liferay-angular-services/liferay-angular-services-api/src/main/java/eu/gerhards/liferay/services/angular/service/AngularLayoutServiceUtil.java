@@ -40,7 +40,7 @@ public class AngularLayoutServiceUtil {
 	 * Never modify this class directly. Add custom service methods to {@link eu.gerhards.liferay.services.angular.service.impl.AngularLayoutServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
 	public static com.liferay.portal.kernel.model.Layout createLayout(
-		long userId, long groupId, boolean privateLayout, long parentLayoutId,
+		long groupId, boolean privateLayout, long parentLayoutId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
@@ -50,9 +50,9 @@ public class AngularLayoutServiceUtil {
 		java.util.Map<java.util.Locale, java.lang.String> friendlyURLMap)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
-				   .createLayout(groupId, privateLayout,
-			parentLayoutId, nameMap, titleMap, descriptionMap, keywordsMap,
-			robotsMap, type, typeSettings, hidden, friendlyURLMap);
+				   .createLayout(groupId, privateLayout, parentLayoutId,
+			nameMap, titleMap, descriptionMap, keywordsMap, robotsMap, type,
+			typeSettings, hidden, friendlyURLMap);
 	}
 
 	public static com.liferay.portal.kernel.model.Layout getLayoutbyId(
@@ -88,31 +88,24 @@ public class AngularLayoutServiceUtil {
 	public static com.liferay.portal.kernel.model.Layout updateLookAndFeel(
 		long groupId, boolean privateLayout, long layoutId,
 		java.lang.String themeId, java.lang.String colorSchemeId,
-		java.lang.String css) {
-		try {
-			return getService()
-                       .updateLookAndFeel(groupId, privateLayout, layoutId,
-                themeId, colorSchemeId, css);
-		} catch (com.liferay.portal.kernel.exception.PortalException e) {
-			e.printStackTrace();
-			return null;
-		}
+		java.lang.String css)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .updateLookAndFeel(groupId, privateLayout, layoutId,
+			themeId, colorSchemeId, css);
 	}
 
 	public static com.liferay.portal.kernel.model.Layout updateName(
-		long layoutId, java.lang.String name, java.lang.String languageId) {
-        try {
-            return getService().updateName(layoutId, name, languageId);
-        } catch (com.liferay.portal.kernel.exception.PortalException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
+		long layoutId, java.lang.String name, java.lang.String languageId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().updateName(layoutId, name, languageId);
+	}
 
 	public static com.liferay.portal.kernel.model.Layout updatePriority(
-			long groupId, boolean privateLayout, long layoutId, int priority)
+		long groupId, boolean privateLayout, long layoutId, int priority)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().updatePriority(groupId,privateLayout, layoutId, priority);
+		return getService()
+				   .updatePriority(groupId, privateLayout, layoutId, priority);
 	}
 
 	/**
@@ -140,6 +133,11 @@ public class AngularLayoutServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException {
 		getService()
 			.setLayouts(groupId, privateLayout, parentLayoutId, layoutIds);
+	}
+
+	public static void updatePriorities(long groupId, boolean privateLayout)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().updatePriorities(groupId, privateLayout);
 	}
 
 	public static AngularLayoutService getService() {

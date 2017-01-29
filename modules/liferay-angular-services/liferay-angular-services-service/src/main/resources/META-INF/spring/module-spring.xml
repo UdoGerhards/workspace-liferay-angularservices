@@ -13,6 +13,9 @@
 	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularLayoutLocalServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularLayoutLocalService" />
 	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularLayoutServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularLayoutService" />
 	<bean class="eu.gerhards.liferay.services.angular.service.persistence.impl.AngularLayoutPersistenceImpl" id="eu.gerhards.liferay.services.angular.service.persistence.AngularLayoutPersistence" parent="basePersistence" />
+	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularLayoutSetLocalServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularLayoutSetLocalService" />
+	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularLayoutSetServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularLayoutSetService" />
+	<bean class="eu.gerhards.liferay.services.angular.service.persistence.impl.AngularLayoutSetPersistenceImpl" id="eu.gerhards.liferay.services.angular.service.persistence.AngularLayoutSetPersistence" parent="basePersistence" />
 	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularOrganizationLocalServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularOrganizationLocalService" />
 	<bean class="eu.gerhards.liferay.services.angular.service.impl.AngularOrganizationServiceImpl" id="eu.gerhards.liferay.services.angular.service.AngularOrganizationService" />
 	<bean class="eu.gerhards.liferay.services.angular.service.persistence.impl.AngularOrganizationPersistenceImpl" id="eu.gerhards.liferay.services.angular.service.persistence.AngularOrganizationPersistence" parent="basePersistence" />

@@ -13,6 +13,9 @@
 	<model name="eu.gerhards.liferay.services.angular.model.AngularLayout">
 		<field name="layoutId" type="long" />
 	</model>
+	<model name="eu.gerhards.liferay.services.angular.model.AngularLayoutSet">
+		<field name="layoutSetId" type="long" />
+	</model>
 	<model name="eu.gerhards.liferay.services.angular.model.AngularOrganization">
 		<field name="organizationId" type="long" />
 	</model>

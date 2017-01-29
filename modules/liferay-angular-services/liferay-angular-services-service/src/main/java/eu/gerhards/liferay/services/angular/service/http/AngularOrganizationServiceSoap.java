@@ -64,10 +64,10 @@ import java.rmi.RemoteException;
  */
 @ProviderType
 public class AngularOrganizationServiceSoap {
-	public static com.liferay.portal.kernel.model.Organization getOrganization(long organizationId)
+	public static Organization getOrganization(long organizationId)
 		throws RemoteException {
 		try {
-			com.liferay.portal.kernel.model.Organization returnValue = AngularOrganizationServiceUtil.getOrganization(organizationId);
+			Organization returnValue = AngularOrganizationServiceUtil.getOrganization(organizationId);
 
 			return returnValue;
 		}
@@ -148,7 +148,7 @@ public class AngularOrganizationServiceSoap {
 		}
 	}
 
-	public static com.liferay.portal.kernel.model.Organization createOrganization(java.lang.String name,
+	public static Organization createOrganization(java.lang.String name,
 		java.lang.String type, long regionId, long countryId, long statusId,
 		java.lang.String comment, boolean site, long[] addresses,
 		long[] emailAddresses, long[] phones, long[] websites, long[] orgLabors)
@@ -167,7 +167,7 @@ public class AngularOrganizationServiceSoap {
 		}
 	}
 
-	public static com.liferay.portal.kernel.model.Organization updateOrganization(long organizationId,
+	public static Organization updateOrganization(long organizationId,
 		java.lang.String name, java.lang.String type, long regionId,
 		long countryId, long statusId, java.lang.String comment, boolean site,
 		long[] addresses, long[] emailAddresses, long[] phones,
@@ -186,7 +186,7 @@ public class AngularOrganizationServiceSoap {
 		}
 	}
 
-	public static com.liferay.portal.kernel.model.Organization deleteOrganization(long organizationId)
+	public static Organization deleteOrganization(long organizationId)
 		throws RemoteException {
 		try {
 			Organization returnValue = AngularOrganizationServiceUtil.deleteOrganization(organizationId);

@@ -14,15 +14,6 @@
 
 package eu.gerhards.liferay.services.angular.service.base;
 
-import com.liferay.announcements.kernel.service.persistence.AnnouncementsDeliveryPersistence;
-import com.liferay.asset.kernel.service.persistence.AssetEntryFinder;
-import com.liferay.asset.kernel.service.persistence.AssetEntryPersistence;
-import com.liferay.document.library.kernel.service.persistence.DLFileEntryFinder;
-import com.liferay.document.library.kernel.service.persistence.DLFileEntryPersistence;
-import com.liferay.document.library.kernel.service.persistence.DLFileRankFinder;
-import com.liferay.document.library.kernel.service.persistence.DLFileRankPersistence;
-import com.liferay.expando.kernel.service.persistence.ExpandoRowPersistence;
-import com.liferay.message.boards.kernel.service.persistence.*;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
@@ -31,15 +22,10 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.module.framework.service.IdentifiableOSGiService;
 import com.liferay.portal.kernel.service.BaseServiceImpl;
-import com.liferay.portal.kernel.service.persistence.*;
+import com.liferay.portal.kernel.service.persistence.ClassNamePersistence;
+import com.liferay.portal.kernel.service.persistence.UserPersistence;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.spring.extender.service.ServiceReference;
-import com.liferay.ratings.kernel.service.persistence.RatingsStatsFinder;
-import com.liferay.ratings.kernel.service.persistence.RatingsStatsPersistence;
-import com.liferay.social.kernel.service.persistence.SocialActivityFinder;
-import com.liferay.social.kernel.service.persistence.SocialActivityPersistence;
-import com.liferay.social.kernel.service.persistence.SocialRelationPersistence;
-import com.liferay.social.kernel.service.persistence.SocialRequestPersistence;
 import eu.gerhards.liferay.services.angular.model.AngularUserGroup;
 import eu.gerhards.liferay.services.angular.service.AngularUserGroupService;
 import eu.gerhards.liferay.services.angular.service.persistence.*;
@@ -292,6 +278,63 @@ public abstract class AngularUserGroupServiceBaseImpl extends BaseServiceImpl
 	public void setAngularLayoutPersistence(
 		AngularLayoutPersistence angularLayoutPersistence) {
 		this.angularLayoutPersistence = angularLayoutPersistence;
+	}
+
+	/**
+	 * Returns the LayoutSet local service.
+	 *
+	 * @return the LayoutSet local service
+	 */
+	public eu.gerhards.liferay.services.angular.service.AngularLayoutSetLocalService getAngularLayoutSetLocalService() {
+		return angularLayoutSetLocalService;
+	}
+
+	/**
+	 * Sets the LayoutSet local service.
+	 *
+	 * @param angularLayoutSetLocalService the LayoutSet local service
+	 */
+	public void setAngularLayoutSetLocalService(
+		eu.gerhards.liferay.services.angular.service.AngularLayoutSetLocalService angularLayoutSetLocalService) {
+		this.angularLayoutSetLocalService = angularLayoutSetLocalService;
+	}
+
+	/**
+	 * Returns the LayoutSet remote service.
+	 *
+	 * @return the LayoutSet remote service
+	 */
+	public eu.gerhards.liferay.services.angular.service.AngularLayoutSetService getAngularLayoutSetService() {
+		return angularLayoutSetService;
+	}
+
+	/**
+	 * Sets the LayoutSet remote service.
+	 *
+	 * @param angularLayoutSetService the LayoutSet remote service
+	 */
+	public void setAngularLayoutSetService(
+		eu.gerhards.liferay.services.angular.service.AngularLayoutSetService angularLayoutSetService) {
+		this.angularLayoutSetService = angularLayoutSetService;
+	}
+
+	/**
+	 * Returns the LayoutSet persistence.
+	 *
+	 * @return the LayoutSet persistence
+	 */
+	public AngularLayoutSetPersistence getAngularLayoutSetPersistence() {
+		return angularLayoutSetPersistence;
+	}
+
+	/**
+	 * Sets the LayoutSet persistence.
+	 *
+	 * @param angularLayoutSetPersistence the LayoutSet persistence
+	 */
+	public void setAngularLayoutSetPersistence(
+		AngularLayoutSetPersistence angularLayoutSetPersistence) {
+		this.angularLayoutSetPersistence = angularLayoutSetPersistence;
 	}
 
 	/**
@@ -1144,6 +1187,12 @@ public abstract class AngularUserGroupServiceBaseImpl extends BaseServiceImpl
 	protected eu.gerhards.liferay.services.angular.service.AngularLayoutService angularLayoutService;
 	@BeanReference(type = AngularLayoutPersistence.class)
 	protected AngularLayoutPersistence angularLayoutPersistence;
+	@BeanReference(type = eu.gerhards.liferay.services.angular.service.AngularLayoutSetLocalService.class)
+	protected eu.gerhards.liferay.services.angular.service.AngularLayoutSetLocalService angularLayoutSetLocalService;
+	@BeanReference(type = eu.gerhards.liferay.services.angular.service.AngularLayoutSetService.class)
+	protected eu.gerhards.liferay.services.angular.service.AngularLayoutSetService angularLayoutSetService;
+	@BeanReference(type = AngularLayoutSetPersistence.class)
+	protected AngularLayoutSetPersistence angularLayoutSetPersistence;
 	@BeanReference(type = eu.gerhards.liferay.services.angular.service.AngularOrganizationLocalService.class)
 	protected eu.gerhards.liferay.services.angular.service.AngularOrganizationLocalService angularOrganizationLocalService;
 	@BeanReference(type = eu.gerhards.liferay.services.angular.service.AngularOrganizationService.class)
@@ -1226,215 +1275,4 @@ public abstract class AngularUserGroupServiceBaseImpl extends BaseServiceImpl
 	protected com.liferay.portal.kernel.service.UserService userService;
 	@ServiceReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-
-	@BeanReference(type = UserFinder.class)
-	protected UserFinder userFinder;
-	@BeanReference(type = com.liferay.mail.kernel.service.MailService.class)
-	protected com.liferay.mail.kernel.service.MailService mailService;
-	@BeanReference(type = com.liferay.portal.kernel.service.BrowserTrackerLocalService.class)
-	protected com.liferay.portal.kernel.service.BrowserTrackerLocalService browserTrackerLocalService;
-	@BeanReference(type = BrowserTrackerPersistence.class)
-	protected BrowserTrackerPersistence browserTrackerPersistence;
-	@BeanReference(type = com.liferay.portal.kernel.service.CompanyLocalService.class)
-	protected com.liferay.portal.kernel.service.CompanyLocalService companyLocalService;
-	@BeanReference(type = com.liferay.portal.kernel.service.CompanyService.class)
-	protected com.liferay.portal.kernel.service.CompanyService companyService;
-	@BeanReference(type = CompanyPersistence.class)
-	protected CompanyPersistence companyPersistence;
-	@BeanReference(type = com.liferay.portal.kernel.service.ContactLocalService.class)
-	protected com.liferay.portal.kernel.service.ContactLocalService contactLocalService;
-	@BeanReference(type = com.liferay.portal.kernel.service.ContactService.class)
-	protected com.liferay.portal.kernel.service.ContactService contactService;
-	@BeanReference(type = ContactPersistence.class)
-	protected ContactPersistence contactPersistence;
-	@BeanReference(type = com.liferay.portal.kernel.service.GroupLocalService.class)
-	protected com.liferay.portal.kernel.service.GroupLocalService groupLocalService;
-	@BeanReference(type = com.liferay.portal.kernel.service.GroupService.class)
-	protected com.liferay.portal.kernel.service.GroupService groupService;
-	@BeanReference(type = GroupPersistence.class)
-	protected GroupPersistence groupPersistence;
-	@BeanReference(type = GroupFinder.class)
-	protected GroupFinder groupFinder;
-	@BeanReference(type = com.liferay.portal.kernel.service.ImageLocalService.class)
-	protected com.liferay.portal.kernel.service.ImageLocalService imageLocalService;
-	@BeanReference(type = com.liferay.portal.kernel.service.ImageService.class)
-	protected com.liferay.portal.kernel.service.ImageService imageService;
-	@BeanReference(type = ImagePersistence.class)
-	protected ImagePersistence imagePersistence;
-	@BeanReference(type = com.liferay.portal.kernel.service.LayoutLocalService.class)
-	protected com.liferay.portal.kernel.service.LayoutLocalService layoutLocalService;
-	@BeanReference(type = com.liferay.portal.kernel.service.LayoutService.class)
-	protected com.liferay.portal.kernel.service.LayoutService layoutService;
-	@BeanReference(type = LayoutPersistence.class)
-	protected LayoutPersistence layoutPersistence;
-	@BeanReference(type = LayoutFinder.class)
-	protected LayoutFinder layoutFinder;
-	@BeanReference(type = com.liferay.portal.kernel.service.MembershipRequestLocalService.class)
-	protected com.liferay.portal.kernel.service.MembershipRequestLocalService membershipRequestLocalService;
-	@BeanReference(type = com.liferay.portal.kernel.service.MembershipRequestService.class)
-	protected com.liferay.portal.kernel.service.MembershipRequestService membershipRequestService;
-	@BeanReference(type = MembershipRequestPersistence.class)
-	protected MembershipRequestPersistence membershipRequestPersistence;
-	@BeanReference(type = com.liferay.portal.kernel.service.OrganizationLocalService.class)
-	protected com.liferay.portal.kernel.service.OrganizationLocalService organizationLocalService;
-	@BeanReference(type = com.liferay.portal.kernel.service.OrganizationService.class)
-	protected com.liferay.portal.kernel.service.OrganizationService organizationService;
-	@BeanReference(type = OrganizationPersistence.class)
-	protected OrganizationPersistence organizationPersistence;
-	@BeanReference(type = OrganizationFinder.class)
-	protected OrganizationFinder organizationFinder;
-	@BeanReference(type = com.liferay.portal.kernel.service.PasswordPolicyLocalService.class)
-	protected com.liferay.portal.kernel.service.PasswordPolicyLocalService passwordPolicyLocalService;
-	@BeanReference(type = com.liferay.portal.kernel.service.PasswordPolicyService.class)
-	protected com.liferay.portal.kernel.service.PasswordPolicyService passwordPolicyService;
-	@BeanReference(type = PasswordPolicyPersistence.class)
-	protected PasswordPolicyPersistence passwordPolicyPersistence;
-	@BeanReference(type = PasswordPolicyFinder.class)
-	protected PasswordPolicyFinder passwordPolicyFinder;
-	@BeanReference(type = com.liferay.portal.kernel.service.PasswordPolicyRelLocalService.class)
-	protected com.liferay.portal.kernel.service.PasswordPolicyRelLocalService passwordPolicyRelLocalService;
-	@BeanReference(type = PasswordPolicyRelPersistence.class)
-	protected PasswordPolicyRelPersistence passwordPolicyRelPersistence;
-	@BeanReference(type = com.liferay.portal.kernel.service.PasswordTrackerLocalService.class)
-	protected com.liferay.portal.kernel.service.PasswordTrackerLocalService passwordTrackerLocalService;
-	@BeanReference(type = PasswordTrackerPersistence.class)
-	protected PasswordTrackerPersistence passwordTrackerPersistence;
-	@BeanReference(type = com.liferay.portal.kernel.service.RecentLayoutBranchLocalService.class)
-	protected com.liferay.portal.kernel.service.RecentLayoutBranchLocalService recentLayoutBranchLocalService;
-	@BeanReference(type = RecentLayoutBranchPersistence.class)
-	protected RecentLayoutBranchPersistence recentLayoutBranchPersistence;
-	@BeanReference(type = com.liferay.portal.kernel.service.RecentLayoutRevisionLocalService.class)
-	protected com.liferay.portal.kernel.service.RecentLayoutRevisionLocalService recentLayoutRevisionLocalService;
-	@BeanReference(type = RecentLayoutRevisionPersistence.class)
-	protected RecentLayoutRevisionPersistence recentLayoutRevisionPersistence;
-	@BeanReference(type = com.liferay.portal.kernel.service.RecentLayoutSetBranchLocalService.class)
-	protected com.liferay.portal.kernel.service.RecentLayoutSetBranchLocalService recentLayoutSetBranchLocalService;
-	@BeanReference(type = RecentLayoutSetBranchPersistence.class)
-	protected RecentLayoutSetBranchPersistence recentLayoutSetBranchPersistence;
-	@BeanReference(type = com.liferay.portal.kernel.service.RoleLocalService.class)
-	protected com.liferay.portal.kernel.service.RoleLocalService roleLocalService;
-	@BeanReference(type = com.liferay.portal.kernel.service.RoleService.class)
-	protected com.liferay.portal.kernel.service.RoleService roleService;
-	@BeanReference(type = RolePersistence.class)
-	protected RolePersistence rolePersistence;
-	@BeanReference(type = RoleFinder.class)
-	protected RoleFinder roleFinder;
-	@BeanReference(type = com.liferay.portal.kernel.service.SubscriptionLocalService.class)
-	protected com.liferay.portal.kernel.service.SubscriptionLocalService subscriptionLocalService;
-	@BeanReference(type = SubscriptionPersistence.class)
-	protected SubscriptionPersistence subscriptionPersistence;
-	@BeanReference(type = com.liferay.portal.kernel.service.TeamLocalService.class)
-	protected com.liferay.portal.kernel.service.TeamLocalService teamLocalService;
-	@BeanReference(type = com.liferay.portal.kernel.service.TeamService.class)
-	protected com.liferay.portal.kernel.service.TeamService teamService;
-	@BeanReference(type = TeamPersistence.class)
-	protected TeamPersistence teamPersistence;
-	@BeanReference(type = TeamFinder.class)
-	protected TeamFinder teamFinder;
-	@BeanReference(type = com.liferay.portal.kernel.service.TicketLocalService.class)
-	protected com.liferay.portal.kernel.service.TicketLocalService ticketLocalService;
-	@BeanReference(type = TicketPersistence.class)
-	protected TicketPersistence ticketPersistence;
-	@BeanReference(type = com.liferay.announcements.kernel.service.AnnouncementsDeliveryLocalService.class)
-	protected com.liferay.announcements.kernel.service.AnnouncementsDeliveryLocalService announcementsDeliveryLocalService;
-	@BeanReference(type = com.liferay.announcements.kernel.service.AnnouncementsDeliveryService.class)
-	protected com.liferay.announcements.kernel.service.AnnouncementsDeliveryService announcementsDeliveryService;
-	@BeanReference(type = AnnouncementsDeliveryPersistence.class)
-	protected AnnouncementsDeliveryPersistence announcementsDeliveryPersistence;
-	@BeanReference(type = com.liferay.asset.kernel.service.AssetEntryLocalService.class)
-	protected com.liferay.asset.kernel.service.AssetEntryLocalService assetEntryLocalService;
-	@BeanReference(type = com.liferay.asset.kernel.service.AssetEntryService.class)
-	protected com.liferay.asset.kernel.service.AssetEntryService assetEntryService;
-	@BeanReference(type = AssetEntryPersistence.class)
-	protected AssetEntryPersistence assetEntryPersistence;
-	@BeanReference(type = AssetEntryFinder.class)
-	protected AssetEntryFinder assetEntryFinder;
-	@BeanReference(type = com.liferay.document.library.kernel.service.DLFileEntryLocalService.class)
-	protected com.liferay.document.library.kernel.service.DLFileEntryLocalService dlFileEntryLocalService;
-	@BeanReference(type = com.liferay.document.library.kernel.service.DLFileEntryService.class)
-	protected com.liferay.document.library.kernel.service.DLFileEntryService dlFileEntryService;
-	@BeanReference(type = DLFileEntryPersistence.class)
-	protected DLFileEntryPersistence dlFileEntryPersistence;
-	@BeanReference(type = DLFileEntryFinder.class)
-	protected DLFileEntryFinder dlFileEntryFinder;
-	@BeanReference(type = com.liferay.document.library.kernel.service.DLFileRankLocalService.class)
-	protected com.liferay.document.library.kernel.service.DLFileRankLocalService dlFileRankLocalService;
-	@BeanReference(type = DLFileRankPersistence.class)
-	protected DLFileRankPersistence dlFileRankPersistence;
-	@BeanReference(type = DLFileRankFinder.class)
-	protected DLFileRankFinder dlFileRankFinder;
-	@BeanReference(type = com.liferay.expando.kernel.service.ExpandoRowLocalService.class)
-	protected com.liferay.expando.kernel.service.ExpandoRowLocalService expandoRowLocalService;
-	@BeanReference(type = ExpandoRowPersistence.class)
-	protected ExpandoRowPersistence expandoRowPersistence;
-	@BeanReference(type = com.liferay.message.boards.kernel.service.MBBanLocalService.class)
-	protected com.liferay.message.boards.kernel.service.MBBanLocalService mbBanLocalService;
-	@BeanReference(type = com.liferay.message.boards.kernel.service.MBBanService.class)
-	protected com.liferay.message.boards.kernel.service.MBBanService mbBanService;
-	@BeanReference(type = MBBanPersistence.class)
-	protected MBBanPersistence mbBanPersistence;
-	@BeanReference(type = com.liferay.message.boards.kernel.service.MBMessageLocalService.class)
-	protected com.liferay.message.boards.kernel.service.MBMessageLocalService mbMessageLocalService;
-	@BeanReference(type = com.liferay.message.boards.kernel.service.MBMessageService.class)
-	protected com.liferay.message.boards.kernel.service.MBMessageService mbMessageService;
-	@BeanReference(type = MBMessagePersistence.class)
-	protected MBMessagePersistence mbMessagePersistence;
-	@BeanReference(type = MBMessageFinder.class)
-	protected MBMessageFinder mbMessageFinder;
-	@BeanReference(type = com.liferay.message.boards.kernel.service.MBStatsUserLocalService.class)
-	protected com.liferay.message.boards.kernel.service.MBStatsUserLocalService mbStatsUserLocalService;
-	@BeanReference(type = MBStatsUserPersistence.class)
-	protected MBStatsUserPersistence mbStatsUserPersistence;
-	@BeanReference(type = com.liferay.message.boards.kernel.service.MBThreadFlagLocalService.class)
-	protected com.liferay.message.boards.kernel.service.MBThreadFlagLocalService mbThreadFlagLocalService;
-	@BeanReference(type = MBThreadFlagPersistence.class)
-	protected MBThreadFlagPersistence mbThreadFlagPersistence;
-	@BeanReference(type = com.liferay.ratings.kernel.service.RatingsStatsLocalService.class)
-	protected com.liferay.ratings.kernel.service.RatingsStatsLocalService ratingsStatsLocalService;
-	@BeanReference(type = RatingsStatsPersistence.class)
-	protected RatingsStatsPersistence ratingsStatsPersistence;
-	@BeanReference(type = RatingsStatsFinder.class)
-	protected RatingsStatsFinder ratingsStatsFinder;
-	@BeanReference(type = com.liferay.social.kernel.service.SocialActivityLocalService.class)
-	protected com.liferay.social.kernel.service.SocialActivityLocalService socialActivityLocalService;
-	@BeanReference(type = com.liferay.social.kernel.service.SocialActivityService.class)
-	protected com.liferay.social.kernel.service.SocialActivityService socialActivityService;
-	@BeanReference(type = SocialActivityPersistence.class)
-	protected SocialActivityPersistence socialActivityPersistence;
-	@BeanReference(type = SocialActivityFinder.class)
-	protected SocialActivityFinder socialActivityFinder;
-	@BeanReference(type = com.liferay.social.kernel.service.SocialRelationLocalService.class)
-	protected com.liferay.social.kernel.service.SocialRelationLocalService socialRelationLocalService;
-	@BeanReference(type = SocialRelationPersistence.class)
-	protected SocialRelationPersistence socialRelationPersistence;
-	@BeanReference(type = com.liferay.social.kernel.service.SocialRequestLocalService.class)
-	protected com.liferay.social.kernel.service.SocialRequestLocalService socialRequestLocalService;
-	@BeanReference(type = com.liferay.social.kernel.service.SocialRequestService.class)
-	protected com.liferay.social.kernel.service.SocialRequestService socialRequestService;
-	@BeanReference(type = SocialRequestPersistence.class)
-	protected SocialRequestPersistence socialRequestPersistence;
-	@BeanReference(type = com.liferay.portal.kernel.service.UserGroupLocalService.class)
-	protected com.liferay.portal.kernel.service.UserGroupLocalService userGroupLocalService;
-	@BeanReference(type = com.liferay.portal.kernel.service.UserGroupService.class)
-	protected com.liferay.portal.kernel.service.UserGroupService userGroupService;
-	@BeanReference(type = UserGroupPersistence.class)
-	protected UserGroupPersistence userGroupPersistence;
-	@BeanReference(type = UserGroupFinder.class)
-	protected UserGroupFinder userGroupFinder;
-	@BeanReference(type = com.liferay.portal.kernel.service.UserGroupRoleLocalService.class)
-	protected com.liferay.portal.kernel.service.UserGroupRoleLocalService userGroupRoleLocalService;
-	@BeanReference(type = com.liferay.portal.kernel.service.UserGroupRoleService.class)
-	protected com.liferay.portal.kernel.service.UserGroupRoleService userGroupRoleService;
-	@BeanReference(type = UserGroupRolePersistence.class)
-	protected UserGroupRolePersistence userGroupRolePersistence;
-	@BeanReference(type = UserGroupRoleFinder.class)
-	protected UserGroupRoleFinder userGroupRoleFinder;
-	@BeanReference(type = com.liferay.portal.kernel.service.UserIdMapperLocalService.class)
-	protected com.liferay.portal.kernel.service.UserIdMapperLocalService userIdMapperLocalService;
-	@BeanReference(type = UserIdMapperPersistence.class)
-	protected UserIdMapperPersistence userIdMapperPersistence;
-	@BeanReference(type = com.liferay.portal.kernel.service.WorkflowInstanceLinkLocalService.class)
-	protected com.liferay.portal.kernel.service.WorkflowInstanceLinkLocalService workflowInstanceLinkLocalService;
-	@BeanReference(type = WorkflowInstanceLinkPersistence.class)
-	protected WorkflowInstanceLinkPersistence workflowInstanceLinkPersistence;
 }

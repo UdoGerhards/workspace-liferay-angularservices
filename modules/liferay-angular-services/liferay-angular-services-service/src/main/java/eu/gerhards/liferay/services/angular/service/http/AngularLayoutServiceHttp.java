@@ -145,8 +145,8 @@ public class AngularLayoutServiceHttp {
 	}
 
 	public static com.liferay.portal.kernel.model.Layout createLayout(
-		HttpPrincipal httpPrincipal, long userId, long groupId,
-		boolean privateLayout, long parentLayoutId,
+		HttpPrincipal httpPrincipal, long groupId, boolean privateLayout,
+		long parentLayoutId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
@@ -159,8 +159,8 @@ public class AngularLayoutServiceHttp {
 			MethodKey methodKey = new MethodKey(AngularLayoutServiceUtil.class,
 					"createLayout", _createLayoutParameterTypes3);
 
-			MethodHandler methodHandler = new MethodHandler(methodKey, userId,
-					groupId, privateLayout, parentLayoutId, nameMap, titleMap,
+			MethodHandler methodHandler = new MethodHandler(methodKey, groupId,
+					privateLayout, parentLayoutId, nameMap, titleMap,
 					descriptionMap, keywordsMap, robotsMap, type, typeSettings,
 					hidden, friendlyURLMap);
 
@@ -231,7 +231,8 @@ public class AngularLayoutServiceHttp {
 
 	public static com.liferay.portal.kernel.model.Layout updateName(
 		HttpPrincipal httpPrincipal, long layoutId, java.lang.String name,
-		java.lang.String languageId) {
+		java.lang.String languageId)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(AngularLayoutServiceUtil.class,
 					"updateName", _updateNameParameterTypes5);
@@ -245,6 +246,10 @@ public class AngularLayoutServiceHttp {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception e) {
+				if (e instanceof com.liferay.portal.kernel.exception.PortalException) {
+					throw (com.liferay.portal.kernel.exception.PortalException)e;
+				}
+
 				throw new com.liferay.portal.kernel.exception.SystemException(e);
 			}
 
@@ -291,14 +296,15 @@ public class AngularLayoutServiceHttp {
 	}
 
 	public static com.liferay.portal.kernel.model.Layout updatePriority(
-		HttpPrincipal httpPrincipal, long layoutId, int priority)
+		HttpPrincipal httpPrincipal, long groupId, boolean privateLayout,
+		long layoutId, int priority)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(AngularLayoutServiceUtil.class,
 					"updatePriority", _updatePriorityParameterTypes7);
 
-			MethodHandler methodHandler = new MethodHandler(methodKey,
-					layoutId, priority);
+			MethodHandler methodHandler = new MethodHandler(methodKey, groupId,
+					privateLayout, layoutId, priority);
 
 			Object returnObj = null;
 
@@ -351,7 +357,8 @@ public class AngularLayoutServiceHttp {
 	public static com.liferay.portal.kernel.model.Layout updateLookAndFeel(
 		HttpPrincipal httpPrincipal, long groupId, boolean privateLayout,
 		long layoutId, java.lang.String themeId,
-		java.lang.String colorSchemeId, java.lang.String css) {
+		java.lang.String colorSchemeId, java.lang.String css)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(AngularLayoutServiceUtil.class,
 					"updateLookAndFeel", _updateLookAndFeelParameterTypes9);
@@ -365,10 +372,42 @@ public class AngularLayoutServiceHttp {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception e) {
+				if (e instanceof com.liferay.portal.kernel.exception.PortalException) {
+					throw (com.liferay.portal.kernel.exception.PortalException)e;
+				}
+
 				throw new com.liferay.portal.kernel.exception.SystemException(e);
 			}
 
 			return (com.liferay.portal.kernel.model.Layout)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
+	public static void updatePriorities(HttpPrincipal httpPrincipal,
+		long groupId, boolean privateLayout)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		try {
+			MethodKey methodKey = new MethodKey(AngularLayoutServiceUtil.class,
+					"updatePriorities", _updatePrioritiesParameterTypes10);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey, groupId,
+					privateLayout);
+
+			try {
+				TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				if (e instanceof com.liferay.portal.kernel.exception.PortalException) {
+					throw (com.liferay.portal.kernel.exception.PortalException)e;
+				}
+
+				throw new com.liferay.portal.kernel.exception.SystemException(e);
+			}
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException se) {
 			_log.error(se, se);
@@ -388,10 +427,10 @@ public class AngularLayoutServiceHttp {
 			long.class, boolean.class, long.class, long[].class
 		};
 	private static final Class<?>[] _createLayoutParameterTypes3 = new Class[] {
-			long.class, long.class, boolean.class, long.class,
+			long.class, boolean.class, long.class, java.util.Map.class,
 			java.util.Map.class, java.util.Map.class, java.util.Map.class,
-			java.util.Map.class, java.util.Map.class, java.lang.String.class,
-			java.lang.String.class, boolean.class, java.util.Map.class
+			java.util.Map.class, java.lang.String.class, java.lang.String.class,
+			boolean.class, java.util.Map.class
 		};
 	private static final Class<?>[] _updateLayoutParameterTypes4 = new Class[] {
 			long.class, boolean.class, long.class, long.class,
@@ -406,7 +445,7 @@ public class AngularLayoutServiceHttp {
 			long.class, java.lang.String.class, java.lang.String.class
 		};
 	private static final Class<?>[] _updatePriorityParameterTypes7 = new Class[] {
-			long.class, int.class
+			long.class, boolean.class, long.class, int.class
 		};
 	private static final Class<?>[] _deleteLayoutParameterTypes8 = new Class[] {
 			long.class
@@ -414,5 +453,8 @@ public class AngularLayoutServiceHttp {
 	private static final Class<?>[] _updateLookAndFeelParameterTypes9 = new Class[] {
 			long.class, boolean.class, long.class, java.lang.String.class,
 			java.lang.String.class, java.lang.String.class
+		};
+	private static final Class<?>[] _updatePrioritiesParameterTypes10 = new Class[] {
+			long.class, boolean.class
 		};
 }

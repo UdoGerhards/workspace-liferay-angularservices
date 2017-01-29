@@ -16,8 +16,6 @@ package eu.gerhards.liferay.services.angular.service;
 
 import aQute.bnd.annotation.ProviderType;
 import com.liferay.osgi.util.ServiceTrackerFactory;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.UserGroupRole;
 import org.osgi.util.tracker.ServiceTracker;
 
@@ -42,23 +40,23 @@ public class AngularRoleServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link eu.gerhards.liferay.services.angular.service.impl.AngularRoleServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static Role createRole(java.lang.String name, int type,
-								  java.lang.String className,
-								  java.util.Map<java.util.Locale, java.lang.String> titleMap,
-								  java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-								  java.lang.String subType)
+	public static com.liferay.portal.kernel.model.Role createRole(java.lang.String name, int type,
+		java.lang.String className,
+		java.util.Map<java.util.Locale, java.lang.String> titleMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		java.lang.String subType)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .createRole(name, type, className, titleMap, descriptionMap,
 			subType);
 	}
 
-	public static Role deleteRole(long roleId)
+	public static com.liferay.portal.kernel.model.Role deleteRole(long roleId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteRole(roleId);
 	}
 
-	public static Role updateRole(long roleId, java.lang.String name, int type,
+	public static com.liferay.portal.kernel.model.Role updateRole(long roleId, java.lang.String name, int type,
 		java.lang.String className,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
@@ -84,35 +82,23 @@ public class AngularRoleServiceUtil {
 		return getService().checkUserGroupRoles(userId, userGroupRoles);
 	}
 
-	public static java.util.List<Role> getOrganizationRoles(long companyId) {
+	public static java.util.List<com.liferay.portal.kernel.model.Role> getOrganizationRoles(long companyId) {
 		return getService().getOrganizationRoles(companyId);
 	}
 
-	public static java.util.List<Role> getRegularRoles(long companyId) throws PortalException {
-		try {
-            return getService().getRegularRoles(companyId);
-        } catch (com.liferay.portal.kernel.exception.PortalException e) {
-            e.printStackTrace();
-            throw e;
-        }
-    }
+	public static java.util.List<com.liferay.portal.kernel.model.Role> getRegularRoles(long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getRegularRoles(companyId);
+	}
 
-	public static java.util.List<Role> getRolesInCompany(long companyId) throws PortalException {
-		try {
-            return getService().getRolesInCompany(companyId);
-        } catch (com.liferay.portal.kernel.exception.PortalException e) {
-            e.printStackTrace();
-            throw e;
-        }
-    }
+	public static java.util.List<com.liferay.portal.kernel.model.Role> getRolesInCompany(long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getRolesInCompany(companyId);
+	}
 
-	public static java.util.List<Role> getSiteRoles(long companyId) throws PortalException {
-		try {
-			return getService().getSiteRoles(companyId);
-		} catch (com.liferay.portal.kernel.exception.PortalException e) {
-			e.printStackTrace();
-			throw e;
-		}
+	public static java.util.List<com.liferay.portal.kernel.model.Role> getSiteRoles(long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getSiteRoles(companyId);
 	}
 
 	public static long[] checkRoles(long userId, long[] roleIds)

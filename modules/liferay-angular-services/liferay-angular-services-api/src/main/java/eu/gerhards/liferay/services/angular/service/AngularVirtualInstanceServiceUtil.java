@@ -39,6 +39,49 @@ public class AngularVirtualInstanceServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link eu.gerhards.liferay.services.angular.service.impl.AngularVirtualInstanceServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static com.liferay.portal.kernel.model.Company createVirtualInstance(
+		java.lang.String webId, java.lang.String virtualHostname,
+		java.lang.String mx, boolean system, int maxUsers, boolean active)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .createVirtualInstance(webId, virtualHostname, mx, system,
+			maxUsers, active);
+	}
+
+	public static com.liferay.portal.kernel.model.Company getVirtualInstance(
+		long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getVirtualInstance(companyId);
+	}
+
+	public static com.liferay.portal.kernel.model.Company updateLogo(
+		long companyId, byte[] bytes)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().updateLogo(companyId, bytes);
+	}
+
+	public static com.liferay.portal.kernel.model.Company updateVirtualInstance(
+		long companyId, java.lang.String virtualHostname, java.lang.String mx,
+		int maxUsers, boolean active)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .updateVirtualInstance(companyId, virtualHostname, mx,
+			maxUsers, active);
+	}
+
+	public static com.liferay.portal.kernel.model.Company updateVirtualInstanceExtended(
+		long companyId, java.lang.String virtualHostname, java.lang.String mx,
+		java.lang.String homeUrl, boolean logo, byte[] logoBytes,
+		java.lang.String name, java.lang.String legalName,
+		java.lang.String legalId, java.lang.String legalType,
+		java.lang.String sicCode, java.lang.String tickerSymbol,
+		java.lang.String industry, java.lang.String type, java.lang.String size)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .updateVirtualInstanceExtended(companyId, virtualHostname,
+			mx, homeUrl, logo, logoBytes, name, legalName, legalId, legalType,
+			sicCode, tickerSymbol, industry, type, size);
+	}
 
 	/**
 	* Returns the OSGi service identifier.
@@ -49,15 +92,35 @@ public class AngularVirtualInstanceServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
+	public static java.util.List<com.liferay.portal.kernel.model.Company> getAvailableInstances()
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getAvailableInstances();
+	}
+
+	public static void deleteCompanyLogo(long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().deleteCompanyLogo(companyId);
+	}
+
+	public static void deleteVirtualInstance(long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().deleteVirtualInstance(companyId);
+	}
+
+	public static void updateCompanySecurity(long companyId,
+		java.lang.String authType, boolean autoLogin, boolean sendPassword,
+		boolean strangers, boolean strangesWithMx, boolean strangersVerify,
+		boolean siteLogo)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService()
+			.updateCompanySecurity(companyId, authType, autoLogin,
+			sendPassword, strangers, strangesWithMx, strangersVerify, siteLogo);
+	}
+
 	public static AngularVirtualInstanceService getService() {
 		return _serviceTracker.getService();
 	}
 
 	private static ServiceTracker<AngularVirtualInstanceService, AngularVirtualInstanceService> _serviceTracker =
 		ServiceTrackerFactory.open(AngularVirtualInstanceService.class);
-
-	public static java.util.List<com.liferay.portal.kernel.model.Company> getAvailableInstances()
-			throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getAvailableInstances();
-	}
 }

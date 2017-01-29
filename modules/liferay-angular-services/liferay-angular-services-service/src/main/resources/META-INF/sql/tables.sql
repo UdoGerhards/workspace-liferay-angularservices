@@ -14,6 +14,10 @@ create table AngularServices_AngularLayout (
 	layoutId LONG not null primary key
 );
 
+create table AngularServices_AngularLayoutSet (
+	layoutSetId LONG not null primary key
+);
+
 create table AngularServices_AngularOrganization (
 	organizationId LONG not null primary key
 );

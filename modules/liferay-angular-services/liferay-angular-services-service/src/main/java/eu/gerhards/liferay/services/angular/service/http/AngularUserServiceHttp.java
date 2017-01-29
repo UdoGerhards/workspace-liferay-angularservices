@@ -75,7 +75,7 @@ public class AngularUserServiceHttp {
 				throw new com.liferay.portal.kernel.exception.SystemException(e);
 			}
 
-			return (com.liferay.portal.kernel.model.User)returnObj;
+			return (User)returnObj;
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException se) {
 			_log.error(se, se);
@@ -270,12 +270,43 @@ public class AngularUserServiceHttp {
 		}
 	}
 
+	public static java.util.List<Group> getUserSites(
+		HttpPrincipal httpPrincipal, long userId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		try {
+			MethodKey methodKey = new MethodKey(AngularUserServiceUtil.class,
+					"getUserSites", _getUserSitesParameterTypes7);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey, userId);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				if (e instanceof com.liferay.portal.kernel.exception.PortalException) {
+					throw (com.liferay.portal.kernel.exception.PortalException)e;
+				}
+
+				throw new com.liferay.portal.kernel.exception.SystemException(e);
+			}
+
+			return (java.util.List<Group>)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
 	public static java.util.List<Group> getUserGroups(
 		HttpPrincipal httpPrincipal, long userId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(AngularUserServiceUtil.class,
-					"getUserGroups", _getUserGroupsParameterTypes7);
+					"getUserGroups", _getUserGroupsParameterTypes8);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey, userId);
 
@@ -306,7 +337,7 @@ public class AngularUserServiceHttp {
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(AngularUserServiceUtil.class,
-					"getUserRoles", _getUserRolesParameterTypes8);
+					"getUserRoles", _getUserRolesParameterTypes9);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey, userId);
 
@@ -337,7 +368,7 @@ public class AngularUserServiceHttp {
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(AngularUserServiceUtil.class,
-					"getCompanyUsers", _getCompanyUsersParameterTypes9);
+					"getCompanyUsers", _getCompanyUsersParameterTypes10);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey, companyId);
 
@@ -369,7 +400,7 @@ public class AngularUserServiceHttp {
 		try {
 			MethodKey methodKey = new MethodKey(AngularUserServiceUtil.class,
 					"updateUserOrganizations",
-					_updateUserOrganizationsParameterTypes10);
+					_updateUserOrganizationsParameterTypes11);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey, userId,
 					organizationIds);
@@ -397,7 +428,7 @@ public class AngularUserServiceHttp {
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(AngularUserServiceUtil.class,
-					"updateUserPhones", _updateUserPhonesParameterTypes11);
+					"updateUserPhones", _updateUserPhonesParameterTypes12);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey, userId,
 					phones);
@@ -425,7 +456,7 @@ public class AngularUserServiceHttp {
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(AngularUserServiceUtil.class,
-					"updateUserWebsites", _updateUserWebsitesParameterTypes12);
+					"updateUserWebsites", _updateUserWebsitesParameterTypes13);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey, userId,
 					website);
@@ -454,7 +485,7 @@ public class AngularUserServiceHttp {
 		try {
 			MethodKey methodKey = new MethodKey(AngularUserServiceUtil.class,
 					"updateUserEmailAddresses",
-					_updateUserEmailAddressesParameterTypes13);
+					_updateUserEmailAddressesParameterTypes14);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey, userId,
 					emailAddresses);
@@ -485,7 +516,7 @@ public class AngularUserServiceHttp {
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(AngularUserServiceUtil.class,
-					"updateUserAddress", _updateUserAddressParameterTypes14);
+					"updateUserAddress", _updateUserAddressParameterTypes15);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey, userId,
 					addressId, street1, street2, street3, city, zip, regionId,
@@ -519,7 +550,7 @@ public class AngularUserServiceHttp {
 		try {
 			MethodKey methodKey = new MethodKey(AngularUserServiceUtil.class,
 					"updateUserUserGroups",
-					_updateUserUserGroupsParameterTypes15);
+					_updateUserUserGroupsParameterTypes16);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey, userId,
 					userGroupIds);
@@ -547,7 +578,7 @@ public class AngularUserServiceHttp {
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(AngularUserServiceUtil.class,
-					"updateUserRoles", _updateUserRolesParameterTypes16);
+					"updateUserRoles", _updateUserRolesParameterTypes17);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey, userId,
 					roleIds);
@@ -577,7 +608,7 @@ public class AngularUserServiceHttp {
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(AngularUserServiceUtil.class,
-					"addNewUser", _addNewUserParameterTypes17);
+					"addNewUser", _addNewUserParameterTypes18);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey,
 					screenName, emailAddress, companyId, locale, groupIds,
@@ -626,11 +657,11 @@ public class AngularUserServiceHttp {
 		java.util.List<EmailAddress> emailAddresses,
 		java.util.List<Phone> phones, java.util.List<Website> websites,
 		java.util.List<com.liferay.announcements.kernel.model.AnnouncementsDelivery> announcementsDelivers,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+								  com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(AngularUserServiceUtil.class,
-					"updateUser", _updateUserParameterTypes18);
+					"updateUser", _updateUserParameterTypes19);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey, userId,
 					oldPassword, newPassword1, newPassword2, passwordReset,
@@ -671,7 +702,7 @@ public class AngularUserServiceHttp {
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(AngularUserServiceUtil.class,
-					"deleteUserByEmail", _deleteUserByEmailParameterTypes19);
+					"deleteUserByEmail", _deleteUserByEmailParameterTypes20);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey,
 					emailAddress);
@@ -702,7 +733,7 @@ public class AngularUserServiceHttp {
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(AngularUserServiceUtil.class,
-					"deleteUserById", _deleteUserByIdParameterTypes20);
+					"deleteUserById", _deleteUserByIdParameterTypes21);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey, userId);
 
@@ -750,45 +781,48 @@ public class AngularUserServiceHttp {
 	private static final Class<?>[] _getUserOrganizationsParameterTypes6 = new Class[] {
 			long.class
 		};
-	private static final Class<?>[] _getUserGroupsParameterTypes7 = new Class[] {
+	private static final Class<?>[] _getUserSitesParameterTypes7 = new Class[] {
 			long.class
 		};
-	private static final Class<?>[] _getUserRolesParameterTypes8 = new Class[] {
+	private static final Class<?>[] _getUserGroupsParameterTypes8 = new Class[] {
 			long.class
 		};
-	private static final Class<?>[] _getCompanyUsersParameterTypes9 = new Class[] {
+	private static final Class<?>[] _getUserRolesParameterTypes9 = new Class[] {
 			long.class
 		};
-	private static final Class<?>[] _updateUserOrganizationsParameterTypes10 = new Class[] {
+	private static final Class<?>[] _getCompanyUsersParameterTypes10 = new Class[] {
+			long.class
+		};
+	private static final Class<?>[] _updateUserOrganizationsParameterTypes11 = new Class[] {
 			long.class, long[].class
 		};
-	private static final Class<?>[] _updateUserPhonesParameterTypes11 = new Class[] {
+	private static final Class<?>[] _updateUserPhonesParameterTypes12 = new Class[] {
 			long.class, long[].class
 		};
-	private static final Class<?>[] _updateUserWebsitesParameterTypes12 = new Class[] {
+	private static final Class<?>[] _updateUserWebsitesParameterTypes13 = new Class[] {
 			long.class, java.util.List.class
 		};
-	private static final Class<?>[] _updateUserEmailAddressesParameterTypes13 = new Class[] {
+	private static final Class<?>[] _updateUserEmailAddressesParameterTypes14 = new Class[] {
 			long.class, java.util.List.class
 		};
-	private static final Class<?>[] _updateUserAddressParameterTypes14 = new Class[] {
+	private static final Class<?>[] _updateUserAddressParameterTypes15 = new Class[] {
 			long.class, long.class, java.lang.String.class,
 			java.lang.String.class, java.lang.String.class,
 			java.lang.String.class, java.lang.String.class, long.class,
 			long.class, long.class, boolean.class, boolean.class
 		};
-	private static final Class<?>[] _updateUserUserGroupsParameterTypes15 = new Class[] {
+	private static final Class<?>[] _updateUserUserGroupsParameterTypes16 = new Class[] {
 			long.class, long[].class
 		};
-	private static final Class<?>[] _updateUserRolesParameterTypes16 = new Class[] {
+	private static final Class<?>[] _updateUserRolesParameterTypes17 = new Class[] {
 			long.class, long[].class
 		};
-	private static final Class<?>[] _addNewUserParameterTypes17 = new Class[] {
+	private static final Class<?>[] _addNewUserParameterTypes18 = new Class[] {
 			java.lang.String.class, java.lang.String.class, long.class,
 			java.lang.String.class, long[].class, long[].class, long[].class,
 			long[].class
 		};
-	private static final Class<?>[] _updateUserParameterTypes18 = new Class[] {
+	private static final Class<?>[] _updateUserParameterTypes19 = new Class[] {
 			long.class, java.lang.String.class, java.lang.String.class,
 			java.lang.String.class, boolean.class, java.lang.String.class,
 			java.lang.String.class, java.lang.String.class,
@@ -805,10 +839,10 @@ public class AngularUserServiceHttp {
 			java.util.List.class, java.util.List.class, java.util.List.class,
 			java.util.List.class, java.util.List.class, com.liferay.portal.kernel.service.ServiceContext.class
 		};
-	private static final Class<?>[] _deleteUserByEmailParameterTypes19 = new Class[] {
+	private static final Class<?>[] _deleteUserByEmailParameterTypes20 = new Class[] {
 			java.lang.String.class
 		};
-	private static final Class<?>[] _deleteUserByIdParameterTypes20 = new Class[] {
+	private static final Class<?>[] _deleteUserByIdParameterTypes21 = new Class[] {
 			long.class
 		};
 }

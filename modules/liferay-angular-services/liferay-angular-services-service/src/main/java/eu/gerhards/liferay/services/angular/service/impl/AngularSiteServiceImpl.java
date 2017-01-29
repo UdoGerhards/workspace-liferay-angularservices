@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.service.permission.PortalPermissionUtil;
@@ -131,7 +132,13 @@ public class AngularSiteServiceImpl extends AngularSiteServiceBaseImpl {
 
         _log.debug("    ... processing ...");
 
-        return groupService.addGroup(parentSiteId, liveGroupId,nameMap,descriptionMap,type, manualMembership, membershipRestriction,friendlyURL,site, active, null);
+        User user = this.getGuestOrUser();
+
+        com.liferay.portal.kernel.service.ServiceContext serviceContext = new com.liferay.portal.kernel.service.ServiceContext();
+        serviceContext.setUserId(user.getUserId());
+        serviceContext.setCompanyId(user.getCompanyId());
+
+        return GroupLocalServiceUtil.addGroup(user.getUserId(), parentSiteId, null, 0L, liveGroupId, nameMap, descriptionMap, type, manualMembership, membershipRestriction, friendlyURL, site, inheritContent, active, serviceContext);
     }
 
     @Override
@@ -145,7 +152,13 @@ public class AngularSiteServiceImpl extends AngularSiteServiceBaseImpl {
 
         _log.debug("    ... processing ...");
 
-        return groupService.updateGroup(siteId, parentSiteId,nameMap,descriptionMap,type, manualMembership,membershipRestriction,friendlyURL, inheritContent, active, null);
+        User user = this.getGuestOrUser();
+
+        com.liferay.portal.kernel.service.ServiceContext serviceContext = new com.liferay.portal.kernel.service.ServiceContext();
+        serviceContext.setUserId(user.getUserId());
+        serviceContext.setCompanyId(user.getCompanyId());
+
+        return GroupLocalServiceUtil.updateGroup(siteId, parentSiteId, nameMap, descriptionMap, type, manualMembership, membershipRestriction, friendlyURL, inheritContent, active, serviceContext);
     }
 
     @Override

@@ -160,6 +160,20 @@ public class AngularUserServiceSoap {
 		}
 	}
 
+	public static GroupSoap[] getUserSites(long userId)
+		throws RemoteException {
+		try {
+			java.util.List<Group> returnValue = AngularUserServiceUtil.getUserSites(userId);
+
+			return GroupSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static GroupSoap[] getUserGroups(long userId)
 		throws RemoteException {
 		try {
@@ -333,7 +347,7 @@ public class AngularUserServiceSoap {
 		java.util.List<EmailAddress> emailAddresses,
 		java.util.List<Phone> phones, java.util.List<Website> websites,
 		java.util.List<com.liferay.announcements.kernel.model.AnnouncementsDelivery> announcementsDelivers,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext) throws RemoteException {
+								  com.liferay.portal.kernel.service.ServiceContext serviceContext) throws RemoteException {
 		try {
 			User returnValue = AngularUserServiceUtil.updateUser(userId,
 					oldPassword, newPassword1, newPassword2, passwordReset,

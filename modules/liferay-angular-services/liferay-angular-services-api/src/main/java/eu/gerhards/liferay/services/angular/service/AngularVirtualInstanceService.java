@@ -52,6 +52,28 @@ public interface AngularVirtualInstanceService extends BaseService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link AngularVirtualInstanceServiceUtil} to access the Virtual instance remote service. Add custom service methods to {@link eu.gerhards.liferay.services.angular.service.impl.AngularVirtualInstanceServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public Company createVirtualInstance(java.lang.String webId,
+		java.lang.String virtualHostname, java.lang.String mx, boolean system,
+		int maxUsers, boolean active) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Company getVirtualInstance(long companyId) throws PortalException;
+
+	public Company updateLogo(long companyId, byte[] bytes)
+		throws PortalException;
+
+	public Company updateVirtualInstance(long companyId,
+		java.lang.String virtualHostname, java.lang.String mx, int maxUsers,
+		boolean active) throws PortalException;
+
+	public Company updateVirtualInstanceExtended(long companyId,
+		java.lang.String virtualHostname, java.lang.String mx,
+		java.lang.String homeUrl, boolean logo, byte[] logoBytes,
+		java.lang.String name, java.lang.String legalName,
+		java.lang.String legalId, java.lang.String legalType,
+		java.lang.String sicCode, java.lang.String tickerSymbol,
+		java.lang.String industry, java.lang.String type, java.lang.String size)
+		throws PortalException;
 
 	/**
 	* Returns the OSGi service identifier.
@@ -63,27 +85,12 @@ public interface AngularVirtualInstanceService extends BaseService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Company> getAvailableInstances() throws PortalException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Company createVirtualInstance(String webId, String virtualHostname, String mx, boolean system, int maxUsers, boolean active) throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Company updateVirtualInstance(long companyId, String virtualHostname, String mx, int maxUsers, boolean active) throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Company updateVirtualInstanceExtended(long companyId, String virtualHostname, String mx, String homeUrl, boolean logo, byte[] logoBytes, String name, String legalName, String legalId, String legalType, String sicCode, String tickerSymbol, String industry, String type, String size) throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public void deleteVirtualInstance(long companyId) throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.model.Company updateLogo(long companyId, byte[] bytes) throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public void deleteCompanyLogo(long companyId) throws PortalException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Company getVirtualInstance(long companyId) throws PortalException;
+	public void deleteVirtualInstance(long companyId) throws PortalException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public void updateCompanySecurity(long companyId, String authType, boolean autoLogin, boolean sendPassword, boolean strangers, boolean strangesWithMx, boolean strangersVerify, boolean siteLogo) throws PortalException;
+	public void updateCompanySecurity(long companyId,
+		java.lang.String authType, boolean autoLogin, boolean sendPassword,
+		boolean strangers, boolean strangesWithMx, boolean strangersVerify,
+		boolean siteLogo) throws PortalException;
 }

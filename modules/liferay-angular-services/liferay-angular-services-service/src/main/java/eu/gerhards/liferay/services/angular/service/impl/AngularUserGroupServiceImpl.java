@@ -542,8 +542,7 @@ public class AngularUserGroupServiceImpl extends AngularUserGroupServiceBaseImpl
             // Add back any user groups that the administrator does not have the
             // rights to remove or that have a mandatory membership
 
-            List<UserGroup> oldUserGroups =
-                    userGroupLocalService.getUserUserGroups(userId);
+            List<UserGroup> oldUserGroups =UserGroupLocalServiceUtil.getUserUserGroups(userId);
 
             oldUserGroupIds = new long[oldUserGroups.size()];
 

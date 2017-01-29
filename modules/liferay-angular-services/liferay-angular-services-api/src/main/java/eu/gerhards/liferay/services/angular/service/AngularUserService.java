@@ -28,8 +28,6 @@ import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 
-import java.util.List;
-
 /**
  * Provides the remote service interface for AngularUser. Methods of this
  * service are expected to have security checks based on the propagated JAAS
@@ -122,9 +120,6 @@ public interface AngularUserService extends BaseService {
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Group> getUserSites(long userId) throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Organization> getUserOrganizations(long userId)
 		throws PortalException;
 
@@ -134,6 +129,10 @@ public interface AngularUserService extends BaseService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<Role> getUserRoles(long userId)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<Group> getUserSites(long userId)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

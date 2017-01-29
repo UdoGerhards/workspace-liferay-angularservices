@@ -111,7 +111,6 @@ public class AngularGroupServiceImpl extends AngularGroupServiceBaseImpl {
     }
 
     @Override
-    // TODO: Refactor to generic use by adding class name and switch to local service util
     public Group createGroup(long parentGroupId, long liveGroupId, Map<Locale, String> nameMap, Map<Locale, String> descriptionMap, int type, boolean manualMembership, int membershipRestriction, String friendlyURL, boolean site, boolean inheritContent, boolean active) throws PortalException {
 
         _log.info("Creating new group ...");
@@ -122,11 +121,17 @@ public class AngularGroupServiceImpl extends AngularGroupServiceBaseImpl {
 
         _log.debug("    ... processing ...");
 
-        return groupService.addGroup(parentGroupId, liveGroupId,nameMap,descriptionMap,type, manualMembership, membershipRestriction,friendlyURL,site, active, null);
+        User user = this.getGuestOrUser();
+
+        com.liferay.portal.kernel.service.ServiceContext serviceContext = new com.liferay.portal.kernel.service.ServiceContext();
+        serviceContext.setUserId(user.getUserId());
+        serviceContext.setCompanyId(user.getCompanyId());
+
+        return GroupLocalServiceUtil.addGroup(user.getUserId(), parentGroupId, null, 0L, liveGroupId, nameMap, descriptionMap, type, manualMembership, membershipRestriction, friendlyURL, site, inheritContent, active, serviceContext);
+
     }
 
     @Override
-    // TODO: Refactor to generic use by adding class name and switch to local service util
     public Group updateGroup(long groupId, long parentGroupId, long liveGroupId, Map<Locale, String> nameMap, Map<Locale, String> descriptionMap, int type, boolean manualMembership, int membershipRestriction, String friendlyURL, boolean site, boolean inheritContent, boolean active) throws PortalException {
 
         _log.info("Creating new group ...");
@@ -137,7 +142,13 @@ public class AngularGroupServiceImpl extends AngularGroupServiceBaseImpl {
 
         _log.debug("    ... processing ...");
 
-        return groupService.updateGroup(groupId, parentGroupId,nameMap,descriptionMap,type, manualMembership,membershipRestriction,friendlyURL, inheritContent, active, null);
+        User user = this.getGuestOrUser();
+
+        com.liferay.portal.kernel.service.ServiceContext serviceContext = new com.liferay.portal.kernel.service.ServiceContext();
+        serviceContext.setUserId(user.getUserId());
+        serviceContext.setCompanyId(user.getCompanyId());
+
+        return GroupLocalServiceUtil.updateGroup(groupId, parentGroupId, nameMap, descriptionMap, type, manualMembership, membershipRestriction, friendlyURL, inheritContent, active, serviceContext);
     }
 
     @Override
@@ -171,7 +182,7 @@ public class AngularGroupServiceImpl extends AngularGroupServiceBaseImpl {
 
             user = userPersistence.findByPrimaryKey(userId);
 
-            List<Group> oldGroups = groupLocalService.getUserGroups(userId);
+            List<Group> oldGroups = GroupLocalServiceUtil.getUserGroups(userId);
 
             oldGroupIds = new long[oldGroups.size()];
 
@@ -204,7 +215,7 @@ public class AngularGroupServiceImpl extends AngularGroupServiceBaseImpl {
                 continue;
             }
 
-            Group group = groupPersistence.findByPrimaryKey(groupId);
+            Group group = GroupLocalServiceUtil.getGroup(groupId);
 
             GroupPermissionUtil.check(
                     permissionChecker, group, ActionKeys.ASSIGN_MEMBERS);

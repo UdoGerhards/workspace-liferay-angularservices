@@ -20,10 +20,10 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.VirtualHost;
-import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.VirtualHostLocalServiceUtil;
 import com.liferay.portal.kernel.service.permission.PortalPermissionUtil;
 import eu.gerhards.liferay.services.angular.service.base.AngularVirtualHostServiceBaseImpl;
+import eu.gerhards.liferay.services.angular.service.util.AngularActionKeys;
 
 /**
  * The implementation of the Virtual host remote service.
@@ -57,8 +57,7 @@ public class AngularVirtualHostServiceImpl
 
 		_log.debug("    ... security check ...");
 
-		// TODO: Right
-		PortalPermissionUtil.check(getPermissionChecker(), ActionKeys.VIEW);
+		PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.LIST_VIRTUAL_INSTANCES);
 
 		_log.debug("    ... creating ...");
 
@@ -84,8 +83,7 @@ public class AngularVirtualHostServiceImpl
 
 		_log.debug("    ... security check ...");
 
-		// TODO: Right
-		PortalPermissionUtil.check(getPermissionChecker(), ActionKeys.VIEW);
+		PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.UPDATE_VIRTUAL_INSTANCE);
 
 		_log.debug("    ... updating ... ");
 

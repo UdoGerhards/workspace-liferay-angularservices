@@ -15,8 +15,6 @@
 package eu.gerhards.liferay.services.angular.service;
 
 import aQute.bnd.annotation.ProviderType;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.UserGroupRole;
 import com.liferay.portal.kernel.service.ServiceWrapper;
 
@@ -35,24 +33,24 @@ public class AngularRoleServiceWrapper implements AngularRoleService,
 	}
 
 	@Override
-	public Role createRole(java.lang.String name, int type,
-						   java.lang.String className,
-						   java.util.Map<java.util.Locale, java.lang.String> titleMap,
-						   java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-						   java.lang.String subType)
+	public com.liferay.portal.kernel.model.Role createRole(java.lang.String name, int type,
+		java.lang.String className,
+		java.util.Map<java.util.Locale, java.lang.String> titleMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		java.lang.String subType)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _angularRoleService.createRole(name, type, className, titleMap,
 			descriptionMap, subType);
 	}
 
 	@Override
-	public Role deleteRole(long roleId)
+	public com.liferay.portal.kernel.model.Role deleteRole(long roleId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _angularRoleService.deleteRole(roleId);
 	}
 
 	@Override
-	public Role updateRole(long roleId, java.lang.String name, int type,
+	public com.liferay.portal.kernel.model.Role updateRole(long roleId, java.lang.String name, int type,
 		java.lang.String className,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
@@ -80,22 +78,25 @@ public class AngularRoleServiceWrapper implements AngularRoleService,
 	}
 
 	@Override
-	public java.util.List<Role> getOrganizationRoles(long companyId) {
+	public java.util.List<com.liferay.portal.kernel.model.Role> getOrganizationRoles(long companyId) {
 		return _angularRoleService.getOrganizationRoles(companyId);
 	}
 
 	@Override
-    public java.util.List<Role> getRegularRoles(long companyId) throws PortalException {
+	public java.util.List<com.liferay.portal.kernel.model.Role> getRegularRoles(long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _angularRoleService.getRegularRoles(companyId);
 	}
 
 	@Override
-    public java.util.List<Role> getRolesInCompany(long companyId) throws PortalException {
+	public java.util.List<com.liferay.portal.kernel.model.Role> getRolesInCompany(long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _angularRoleService.getRolesInCompany(companyId);
 	}
 
 	@Override
-	public java.util.List<Role> getSiteRoles(long companyId) throws PortalException {
+	public java.util.List<com.liferay.portal.kernel.model.Role> getSiteRoles(long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _angularRoleService.getSiteRoles(companyId);
 	}
 

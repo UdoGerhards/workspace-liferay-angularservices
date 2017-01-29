@@ -282,6 +282,63 @@ public abstract class AngularVirtualInstanceServiceBaseImpl
 	}
 
 	/**
+	 * Returns the LayoutSet local service.
+	 *
+	 * @return the LayoutSet local service
+	 */
+	public eu.gerhards.liferay.services.angular.service.AngularLayoutSetLocalService getAngularLayoutSetLocalService() {
+		return angularLayoutSetLocalService;
+	}
+
+	/**
+	 * Sets the LayoutSet local service.
+	 *
+	 * @param angularLayoutSetLocalService the LayoutSet local service
+	 */
+	public void setAngularLayoutSetLocalService(
+		eu.gerhards.liferay.services.angular.service.AngularLayoutSetLocalService angularLayoutSetLocalService) {
+		this.angularLayoutSetLocalService = angularLayoutSetLocalService;
+	}
+
+	/**
+	 * Returns the LayoutSet remote service.
+	 *
+	 * @return the LayoutSet remote service
+	 */
+	public eu.gerhards.liferay.services.angular.service.AngularLayoutSetService getAngularLayoutSetService() {
+		return angularLayoutSetService;
+	}
+
+	/**
+	 * Sets the LayoutSet remote service.
+	 *
+	 * @param angularLayoutSetService the LayoutSet remote service
+	 */
+	public void setAngularLayoutSetService(
+		eu.gerhards.liferay.services.angular.service.AngularLayoutSetService angularLayoutSetService) {
+		this.angularLayoutSetService = angularLayoutSetService;
+	}
+
+	/**
+	 * Returns the LayoutSet persistence.
+	 *
+	 * @return the LayoutSet persistence
+	 */
+	public AngularLayoutSetPersistence getAngularLayoutSetPersistence() {
+		return angularLayoutSetPersistence;
+	}
+
+	/**
+	 * Sets the LayoutSet persistence.
+	 *
+	 * @param angularLayoutSetPersistence the LayoutSet persistence
+	 */
+	public void setAngularLayoutSetPersistence(
+		AngularLayoutSetPersistence angularLayoutSetPersistence) {
+		this.angularLayoutSetPersistence = angularLayoutSetPersistence;
+	}
+
+	/**
 	 * Returns the Organization local service.
 	 *
 	 * @return the Organization local service
@@ -1131,6 +1188,12 @@ public abstract class AngularVirtualInstanceServiceBaseImpl
 	protected eu.gerhards.liferay.services.angular.service.AngularLayoutService angularLayoutService;
 	@BeanReference(type = AngularLayoutPersistence.class)
 	protected AngularLayoutPersistence angularLayoutPersistence;
+	@BeanReference(type = eu.gerhards.liferay.services.angular.service.AngularLayoutSetLocalService.class)
+	protected eu.gerhards.liferay.services.angular.service.AngularLayoutSetLocalService angularLayoutSetLocalService;
+	@BeanReference(type = eu.gerhards.liferay.services.angular.service.AngularLayoutSetService.class)
+	protected eu.gerhards.liferay.services.angular.service.AngularLayoutSetService angularLayoutSetService;
+	@BeanReference(type = AngularLayoutSetPersistence.class)
+	protected AngularLayoutSetPersistence angularLayoutSetPersistence;
 	@BeanReference(type = eu.gerhards.liferay.services.angular.service.AngularOrganizationLocalService.class)
 	protected eu.gerhards.liferay.services.angular.service.AngularOrganizationLocalService angularOrganizationLocalService;
 	@BeanReference(type = eu.gerhards.liferay.services.angular.service.AngularOrganizationService.class)

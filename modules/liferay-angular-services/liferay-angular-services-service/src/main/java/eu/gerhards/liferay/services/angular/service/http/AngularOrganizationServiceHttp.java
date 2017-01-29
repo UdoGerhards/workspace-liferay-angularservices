@@ -57,7 +57,7 @@ import eu.gerhards.liferay.services.angular.service.AngularOrganizationServiceUt
  */
 @ProviderType
 public class AngularOrganizationServiceHttp {
-	public static com.liferay.portal.kernel.model.Organization getOrganization(HttpPrincipal httpPrincipal,
+	public static Organization getOrganization(HttpPrincipal httpPrincipal,
 											   long organizationId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
@@ -80,7 +80,7 @@ public class AngularOrganizationServiceHttp {
 				throw new com.liferay.portal.kernel.exception.SystemException(e);
 			}
 
-			return (com.liferay.portal.kernel.model.Organization)returnObj;
+			return (Organization)returnObj;
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException se) {
 			_log.error(se, se);

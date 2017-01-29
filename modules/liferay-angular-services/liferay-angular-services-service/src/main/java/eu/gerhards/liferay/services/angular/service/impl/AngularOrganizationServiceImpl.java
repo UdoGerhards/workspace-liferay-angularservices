@@ -244,8 +244,8 @@ public class AngularOrganizationServiceImpl
 			_log.debug("        ... organization ...");
 
 			serviceContext.setUserId(this.getGuestOrUserId());
-
-			Organization organization = organizationLocalService.updateOrganization(creator.getCompanyId(),organizationId,OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID ,name, type, regionId, countryId, statusId, comment,false, null, site,serviceContext);
+			Organization organization = null;
+			// Organization organization = organizationLocalService.updateOrganization(creator.getCompanyId(),organizationId,OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID ,name, type, regionId, countryId, statusId, comment,false, null, site,serviceContext);
 
 			this. updateOrganizationParts(organization, addresses, emailAddresses, phones, websites, orgLabors);
 
@@ -426,8 +426,7 @@ public class AngularOrganizationServiceImpl
 			// administrator does not have the rights to remove and check that
 			// he has the permission to add a new organization
 
-			List<Organization> oldOrganizations =
-					organizationLocalService.getUserOrganizations(userId);
+			List<Organization> oldOrganizations = OrganizationLocalServiceUtil.getUserOrganizations(userId);
 
 			oldOrganizationIds = new long[oldOrganizations.size()];
 
@@ -463,8 +462,7 @@ public class AngularOrganizationServiceImpl
 				continue;
 			}
 
-			Organization organization =
-					organizationPersistence.findByPrimaryKey(organizationId);
+			Organization organization = OrganizationLocalServiceUtil.getOrganization(organizationId);
 
 			OrganizationPermissionUtil.check(
 					permissionChecker, organization, ActionKeys.ASSIGN_MEMBERS);

@@ -43,26 +43,6 @@ public class AngularPermissionServiceWrapper implements AngularPermissionService
 	}
 
 	@Override
-	public java.util.List<com.liferay.portal.kernel.model.ResourcePermission> getPermissions(
-		long roleId) {
-		return _angularPermissionService.getPermissions(roleId);
-	}
-
-	@Override
-	public java.util.List<java.util.List<com.liferay.portal.kernel.model.ResourcePermission>> getPermissionsForUser(
-		long userId) throws com.liferay.portal.kernel.exception.PortalException {
-		return _angularPermissionService.getPermissionsForUser(userId);
-	}
-
-	@Override
-	public java.util.List<java.util.List<com.liferay.portal.kernel.model.ResourcePermission>> getPermissionsForUserPerType(
-		long userId, long roleType, long scopeType)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _angularPermissionService.getPermissionsForUserPerType(userId,
-			roleType, scopeType);
-	}
-
-	@Override
 	public AngularPermissionService getWrappedService() {
 		return _angularPermissionService;
 	}

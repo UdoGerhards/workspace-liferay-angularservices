@@ -24,7 +24,10 @@ import com.liferay.portal.kernel.security.membershippolicy.RoleMembershipPolicyU
 import com.liferay.portal.kernel.security.membershippolicy.SiteMembershipPolicyUtil;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
+import com.liferay.portal.kernel.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.kernel.service.RoleLocalServiceUtil;
+import com.liferay.portal.kernel.service.UserGroupRoleLocalServiceUtil;
+import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.service.permission.PortalPermissionUtil;
 import com.liferay.portal.kernel.service.permission.RolePermissionUtil;
 import com.liferay.portal.kernel.service.permission.UserGroupRolePermissionUtil;
@@ -176,7 +179,7 @@ public class AngularRoleServiceImpl extends AngularRoleServiceBaseImpl {
             // not have the rights to remove and check that he has the
             // permission to add a new role
 
-            List<Role> oldRoles = roleLocalService.getUserRoles(userId);
+            List<Role> oldRoles = RoleLocalServiceUtil.getUserRoles(userId);
 
             oldRoleIds = new long[oldRoles.size()];
 
@@ -230,9 +233,13 @@ public class AngularRoleServiceImpl extends AngularRoleServiceBaseImpl {
 
             // Add back any user group roles that the administrator does not
             // have the rights to remove or that have a mandatory membership
+            User user = UserLocalServiceUtil.getUser(userId);
+            List<UserGroup> userGroups = user.getUserGroups();
 
-            oldUserGroupRoles = userGroupRoleLocalService.getUserGroupRoles(
-                    userId);
+            for (UserGroup userGroup:userGroups) {
+                List<UserGroupRole> roles = UserGroupRoleLocalServiceUtil.getUserGroupRoles(userId, userGroup.getUserGroupId());
+                oldUserGroupRoles.addAll(roles);
+            }
 
             for (UserGroupRole oldUserGroupRole : oldUserGroupRoles) {
                 Role role = oldUserGroupRole.getRole();
@@ -243,9 +250,7 @@ public class AngularRoleServiceImpl extends AngularRoleServiceBaseImpl {
                 }
 
                 if (role.getType() == RoleConstants.TYPE_ORGANIZATION) {
-                    Organization organization =
-                            organizationPersistence.findByPrimaryKey(
-                                    group.getOrganizationId());
+                    Organization organization = OrganizationLocalServiceUtil.getOrganization(group.getOrganizationId());
 
                     if (!UserGroupRolePermissionUtil.contains(
                             permissionChecker, group, role) ||

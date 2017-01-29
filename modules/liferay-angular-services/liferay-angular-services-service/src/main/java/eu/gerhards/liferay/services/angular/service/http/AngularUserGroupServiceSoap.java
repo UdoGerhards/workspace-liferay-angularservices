@@ -63,6 +63,278 @@ import java.rmi.RemoteException;
  */
 @ProviderType
 public class AngularUserGroupServiceSoap {
+	public static com.liferay.portal.kernel.model.UserGroup getUserGroup(
+		long userGroupId) throws RemoteException {
+		try {
+			com.liferay.portal.kernel.model.UserGroup returnValue = AngularUserGroupServiceUtil.getUserGroup(userGroupId);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.portal.kernel.model.UserGroupSoap[] getUserGroups(
+		long[] userGroupIds) throws RemoteException {
+		try {
+			java.util.List<com.liferay.portal.kernel.model.UserGroup> returnValue =
+				AngularUserGroupServiceUtil.getUserGroups(userGroupIds);
+
+			return com.liferay.portal.kernel.model.UserGroupSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.portal.kernel.model.UserSoap[] getUserGroupUsers(
+		long userGroupId) throws RemoteException {
+		try {
+			java.util.List<com.liferay.portal.kernel.model.User> returnValue = AngularUserGroupServiceUtil.getUserGroupUsers(userGroupId);
+
+			return com.liferay.portal.kernel.model.UserSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.portal.kernel.model.UserGroupSoap[] getTeamUserGroups(
+		long teamId) throws RemoteException {
+		try {
+			java.util.List<com.liferay.portal.kernel.model.UserGroup> returnValue =
+				AngularUserGroupServiceUtil.getTeamUserGroups(teamId);
+
+			return com.liferay.portal.kernel.model.UserGroupSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.portal.kernel.model.UserGroup createUserGroup(
+		long userId, long companyId, java.lang.String name,
+		java.lang.String description) throws RemoteException {
+		try {
+			com.liferay.portal.kernel.model.UserGroup returnValue = AngularUserGroupServiceUtil.createUserGroup(userId,
+					companyId, name, description);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.portal.kernel.model.UserGroup updateUserGroup(
+		long companyId, long userGroupId, java.lang.String name,
+		java.lang.String description) throws RemoteException {
+		try {
+			com.liferay.portal.kernel.model.UserGroup returnValue = AngularUserGroupServiceUtil.updateUserGroup(companyId,
+					userGroupId, name, description);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void deleteUserGroup(long userGroupId)
+		throws RemoteException {
+		try {
+			AngularUserGroupServiceUtil.deleteUserGroup(userGroupId);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void deleteUserGroups(long[] userGroupIds)
+		throws RemoteException {
+		try {
+			AngularUserGroupServiceUtil.deleteUserGroups(userGroupIds);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void assignTeamUserGroup(long teamId, long userGroupId)
+		throws RemoteException {
+		try {
+			AngularUserGroupServiceUtil.assignTeamUserGroup(teamId, userGroupId);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void assignTeamUserGroups(long teamId, long[] userGroupIds)
+		throws RemoteException {
+		try {
+			AngularUserGroupServiceUtil.assignTeamUserGroups(teamId,
+				userGroupIds);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void removeTeamUserGroup(long teamId, long userGroupId)
+		throws RemoteException {
+		try {
+			AngularUserGroupServiceUtil.removeTeamUserGroup(teamId, userGroupId);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void removeTeamUserGroups(long teamId, long[] userGroupIds)
+		throws RemoteException {
+		try {
+			AngularUserGroupServiceUtil.removeTeamUserGroups(teamId,
+				userGroupIds);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void assignUserUserGroup(long userId, long userGroupId)
+		throws RemoteException {
+		try {
+			AngularUserGroupServiceUtil.assignUserUserGroup(userId, userGroupId);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void assignUserUserGroups(long userId, long[] userGroupIds)
+		throws RemoteException {
+		try {
+			AngularUserGroupServiceUtil.assignUserUserGroups(userId,
+				userGroupIds);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void removeUserUserGroup(long userId, long userGroupId)
+		throws RemoteException {
+		try {
+			AngularUserGroupServiceUtil.removeUserUserGroup(userId, userGroupId);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void removeUserUserGroups(long userId, long[] userGroupIds)
+		throws RemoteException {
+		try {
+			AngularUserGroupServiceUtil.removeUserUserGroups(userId,
+				userGroupIds);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static boolean isUserGroupMemberOfTeam(long teamId, long userGroupId)
+		throws RemoteException {
+		try {
+			boolean returnValue = AngularUserGroupServiceUtil.isUserGroupMemberOfTeam(teamId,
+					userGroupId);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static boolean hasTeamUserGroups(long teamId)
+		throws RemoteException {
+		try {
+			boolean returnValue = AngularUserGroupServiceUtil.hasTeamUserGroups(teamId);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static boolean isUserMemberOfUserGroup(long userId, long userGroupId)
+		throws RemoteException {
+		try {
+			boolean returnValue = AngularUserGroupServiceUtil.isUserMemberOfUserGroup(userId,
+					userGroupId);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static boolean hasUserUserGroups(long userId)
+		throws RemoteException {
+		try {
+			boolean returnValue = AngularUserGroupServiceUtil.hasUserUserGroups(userId);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static com.liferay.portal.kernel.model.UserGroupSoap[] getUserGroupsInCompany(
 		long companyId) throws RemoteException {
 		try {
@@ -70,6 +342,21 @@ public class AngularUserGroupServiceSoap {
 				AngularUserGroupServiceUtil.getUserGroupsInCompany(companyId);
 
 			return com.liferay.portal.kernel.model.UserGroupSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static boolean hasPermission(long userGroupId,
+		java.lang.String actionId) throws RemoteException {
+		try {
+			boolean returnValue = AngularUserGroupServiceUtil.hasPermission(userGroupId,
+					actionId);
+
+			return returnValue;
 		}
 		catch (Exception e) {
 			_log.error(e, e);

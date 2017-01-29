@@ -44,7 +44,6 @@
                 <action-key>DELETE_VIRTUAL_INSTANCE</action-key>
                 <action-key>UPDATE_VIRTUAL_INSTANCE</action-key>
                 <action-key>LIST_VIRTUAL_INSTANCES</action-key>
-                <action-key>ADD_LAYOUT</action-key>
                 <action-key>DELETE_LAYOUT</action-key>
                 <action-key>LIST_LAYOUTS</action-key>
                 <action-key>UPDATE_LAYOUT</action-key>
@@ -91,7 +90,7 @@
                 <action-key>DELETE_VIRTUAL_INSTANCE</action-key>
                 <action-key>UPDATE_VIRTUAL_INSTANCE</action-key>
                 <action-key>LIST_VIRTUAL_INSTANCES</action-key>
-                <action-key>ADD_LAYOUT</action-key>
+                <action-key>ADD_NEW_LAYOUT</action-key>
                 <action-key>DELETE_LAYOUT</action-key>
                 <action-key>LIST_LAYOUTS</action-key>
                 <action-key>UPDATE_LAYOUT</action-key>

@@ -15,13 +15,7 @@
 package eu.gerhards.liferay.services.angular.service;
 
 import aQute.bnd.annotation.ProviderType;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.ServiceWrapper;
-
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 /**
  * Provides a wrapper for {@link AngularSiteService}.
@@ -37,6 +31,34 @@ public class AngularSiteServiceWrapper implements AngularSiteService,
 		_angularSiteService = angularSiteService;
 	}
 
+	@Override
+	public com.liferay.portal.kernel.model.Group createSite(long parentSiteId,
+		long liveGroupId,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		int type, boolean manualMembership, int membershipRestriction,
+		java.lang.String friendlyURL, boolean site, boolean inheritContent,
+		boolean active)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularSiteService.createSite(parentSiteId, liveGroupId,
+			nameMap, descriptionMap, type, manualMembership,
+			membershipRestriction, friendlyURL, site, inheritContent, active);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.Group updateSite(long siteId,
+		long parentSiteId, long liveGroupId,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		int type, boolean manualMembership, int membershipRestriction,
+		java.lang.String friendlyURL, boolean site, boolean inheritContent,
+		boolean active)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularSiteService.updateSite(siteId, parentSiteId,
+			liveGroupId, nameMap, descriptionMap, type, manualMembership,
+			membershipRestriction, friendlyURL, site, inheritContent, active);
+	}
+
 	/**
 	* Returns the OSGi service identifier.
 	*
@@ -48,6 +70,33 @@ public class AngularSiteServiceWrapper implements AngularSiteService,
 	}
 
 	@Override
+	public java.util.List<com.liferay.portal.kernel.model.Group> getActiveSites(
+		long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularSiteService.getActiveSites(companyId);
+	}
+
+	@Override
+	public java.util.List<com.liferay.portal.kernel.model.Group> getInactiveSites(
+		long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularSiteService.getInactiveSites(companyId);
+	}
+
+	@Override
+	public java.util.List<com.liferay.portal.kernel.model.Group> getInstanceSites(
+		long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _angularSiteService.getInstanceSites(companyId);
+	}
+
+	@Override
+	public void deleteSite(long siteId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_angularSiteService.deleteSite(siteId);
+	}
+
+	@Override
 	public AngularSiteService getWrappedService() {
 		return _angularSiteService;
 	}
@@ -55,36 +104,6 @@ public class AngularSiteServiceWrapper implements AngularSiteService,
 	@Override
 	public void setWrappedService(AngularSiteService angularSiteService) {
 		_angularSiteService = angularSiteService;
-	}
-
-	@Override
-	public List<Group> getActiveSites(long companyId) throws PortalException {
-		return _angularSiteService.getActiveSites(companyId);
-	}
-
-	@Override
-	public List<Group> getInactiveSites(long companyId) throws PortalException {
-		return _angularSiteService.getInactiveSites(companyId);
-	}
-
-	@Override
-	public List<Group> getInstanceSites(long companyId) throws PortalException {
-		return _angularSiteService.getInstanceSites(companyId);
-	}
-
-	@Override
-	public Group createSite(long parenSiteId, long liveGroupId, Map<Locale, String> nameMap, Map<Locale, String> descriptionMap, int type, boolean manualMembership, int membershipRestriction, String friendlyURL, boolean site, boolean inheritContent, boolean active) throws PortalException {
-		return _angularSiteService.createSite(parenSiteId, liveGroupId, nameMap, descriptionMap, type, manualMembership, membershipRestriction, friendlyURL, site, inheritContent, active);
-	}
-
-	@Override
-	public Group updateSite(long siteId, long parentGroupId, long liveGroupId, Map<Locale, String> nameMap, Map<Locale, String> descriptionMap, int type, boolean manualMembership, int membershipRestriction, String friendlyURL, boolean site, boolean inheritContent, boolean active) throws PortalException {
-		return _angularSiteService.updateSite(siteId, parentGroupId, liveGroupId, nameMap, descriptionMap, type, manualMembership, membershipRestriction, friendlyURL, site, inheritContent, active);
-	}
-
-	@Override
-	public void deleteSite(long siteId) throws PortalException {
-		_angularSiteService.deleteSite(siteId);
 	}
 
 	private AngularSiteService _angularSiteService;

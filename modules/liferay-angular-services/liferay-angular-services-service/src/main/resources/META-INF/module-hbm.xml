@@ -6,6 +6,7 @@
 	<import class="eu.gerhards.liferay.services.angular.model.AngularGroup" />
 	<import class="eu.gerhards.liferay.services.angular.model.AngularInstance" />
 	<import class="eu.gerhards.liferay.services.angular.model.AngularLayout" />
+	<import class="eu.gerhards.liferay.services.angular.model.AngularLayoutSet" />
 	<import class="eu.gerhards.liferay.services.angular.model.AngularOrganization" />
 	<import class="eu.gerhards.liferay.services.angular.model.AngularPermission" />
 	<import class="eu.gerhards.liferay.services.angular.model.AngularPortal" />
@@ -34,6 +35,11 @@
 	</class>
 	<class name="eu.gerhards.liferay.services.angular.model.impl.AngularLayoutImpl" table="AngularServices_AngularLayout">
 		<id name="layoutId" type="long">
+			<generator class="assigned" />
+		</id>
+	</class>
+	<class name="eu.gerhards.liferay.services.angular.model.impl.AngularLayoutSetImpl" table="AngularServices_AngularLayoutSet">
+		<id name="layoutSetId" type="long">
 			<generator class="assigned" />
 		</id>
 	</class>

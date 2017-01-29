@@ -38,9 +38,9 @@ public class AngularOrganizationServiceWrapper
 
 	@Override
 	public com.liferay.portal.kernel.model.Organization createOrganization(java.lang.String name,
-										   java.lang.String type, long regionId, long countryId, long statusId,
-										   java.lang.String comment, boolean site, long[] addresses,
-										   long[] emailAddresses, long[] phones, long[] websites, long[] orgLabors)
+		java.lang.String type, long regionId, long countryId, long statusId,
+		java.lang.String comment, boolean site, long[] addresses,
+		long[] emailAddresses, long[] phones, long[] websites, long[] orgLabors)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _angularOrganizationService.createOrganization(name, type,
 			regionId, countryId, statusId, comment, site, addresses,

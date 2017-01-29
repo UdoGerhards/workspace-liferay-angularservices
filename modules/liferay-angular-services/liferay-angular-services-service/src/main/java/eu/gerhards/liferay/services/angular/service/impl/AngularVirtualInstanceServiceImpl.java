@@ -58,7 +58,7 @@ public class AngularVirtualInstanceServiceImpl
 
 		_log.debug("    ... security check ...");
 
-		PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.LIST_COMPANIES);
+		PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.LIST_VIRTUAL_INSTANCES);
 
 		_log.debug("   ... getting information ...");
 
@@ -73,8 +73,7 @@ public class AngularVirtualInstanceServiceImpl
 
 		_log.debug("    ... security check ...");
 
-		// TODO: Check if another permission is necessary
-		PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.LIST_COMPANIES);
+		PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.ADD_VIRTUAL_INSTANCE);
 
 		_log.debug( "... creating company ...");
 
@@ -88,8 +87,7 @@ public class AngularVirtualInstanceServiceImpl
 
 		_log.debug("    ... security check ...");
 
-		// TODO: Check if another permission is necessary
-		PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.LIST_COMPANIES);
+		PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.UPDATE_VIRTUAL_INSTANCE);
 
 		_log.debug(" .... updating company ...");
 
@@ -103,8 +101,7 @@ public class AngularVirtualInstanceServiceImpl
 
 		_log.debug("    ... security check ...");
 
-		// TODO: Check if another permission is necessary
-		PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.LIST_COMPANIES);
+		PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.UPDATE_VIRTUAL_INSTANCE);
 
 		_log.debug(" .... updating company ...");
 
@@ -118,8 +115,7 @@ public class AngularVirtualInstanceServiceImpl
 
 		_log.debug("    ... security check ...");
 
-		// TODO: Check if another permission is necessary
-		PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.LIST_COMPANIES);
+		PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.DELETE_VIRTUAL_INSTANCE);
 
 		_log.debug("    .... deleting company ...");
 
@@ -134,7 +130,7 @@ public class AngularVirtualInstanceServiceImpl
 
 		_log.debug("    ... security check ...");
 
-		PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.LIST_COMPANIES);
+		PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.UPDATE_VIRTUAL_INSTANCE);
 
 		_log.info("    ... updating logo ...");
 
@@ -149,8 +145,7 @@ public class AngularVirtualInstanceServiceImpl
 
 		_log.debug("    ... security check ...");
 
-		// TODO: Check if another permission is necessary
-		PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.LIST_COMPANIES);
+		PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.DELETE_VIRTUAL_INSTANCE);
 
 		_log.info("    ... deleting company ...");
 
@@ -165,8 +160,7 @@ public class AngularVirtualInstanceServiceImpl
 
 		_log.debug("    ... security check ...");
 
-		// TODO: Check if another permission is necessary
-		PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.LIST_COMPANIES);
+		PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.LIST_VIRTUAL_INSTANCES);
 
 		_log.debug("    ... return company parameters ... ");
 
@@ -181,8 +175,7 @@ public class AngularVirtualInstanceServiceImpl
 
 		_log.debug("    ... security check ...");
 
-		// TODO: Check if another permission is necessary
-		PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.LIST_COMPANIES);
+		PortalPermissionUtil.check(getPermissionChecker(), AngularActionKeys.UPDATE_VIRTUAL_INSTANCE);
 
 		_log.debug("    ... updating security ... ");
 

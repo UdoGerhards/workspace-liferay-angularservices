@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -53,6 +54,19 @@ public interface AngularSiteService extends BaseService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link AngularSiteServiceUtil} to access the Site remote service. Add custom service methods to {@link eu.gerhards.liferay.services.angular.service.impl.AngularSiteServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public Group createSite(long parentSiteId, long liveGroupId,
+		Map<Locale, java.lang.String> nameMap,
+		Map<Locale, java.lang.String> descriptionMap, int type,
+		boolean manualMembership, int membershipRestriction,
+		java.lang.String friendlyURL, boolean site, boolean inheritContent,
+		boolean active) throws PortalException;
+
+	public Group updateSite(long siteId, long parentSiteId, long liveGroupId,
+		Map<Locale, java.lang.String> nameMap,
+		Map<Locale, java.lang.String> descriptionMap, int type,
+		boolean manualMembership, int membershipRestriction,
+		java.lang.String friendlyURL, boolean site, boolean inheritContent,
+		boolean active) throws PortalException;
 
 	/**
 	* Returns the OSGi service identifier.
@@ -62,31 +76,15 @@ public interface AngularSiteService extends BaseService {
 	public java.lang.String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<Group> getActiveSites(long companyId)
-			throws PortalException;
+	public List<Group> getActiveSites(long companyId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<Group> getInactiveSites(long companyId)
-			throws PortalException;
+	public List<Group> getInactiveSites(long companyId)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<Group> getInstanceSites(long companyId)
-			throws PortalException;
-
-	public Group createSite(long parentSiteId, long liveGroupId,
-							 Map<Locale, String> nameMap,
-							 Map<Locale, java.lang.String> descriptionMap, int type,
-							 boolean manualMembership, int membershipRestriction,
-							 java.lang.String friendlyURL, boolean site, boolean inheritContent,
-							 boolean active) throws PortalException;
-
-	public Group updateSite(long siteId, long parentSiteId,
-							 long liveGroupId, Map<Locale, java.lang.String> nameMap,
-							 Map<Locale, java.lang.String> descriptionMap, int type,
-							 boolean manualMembership, int membershipRestriction,
-							 java.lang.String friendlyURL, boolean site, boolean inheritContent,
-							 boolean active) throws PortalException;
+	public List<Group> getInstanceSites(long companyId)
+		throws PortalException;
 
 	public void deleteSite(long siteId) throws PortalException;
-
 }

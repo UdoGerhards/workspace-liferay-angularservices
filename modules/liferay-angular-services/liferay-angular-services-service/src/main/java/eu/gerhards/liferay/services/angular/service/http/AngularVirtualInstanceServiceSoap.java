@@ -15,10 +15,15 @@
 package eu.gerhards.liferay.services.angular.service.http;
 
 import aQute.bnd.annotation.ProviderType;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import eu.gerhards.liferay.services.angular.service.AngularVirtualInstanceServiceUtil;
+
+import java.rmi.RemoteException;
 
 /**
  * Provides the SOAP utility for the
- * {@link eu.gerhards.liferay.services.angular.service.AngularVirtualInstanceServiceUtil} service utility. The
+ * {@link AngularVirtualInstanceServiceUtil} service utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it is difficult for SOAP to
  * support certain types.
@@ -53,9 +58,149 @@ import aQute.bnd.annotation.ProviderType;
  * @author Brian Wing Shun Chan
  * @see AngularVirtualInstanceServiceHttp
  * @see eu.gerhards.liferay.services.angular.model.AngularVirtualInstanceSoap
- * @see eu.gerhards.liferay.services.angular.service.AngularVirtualInstanceServiceUtil
+ * @see AngularVirtualInstanceServiceUtil
  * @generated
  */
 @ProviderType
 public class AngularVirtualInstanceServiceSoap {
+	public static com.liferay.portal.kernel.model.CompanySoap[] getAvailableInstances()
+		throws RemoteException {
+		try {
+			java.util.List<com.liferay.portal.kernel.model.Company> returnValue = AngularVirtualInstanceServiceUtil.getAvailableInstances();
+
+			return com.liferay.portal.kernel.model.CompanySoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.portal.kernel.model.Company createVirtualInstance(
+		java.lang.String webId, java.lang.String virtualHostname,
+		java.lang.String mx, boolean system, int maxUsers, boolean active)
+		throws RemoteException {
+		try {
+			com.liferay.portal.kernel.model.Company returnValue = AngularVirtualInstanceServiceUtil.createVirtualInstance(webId,
+					virtualHostname, mx, system, maxUsers, active);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.portal.kernel.model.Company updateVirtualInstance(
+		long companyId, java.lang.String virtualHostname, java.lang.String mx,
+		int maxUsers, boolean active) throws RemoteException {
+		try {
+			com.liferay.portal.kernel.model.Company returnValue = AngularVirtualInstanceServiceUtil.updateVirtualInstance(companyId,
+					virtualHostname, mx, maxUsers, active);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.portal.kernel.model.Company updateVirtualInstanceExtended(
+		long companyId, java.lang.String virtualHostname, java.lang.String mx,
+		java.lang.String homeUrl, boolean logo, byte[] logoBytes,
+		java.lang.String name, java.lang.String legalName,
+		java.lang.String legalId, java.lang.String legalType,
+		java.lang.String sicCode, java.lang.String tickerSymbol,
+		java.lang.String industry, java.lang.String type, java.lang.String size)
+		throws RemoteException {
+		try {
+			com.liferay.portal.kernel.model.Company returnValue = AngularVirtualInstanceServiceUtil.updateVirtualInstanceExtended(companyId,
+					virtualHostname, mx, homeUrl, logo, logoBytes, name,
+					legalName, legalId, legalType, sicCode, tickerSymbol,
+					industry, type, size);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void deleteVirtualInstance(long companyId)
+		throws RemoteException {
+		try {
+			AngularVirtualInstanceServiceUtil.deleteVirtualInstance(companyId);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.portal.kernel.model.Company updateLogo(
+		long companyId, byte[] bytes) throws RemoteException {
+		try {
+			com.liferay.portal.kernel.model.Company returnValue = AngularVirtualInstanceServiceUtil.updateLogo(companyId,
+					bytes);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void deleteCompanyLogo(long companyId)
+		throws RemoteException {
+		try {
+			AngularVirtualInstanceServiceUtil.deleteCompanyLogo(companyId);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.portal.kernel.model.Company getVirtualInstance(
+		long companyId) throws RemoteException {
+		try {
+			com.liferay.portal.kernel.model.Company returnValue = AngularVirtualInstanceServiceUtil.getVirtualInstance(companyId);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void updateCompanySecurity(long companyId,
+		java.lang.String authType, boolean autoLogin, boolean sendPassword,
+		boolean strangers, boolean strangesWithMx, boolean strangersVerify,
+		boolean siteLogo) throws RemoteException {
+		try {
+			AngularVirtualInstanceServiceUtil.updateCompanySecurity(companyId,
+				authType, autoLogin, sendPassword, strangers, strangesWithMx,
+				strangersVerify, siteLogo);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(AngularVirtualInstanceServiceSoap.class);
 }
